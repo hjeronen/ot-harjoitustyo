@@ -9,3 +9,5 @@ Täällä harjoitellaan [MarkDownia](https://guides.github.com/features/masterin
 * [komentorivi.txt](https://github.com/hjeronen/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
 Tämä on testi.
+
+Testataan epäsynkroonia.
