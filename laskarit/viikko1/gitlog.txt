@@ -1,0 +1,113 @@
+commit 3fc3cc23cd99d0fbb4a189da5fc8be286e0a00f0
+Author: Heli Eronen <herojonen@gmail.com>
+Date:   Sun Nov 1 18:42:30 2020 +0100
+
+    poisto ja uudelleennimentä
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit e55320fd82c58e4668d51208e49729b8d4944b5f
+Author: Heli Eronen <herojonen@gmail.com>
+Date:   Sun Nov 1 18:33:13 2020 +0100
+
+    yritetään lisätä tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit e8c5a788951fe9481156fb50a29bd72892ead2bd
+Author: Heli Eronen <herojonen@gmail.com>
+Date:   Sun Nov 1 18:12:32 2020 +0100
+
+    muokattiin ekaa ja kolmatta tiedostoa
+
+ eka.txt    | 4 +++-
+ kolmas.txt | 2 ++
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+commit 35ef11b58df386c2567ab5c730eee38f6e319ea6
+Author: Heli Eronen <herojonen@gmail.com>
+Date:   Sun Nov 1 18:08:25 2020 +0100
+
+    uusi yritys
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 70c8dc6dee6e1281faef8af2e421ca90c9e053c1
+Author: Heli Eronen <herojonen@gmail.com>
+Date:   Sun Nov 1 18:04:31 2020 +0100
+
+    poistettiin toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 93efd8b1075215633ca3d786391f1f6947e0dac5
+Author: Heli Eronen <herojonen@gmail.com>
+Date:   Sun Nov 1 17:51:38 2020 +0100
+
+    tekstin poisto ja lisäys
+
+ tiedosto.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit a8121bcd2f344cda12becbaebf4758d6b6fb1212
+Author: Heli Eronen <herojonen@gmail.com>
+Date:   Sun Nov 1 17:49:20 2020 +0100
+
+    tekstin lisäys
+
+ tiedosto.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit d8fafab6725d1879a51dfc03ad95d60f2631bade
+Author: Heli Eronen <herojonen@gmail.com>
+Date:   Sun Nov 1 17:32:34 2020 +0100
+
+    lisäys
+
+ stuff/tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 85eaf8a4dc9c2b5d2a23dd99919d597339f68d29
+Author: Heli Eronen <herojonen@gmail.com>
+Date:   Sun Nov 1 17:26:43 2020 +0100
+
+    muutokset
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 6d0295e77ef58421e93afccf55ee45bd6215a703
+Author: Heli Eronen <herojonen@gmail.com>
+Date:   Sun Nov 1 17:23:15 2020 +0100
+
+    lisäys
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit f910c315ae093a957256c7a8b64662188afba319
+Author: Heli Eronen <herojonen@gmail.com>
+Date:   Sun Nov 1 17:11:08 2020 +0100
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit f631c27874d96cf28cccdce626f9357d440b3627
+Author: Heli Eronen <herojonen@gmail.com>
+Date:   Sun Nov 1 16:50:22 2020 +0100
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
