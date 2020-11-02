@@ -7,3 +7,5 @@ Täällä harjoitellaan [MarkDownia](https://guides.github.com/features/masterin
 ### Viikko 1
 * [gitlog.txt](https://github.com/hjeronen/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt) 
 * [komentorivi.txt](https://github.com/hjeronen/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+
+Tämä on testi.
