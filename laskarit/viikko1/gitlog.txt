@@ -111,3 +111,5 @@ Date:   Sun Nov 1 16:50:22 2020 +0100
 
  tiedosto.txt | 0
  1 file changed, 0 insertions(+), 0 deletions(-)
+
+Testataan epäsynkroonia.
