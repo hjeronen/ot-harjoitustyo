@@ -223,4 +223,10 @@ public class KassapaateTest {
         kassa.lataaRahaaKortille(kortti, -500);
         assertTrue(1000 == kortti.saldo());
     }
+    
+    @Test
+    public void lataaKortilleRahaaKassaKasvaa() {
+        kassa.lataaRahaaKortille(kortti, 500);
+        assertTrue(100500 == kassa.kassassaRahaa());
+    }
 }
