@@ -13,6 +13,6 @@ Tämä on testi.
 Testataan epäsynkroonia.
 
 
-# Harjoitustyö: Tamagotchi
+## Harjoitustyö: Tamagotchi
 
 * [Vaatimusmäärittely](https://github.com/hjeronen/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
