@@ -11,3 +11,8 @@ Täällä harjoitellaan [MarkDownia](https://guides.github.com/features/masterin
 Tämä on testi.
 
 Testataan epäsynkroonia.
+
+
+# Harjoitustyö: Tamagotchi
+
+* [Vaatimusmäärittely](https://github.com/hjeronen/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
