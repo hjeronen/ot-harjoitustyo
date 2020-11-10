@@ -16,3 +16,5 @@ Testataan epäsynkroonia.
 ## Harjoitustyö: Tamagotchi
 
 * [Vaatimusmäärittely](https://github.com/hjeronen/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+* [Työaikakirjanpito](https://github.com/hjeronen/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
+
