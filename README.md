@@ -12,6 +12,8 @@ Tämä on testi.
 
 Testataan epäsynkroonia.
 
+### [Viikko 2](https://github.com/hjeronen/ot-harjoitustyo/tree/master/laskarit/viikko2)
+
 
 ## Harjoitustyö: Tamagotchi
 
