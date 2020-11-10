@@ -225,7 +225,7 @@ public class KassapaateTest {
     }
     
     @Test
-    public void lataaKortilleRahaaKassaKasvaa() {
+    public void lataaKortilleRahaaKasvattaaKassaa() {
         kassa.lataaRahaaKortille(kortti, 500);
         assertTrue(100500 == kassa.kassassaRahaa());
     }
