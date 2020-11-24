@@ -32,11 +32,15 @@ public class Stat {
         return this.value;
     }
     
+    public double getValueDouble() {
+        return (float) this.value / this.max;
+    }
+    
     public void increase(int amount) {
         if (this.value + amount >= this.max) {
             this.value = this.max;
         } else {
-           this.value += amount; 
+            this.value += amount;
         }     
     }
     

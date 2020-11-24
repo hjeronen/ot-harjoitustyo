@@ -18,7 +18,10 @@ public class PetCare {
     
     public PetCare() {
         this.pet = new Pet();
-
+    }
+    
+    public PetCare(String petName) {
+        this.pet = new Pet(petName);
     }
     
     public void renamePet(String newName) {
@@ -29,13 +32,17 @@ public class PetCare {
         this.pet.getEnergy().increase(10);
     }
     
-    public void medicatePet() {
+    public void healPet() {
         this.pet.getHealth().increase(10);
     }
     
     
-    public String getPet() {
+    public String toString() {
         return pet.toString();
+    }
+    
+    public Pet getPet() {
+        return this.pet;
     }
     
     public boolean petIsAlive() {

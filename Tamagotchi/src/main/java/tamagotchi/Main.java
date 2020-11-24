@@ -5,21 +5,16 @@
  */
 package tamagotchi;
 
-import tamagotchi.ui.TextUi;
-import tamagotchi.domain.PetCare;
+import tamagotchi.ui.GUI;
+
 /**
  *
  * @author Heli
  */
 public class Main {
-    public static void main(String[] args) {
-
-
-        PetCare petCare = new PetCare();
-        TextUi textUi = new TextUi(petCare);
-   
+    public static void main(String[] args) throws Exception {
         
-        textUi.startNewGame();
-        textUi.run();
+        GUI.main(args);
+        
     }
 }

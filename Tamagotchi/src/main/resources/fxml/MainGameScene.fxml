@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ProgressBar?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="tamagotchi.ui.MainGameSceneController">
+    <children>
+        <Button layoutX="206.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionFeed" text="Feed" />
+        <Button layoutX="279.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionPlay" prefHeight="25.0" prefWidth="42.0" text="Play" />
+        <Button layoutX="351.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionHeal" text="Heal" />
+        <ProgressBar id="EnergyProgressBar" fx:id="EnergyProgressBar" layoutX="27.0" layoutY="260.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
+        <ProgressBar id="HappinessProgressBar" fx:id="HappinessProgressBar" layoutX="27.0" layoutY="289.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
+        <ProgressBar id="HealthProgressBar" fx:id="HealthProgressBar" layoutX="27.0" layoutY="314.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />    
+    </children>
+    
+</AnchorPane>

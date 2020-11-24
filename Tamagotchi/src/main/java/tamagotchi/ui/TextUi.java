@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Heli
  */
-public class TextUi implements UserInterface {
+public class TextUi {
     private Scanner s;
     private PetCare petCare;
     private long lastCheck;
@@ -41,7 +41,7 @@ public class TextUi implements UserInterface {
             System.out.println(this.petCare.getPet());
             return true;
         } else if (input == 3) {
-            this.petCare.medicatePet();
+            this.petCare.healPet();
             System.out.println("Your pet looks healthier!");
             return true;
         } else {
@@ -51,10 +51,10 @@ public class TextUi implements UserInterface {
     
     public void update() {
         long now = java.lang.System.currentTimeMillis();
-            if (now - this.lastCheck >= 5000) {
-                this.petCare.updateEnergy();
-                this.lastCheck = now;
-            }
+        if (now - this.lastCheck >= 5000) {
+            this.petCare.updateEnergy();
+            this.lastCheck = now;
+        }
     }
     
     public void startNewGame() {
