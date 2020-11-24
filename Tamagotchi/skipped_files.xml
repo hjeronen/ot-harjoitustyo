@@ -6,8 +6,6 @@
 
 <suppressions>
     <suppress files="tamagotchi.ui.GUI.java" checks="[a-zA-Z0-9]*"/>
-    <suppress files="tamagotchi.ui.FXMLController.java" checks="[a-zA-Z0-9]*"/>
-    <suppress files="tamagotchi.ui.GameViewController.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="tamagotchi.ui.MainGameSceneController.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="tamagotchi.ui.NewGameController.java" checks="[a-zA-Z0-9]*"/>
-    <suppress files="tamagotchi.ui.TunkkiController.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>
