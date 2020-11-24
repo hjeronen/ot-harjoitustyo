@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="tamagotchi.ui.MainGameSceneController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tamagotchi.ui.MainGameSceneController">
     <children>
         <Button layoutX="206.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionFeed" text="Feed" />
         <Button layoutX="279.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionPlay" prefHeight="25.0" prefWidth="42.0" text="Play" />
         <Button layoutX="351.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionHeal" text="Heal" />
-        <ProgressBar id="EnergyProgressBar" fx:id="EnergyProgressBar" layoutX="27.0" layoutY="260.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
-        <ProgressBar id="HappinessProgressBar" fx:id="HappinessProgressBar" layoutX="27.0" layoutY="289.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
-        <ProgressBar id="HealthProgressBar" fx:id="HealthProgressBar" layoutX="27.0" layoutY="314.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />    
+        <ProgressBar id="EnergyProgressBar" fx:id="energyProgressBar" layoutX="27.0" layoutY="260.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
+        <ProgressBar id="HappinessProgressBar" fx:id="happinessProgressBar" layoutX="27.0" layoutY="289.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
+        <ProgressBar id="HealthProgressBar" fx:id="healthProgressBar" layoutX="27.0" layoutY="314.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
+      <Canvas id="gameCanvas" fx:id="gameCanvas" height="297.0" layoutX="62.0" layoutY="52.0" width="476.0" />
+      <Label layoutX="51.0" layoutY="261.0" text="Energy" />
+      <Label layoutX="45.0" layoutY="290.0" text="Happiness" />
+      <Label layoutX="52.0" layoutY="315.0" text="Health" />    
     </children>
     
 </AnchorPane>

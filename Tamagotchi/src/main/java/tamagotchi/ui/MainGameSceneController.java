@@ -6,6 +6,8 @@ package tamagotchi.ui;
  * and open the template in the editor.
  */
 
+
+import javafx.scene.canvas.Canvas;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -22,18 +24,22 @@ public class MainGameSceneController implements Initializable {
     
     private PetCare petCare;
     
+    @FXML
+    public Canvas gameCanvas;
     
     @FXML
-    private ProgressBar EnergyProgressBar;
+    private ProgressBar energyProgressBar;
     @FXML
-    private ProgressBar HappinessProgressBar;
+    private ProgressBar happinessProgressBar;
     @FXML
-    private ProgressBar HealthProgressBar;
+    private ProgressBar healthProgressBar;
+    
+    
     
     @FXML
     private void handleButtonActionFeed() {
         this.petCare.feedPet();
-        EnergyProgressBar.setProgress(this.petCare.getPet().getEnergy().getValueDouble());
+        energyProgressBar.setProgress(this.petCare.getPet().getEnergy().getValueDouble());
     }
     
     @FXML
@@ -44,7 +50,7 @@ public class MainGameSceneController implements Initializable {
     @FXML
     private void handleButtonActionHeal() {
         this.petCare.healPet();
-        HealthProgressBar.setProgress(this.petCare.getPet().getHealth().getValueDouble());
+        healthProgressBar.setProgress(this.petCare.getPet().getHealth().getValueDouble());
     }
     
     public void givePetName(String petName) {
@@ -58,9 +64,9 @@ public class MainGameSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.petCare = new PetCare(); //Use interface and change to Fake?
-        EnergyProgressBar.setProgress(this.petCare.getPet().getEnergy().getValueDouble());
-        HappinessProgressBar.setProgress(this.petCare.getPet().getHappiness().getValueDouble());
-        HealthProgressBar.setProgress(this.petCare.getPet().getHealth().getValueDouble());
+        energyProgressBar.setProgress(this.petCare.getPet().getEnergy().getValueDouble());
+        happinessProgressBar.setProgress(this.petCare.getPet().getHappiness().getValueDouble());
+        healthProgressBar.setProgress(this.petCare.getPet().getHealth().getValueDouble());
     }
        
     
