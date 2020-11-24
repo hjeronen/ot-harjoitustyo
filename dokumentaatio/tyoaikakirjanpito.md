@@ -17,3 +17,4 @@ Ma 23.11. | 2h | Graafisen käyttöliittymän toimintalogiikan konfigurointia.
 &nbsp; | 4h | FXML:n ongelmien ratkomista.
 &nbsp; | 2h | Virheet korjattu ja GUI saatu toimimaan taas. Checkstyle otettu käyttöön ja saatu toimimaan.
 Ti 24.11. | 2h | Luokka/pakkauskaavio tehty, koodia siistitty, projektin pushaus GitHubiin.
+Yht. | 42h | &nbsp;
