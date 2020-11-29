@@ -12,7 +12,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.AnchorPane;
 import tamagotchi.domain.PetCare;
 
 /**
@@ -23,9 +25,16 @@ import tamagotchi.domain.PetCare;
 public class MainGameSceneController implements Initializable {
     
     private PetCare petCare;
+    private GUI userinterface;
     
     @FXML
     public Canvas gameCanvas;
+    
+    @FXML
+    public AnchorPane gameAnchor;
+    
+    @FXML
+    private Label petName;
     
     @FXML
     private ProgressBar energyProgressBar;
@@ -33,13 +42,17 @@ public class MainGameSceneController implements Initializable {
     private ProgressBar happinessProgressBar;
     @FXML
     private ProgressBar healthProgressBar;
+    @FXML
+    private ProgressBar hygieneProgressBar;
     
-    
+    public void setApplication(GUI ui) {
+        this.userinterface = ui;
+    }
     
     @FXML
     private void handleButtonActionFeed() {
-        this.petCare.feedPet();
-        energyProgressBar.setProgress(this.petCare.getPet().getEnergy().getValueDouble());
+        this.userinterface.getPetCare().feedPet();
+        energyProgressBar.setProgress(this.userinterface.getPetCare().getPet().getEnergy().getValueDouble());
     }
     
     @FXML
@@ -49,25 +62,60 @@ public class MainGameSceneController implements Initializable {
     
     @FXML
     private void handleButtonActionHeal() {
-        this.petCare.healPet();
-        healthProgressBar.setProgress(this.petCare.getPet().getHealth().getValueDouble());
+        this.userinterface.getPetCare().healPet();
+        healthProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHealth().getValueDouble());
     }
     
-    public void givePetName(String petName) {
-        this.petCare.getPet().setName(petName);
+    @FXML
+    private void handleButtonActionClean() {
+        this.userinterface.getPetCare().cleanPet();
+        hygieneProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHygiene().getValueDouble());
     }
     
-    public void setUpPetCare(PetCare petCare) {
-        this.petCare = petCare;
+    @FXML
+    private void handleButtonActionTest() {
+        System.out.println(this.userinterface.getPetCare().getPet().getName());
     }
+    
+//    public void givePetName(String petName) {
+//        this.userinterface.getPetCare().getPet().setName(petName);
+//    }
+    
+//    public void setUpPetCare() {
+//        this.petCare = this.userinterface.getPetCare();
+//        this.petName.setText(this.petCare.getPet().getName());
+//    }
+    
+    public void setUpBars() {
+        energyProgressBar.setProgress(this.userinterface.getPetCare().getPet().getEnergy().getValueDouble());
+        happinessProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHappiness().getValueDouble());
+        healthProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHealth().getValueDouble());
+        hygieneProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHygiene().getValueDouble());
+    }
+    
+    public void setUpLabel() {
+        this.petName.setText(this.userinterface.getPetCare().getPet().getName());
+    }
+    
+    public Canvas getCanvas() {
+        return this.gameCanvas;
+    }
+    
+    private void initialiseCanvas() {
+        gameCanvas.widthProperty().bind(gameAnchor.widthProperty());
+        gameCanvas.heightProperty().bind(gameAnchor.heightProperty());
+    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.petCare = new PetCare(); //Use interface and change to Fake?
-        energyProgressBar.setProgress(this.petCare.getPet().getEnergy().getValueDouble());
-        happinessProgressBar.setProgress(this.petCare.getPet().getHappiness().getValueDouble());
-        healthProgressBar.setProgress(this.petCare.getPet().getHealth().getValueDouble());
+        
+
     }
+    //TODO: Move this to the GUI!
+//    public void update() {
+//        setUpBars();
+//    }
        
     
 }

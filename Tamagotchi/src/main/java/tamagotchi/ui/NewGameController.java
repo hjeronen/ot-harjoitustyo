@@ -8,9 +8,12 @@ package tamagotchi.ui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
+import tamagotchi.domain.PetCare;
 
 /**
  * FXML Controller class
@@ -24,23 +27,29 @@ public class NewGameController implements Initializable {
 
     
     @FXML
-    private TextField InputPetName;
+    private TextField inputPetName;
     
     
     public void setApplication(GUI ui) {
         this.userinterface = ui;
     }
     
-    public void setPetName() {
-        String name = "" + InputPetName.getCharacters();
-        this.petName = name;
+    @FXML
+    public void setPetName(ActionEvent event) {
+        if (inputPetName.getText() == null) {
+            this.petName = "Zorblax";
+        } else {
+            this.petName = inputPetName.getText();
+        }
     }
     
     public String getPetName() {
         return this.petName;
     }
     
-    public void startGame() {
+    //Button 'Start game' runs this method
+    public void startGame() throws Exception {
+        this.userinterface.getPetCare().getPet().setName(this.petName);
         this.userinterface.setGameScene();
     }
 

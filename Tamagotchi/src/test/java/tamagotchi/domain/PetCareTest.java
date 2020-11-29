@@ -46,11 +46,18 @@ public class PetCareTest {
     @Test
     public void hello() {}
     
+    
     @Test
-    public void renamePetCorrectlyRenamesThePet() {
-        this.petCare.renamePet("Fluffy");
-        assertEquals(this.petCare.getPet().getName(), "Fluffy");
+    public void constructorSetsPetNameCorrectly() {
+        PetCare nameTest = new PetCare("Fluffy");
+        assertEquals(nameTest.getPet().getName(), "Fluffy");
     }
+    
+//    @Test
+//    public void renamePetRenamesThePetCorrectly() {
+//        this.petCare.renamePet("Fluffy");
+//        assertEquals(this.petCare.getPet().getName(), "Fluffy");
+//    }
      
     @Test
     public void feedPetIncreasesEnergyRight() {
