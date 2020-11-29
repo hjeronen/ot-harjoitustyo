@@ -40,8 +40,6 @@ public class GameRenderer {
         this.centerX = (this.canvas.getWidth() / 2) - (this.sprite.getWidth() / 2);
         this.centerY = (this.canvas.getHeight() / 2) - (this.sprite.getHeight() / 2 + 30);
         this.firstRotation = true;
-        System.out.println("Then this.");
-        System.out.println(this.firstRotation);
         this.spriteOrientation = "left";
         this.yDirection = 1;
         this.needCleaning = false;
@@ -63,8 +61,6 @@ public class GameRenderer {
         //spritePlaceCenter();
         spriteIdleMovement();
         context.drawImage(spriteImage, sprite.getX(), sprite.getY(), sprite.getHeight(), sprite.getWidth());
-        System.out.println("This happens third.");
-        System.out.println(this.firstRotation);
 
         //context.restore();
     }

@@ -35,7 +35,6 @@ public class Sprite {
     }
     
     public Image getImage() {
-        System.out.println("This also happens.");
         return new Image("/images/PracticeSprite.jpg");
         
     }

@@ -74,7 +74,7 @@ public class MainGameSceneController implements Initializable {
     
     @FXML
     private void handleButtonActionTest() {
-        System.out.println(this.userinterface.getPetCare().getPet().getName());
+        System.out.println(this.userinterface.getPetCare().getPet().toString());
     }
     
 //    public void givePetName(String petName) {

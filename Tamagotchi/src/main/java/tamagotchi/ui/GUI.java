@@ -31,7 +31,6 @@ public class GUI extends Application {
     private Scene gameScene;
     private Scene startNewGameScene;
     private boolean isPaused;
-    private String saveFile;
     
     private MainGameSceneController gameController;
     private GameRenderer renderer;
@@ -39,16 +38,26 @@ public class GUI extends Application {
     
     @Override
     public void init() throws Exception {
-        this.petCare = new PetCare();
+        FilePetDao petDao = new FilePetDao("saveFile.txt");
+        this.petCare = new PetCare(petDao);
+        
     }
     
     
 
     @Override
-    public void start(Stage stage) throws Exception {    
+    public void start(Stage stage) throws NullPointerException, Exception {    
         this.stage = stage;
         
-        setNewGameScene();
+        
+        if (!this.petCare.getPetDao().saveExists()) {
+            setNewGameScene();
+        } else {
+            setGameScene();
+        }
+          
+        
+        
         
         
         new AnimationTimer() {
@@ -58,7 +67,7 @@ public class GUI extends Application {
             public void handle(long currentNanoTime) {
                 long now = java.lang.System.currentTimeMillis();
                 if (!isPaused) {
-//                    if (occurrenceCheck >= 10000) {
+//                    if (now - occurrenceCheck >= 10000) {
 //                        petCare.checkIfPetGetsSick();
 //                        if (petCare.getPet().getIsSick()) {
 //                            renderer.setShowVirus(true);
@@ -84,27 +93,6 @@ public class GUI extends Application {
         
     }
     
-    public void renamePet(String petName) {
-        this.petCare.getPet().setName(petName);
-    }
-    
-//    public void run() throws IOException {
-//        
-//        
-//        long lastCheck = java.lang.System.currentTimeMillis();
-//        
-//        while (true) {
-//            long now = java.lang.System.currentTimeMillis();
-//            if (now - lastCheck >= 2000) {
-//                this.gameController.update();
-//                System.out.println(this.petCare.getPet().toString());
-//                //setGameScene();
-//                //setUpBars();
-//                //renderer.render();
-//                lastCheck = now;
-//            }
-//        }
-//    }
     
     public void setNewGameScene() throws Exception {
         this.isPaused = true;
@@ -123,14 +111,11 @@ public class GUI extends Application {
 
     
     public void setGameScene() throws IOException {
-        //load petCare here
-        
         this.isPaused = false;
         
         FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("/fxml/MainGameScene.fxml"));
         Parent game = gameLoader.load();
         this.gameController = gameLoader.getController();
-        //gameController.setUpPetCare();
         
         gameController.setApplication(this);
         gameController.setUpLabel();
@@ -144,20 +129,20 @@ public class GUI extends Application {
         stage.show();
     }
     
+    
     public void update() {
         this.petCare.updateEnergy();
         this.gameController.setUpBars();
-        System.out.println(this.petCare.getPet().toString());
     }
     
     public PetCare getPetCare() {
         return this.petCare;
     }
     
+    
     @Override
     public void stop() {
-      // tee lopetustoimenpiteet täällä
-      System.out.println("sovellus sulkeutuu");
+      this.petCare.getPetDao().createSave(this.petCare.getPet());
     } 
     
     public static void main(String[] args) {

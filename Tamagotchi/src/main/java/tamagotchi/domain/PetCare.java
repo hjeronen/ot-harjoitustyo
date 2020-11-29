@@ -21,27 +21,40 @@ import tamagotchi.dao.PetDao;
 
 public class PetCare {
     private Pet pet;
-    
+    private PetDao petDao;
     private double decayRate;
 
-    public PetCare() {
-        this.pet = new Pet();
+//    public PetCare() {
+//        this.pet = new Pet();
+//        this.decayRate = 1/864;
+//    }
+//    
+//    public PetCare(String petName) {
+//        this.pet = new Pet(petName);
+//        this.decayRate = 1/864;
+//    }
+    
+    public PetCare(PetDao petDao) {
+        this.petDao = petDao;
+        this.pet = this.petDao.getPet();
         this.decayRate = 1/864;
     }
     
-    public PetCare(String petName) {
-        this.pet = new Pet(petName);
-        this.decayRate = 1/864;
+    public void setUpPetDao(PetDao petDao) {
+        this.petDao = petDao;
+        this.pet = this.petDao.getPet();
     }
     
-//    public void renamePet(String newName) {
-//        this.pet.setName(newName);
-//    }
+    public PetDao getPetDao() {
+        return this.petDao;
+    }
     
-//    public PetDao getPetDao() {
-//        return this.petDao;
-//    }
-    //Caring for pet
+    
+    public Pet getPet() {
+        return this.pet;
+    }
+    
+    
     public void feedPet() {
         this.pet.getEnergy().increase(10);
     }
@@ -62,9 +75,6 @@ public class PetCare {
         return pet.toString();
     }
     
-    public Pet getPet() {
-        return this.pet;
-    }
     
     public boolean petIsAlive() {
         if (this.pet.getEnergy().getValue() == 0) {
