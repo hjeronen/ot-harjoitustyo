@@ -23,16 +23,6 @@ public class PetCare {
     private Pet pet;
     private PetDao petDao;
     private double decayRate;
-
-//    public PetCare() {
-//        this.pet = new Pet();
-//        this.decayRate = 1/864;
-//    }
-//    
-//    public PetCare(String petName) {
-//        this.pet = new Pet(petName);
-//        this.decayRate = 1/864;
-//    }
     
     public PetCare(PetDao petDao) {
         this.petDao = petDao;
@@ -68,11 +58,6 @@ public class PetCare {
     
     public void cleanPet() {
         this.pet.setHygiene(100);
-    }
-    
-    
-    public String toString() {
-        return pet.toString();
     }
     
     
@@ -122,8 +107,8 @@ public class PetCare {
         if (!this.pet.getIsSick()) {
             if (this.pet.getHealth().getValue() < 50) {
                 Random generator = new Random();
-                int randomInt = generator.nextInt(100000);
-                if (randomInt == 0) {
+                int randomInt = generator.nextInt(100);
+                if (randomInt >= this.pet.getHealth().getValue()) {
                     this.pet.setIsSick(true);
                 }
             }
@@ -134,8 +119,8 @@ public class PetCare {
         if (!this.pet.getNeedsWash()) {
             if (this.pet.getHygiene().getValue() < 50) {
                 Random generator = new Random();
-                int randomInt = generator.nextInt(10000);
-                if (randomInt == 0) {
+                int randomInt = generator.nextInt(100);
+                if (randomInt >= this.pet.getHealth().getValue()) {
                     this.pet.setNeedsWash(true);
                 }
             }

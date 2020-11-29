@@ -5,22 +5,17 @@
  */
 package tamagotchi.ui;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tamagotchi.domain.PetCare;
 import javafx.fxml.FXMLLoader;
-import java.util.concurrent.TimeUnit;
 import javafx.animation.AnimationTimer;
-import tamagotchi.dao.FakePetDao;
 import tamagotchi.dao.FilePetDao;
 
 
-import tamagotchi.domain.Pet;
 /**
  *
  * @author Heli
@@ -56,10 +51,6 @@ public class GUI extends Application {
             setGameScene();
         }
           
-        
-        
-        
-        
         new AnimationTimer() {
             long lastCheck = java.lang.System.currentTimeMillis();
             long occurrenceCheck = java.lang.System.currentTimeMillis();
@@ -67,17 +58,15 @@ public class GUI extends Application {
             public void handle(long currentNanoTime) {
                 long now = java.lang.System.currentTimeMillis();
                 if (!isPaused) {
-//                    if (now - occurrenceCheck >= 10000) {
-//                        petCare.checkIfPetGetsSick();
-//                        if (petCare.getPet().getIsSick()) {
-//                            renderer.setShowVirus(true);
-//                        }
-//                        petCare.checkIfPetNeedsCleaning();
-//                        if (petCare.getPet().getNeedsWash()) {
-//                           renderer.setNeedCleaning(true);
-//                        }
-//                       occurrenceCheck = now;
-//                    }
+                    if (now - occurrenceCheck >= 10000) {
+                        petCare.checkIfPetGetsSick();
+                        renderer.setShowVirus(petCare.getPet().getIsSick());
+                        
+                        petCare.checkIfPetNeedsCleaning();
+                        renderer.setNeedCleaning(petCare.getPet().getNeedsWash());
+                        
+                       occurrenceCheck = now;
+                    }
                     
                     if (now - lastCheck >= 1500) {
                         renderer.render();

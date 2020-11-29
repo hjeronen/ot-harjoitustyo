@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import tamagotchi.dao.FakePetDao;
 
 /**
  *
@@ -33,7 +34,7 @@ public class PetCareTest {
     
     @Before
     public void setUp() {
-        this.petCare = new PetCare();
+        this.petCare = new PetCare(new FakePetDao());
     }
     
     @After
@@ -45,19 +46,6 @@ public class PetCareTest {
     //
     @Test
     public void hello() {}
-    
-    
-    @Test
-    public void constructorSetsPetNameCorrectly() {
-        PetCare nameTest = new PetCare("Fluffy");
-        assertEquals(nameTest.getPet().getName(), "Fluffy");
-    }
-    
-//    @Test
-//    public void renamePetRenamesThePetCorrectly() {
-//        this.petCare.renamePet("Fluffy");
-//        assertEquals(this.petCare.getPet().getName(), "Fluffy");
-//    }
      
     @Test
     public void feedPetIncreasesEnergyRight() {
@@ -86,7 +74,23 @@ public class PetCareTest {
         assertTrue(this.petCare.getPet() != null);
     }
     
+    @Test
+    public void cleanPetSetsPetHygieneCorrectly() {
+        this.petCare.cleanPet();
+        assertTrue(this.petCare.getPet().getHygiene().getValue() == 100);
+    }
     
+    @Test
+    public void petDoesNotGetSickIfHealthIsMaxed() {
+        this.petCare.getPet().getHealth().setValue(100);
+        this.petCare.checkIfPetGetsSick();
+        assertTrue(!this.petCare.getPet().getIsSick());
+    }
     
-    
+    @Test
+    public void petGetsSickIfHealthIsZero() {
+        this.petCare.getPet().getHealth().setValue(0);
+        this.petCare.checkIfPetGetsSick();
+        assertTrue(this.petCare.getPet().getIsSick());
+    }
 }
