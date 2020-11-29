@@ -17,4 +17,13 @@ Ma 23.11. | 2h | Graafisen käyttöliittymän toimintalogiikan konfigurointia.
 &nbsp; | 4h | FXML:n ongelmien ratkomista.
 &nbsp; | 2h | Virheet korjattu ja GUI saatu toimimaan taas. Checkstyle otettu käyttöön ja saatu toimimaan.
 Ti 24.11. | 2h | Luokka/pakkauskaavio tehty, koodia siistitty, projektin pushaus GitHubiin.
-Yht. | 42h | &nbsp;
+Ke 25.11. | 3h | GUI logiikan hiomista, gameloopin muotoilua.
+&nbsp; | 3h | Animation timer lisätty ja saatu toimimaan.
+To 26.11. | 2h | Alustava sprite luotu ja kuvan lataus saatu toimimaan.
+&nbsp; | 2h | Spritelle tehty "animaatio".
+&nbsp; | 1h | Sekalaista hienosäätöä ja rekonfigurointia.
+Pe 27.11. | 4h | Lisätty toimintoja, muuta ohjelman hienosäätöä ja uudelleenjärjestelyä, testien kirjoittamista.
+La 28.11. | 5h | Daon harjoittelua, tallennuksen järjestelyä.
+Su 29.11. | 3h | Tallennusongelmien ratkomista, yksinkertainen tallennusmetodi luotu.
+&nbsp; | 2h | JAR-tiedosto luotu, javan ongelmien ratkomista, toimintalogiikan hiomista ja testien kirjoittelua.
+Yht. | 64h | &nbsp;
