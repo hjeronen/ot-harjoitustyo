@@ -39,6 +39,10 @@ public class PetCare {
         return this.petDao;
     }
     
+    public void createNewPetSave() throws Exception {
+        this.pet = new Pet();
+        this.petDao.createSave(this.pet);
+    }
     
     public Pet getPet() {
         return this.pet;

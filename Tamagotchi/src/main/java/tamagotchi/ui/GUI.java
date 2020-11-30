@@ -29,6 +29,7 @@ public class GUI extends Application {
     private boolean isPaused;
     
     private MainGameSceneController gameController;
+    
     private GameRenderer renderer;
     
     
@@ -45,19 +46,17 @@ public class GUI extends Application {
     public void start(Stage stage) throws NullPointerException, Exception {    
         this.stage = stage;
         
-        
         if (!this.petCare.getPetDao().saveExists()) {
             setNewGameScene();
         } else {
             this.petCare.calculatePetStats();
             if (this.petCare.petIsAlive()) {
-               setGameScene(); 
+                setGameScene(); 
             } else {
                 setGameOverScene();
             }
-            
         }
-          
+        
         new AnimationTimer() {
             long lastCheck = java.lang.System.currentTimeMillis();
             long occurrenceCheck = java.lang.System.currentTimeMillis();
@@ -82,12 +81,9 @@ public class GUI extends Application {
                     
                         lastCheck = now;
                     }
-                    
-                    
                 }
         }
         }.start();
-        
     }
     
     
@@ -101,9 +97,9 @@ public class GUI extends Application {
         startController.setApplication(this);
         this.startNewGameScene = new Scene(startScene);
         
-        stage.setTitle("Tamagotchi");
-        stage.setScene(startNewGameScene);
-        stage.show();
+        this.stage.setTitle("Tamagotchi");
+        this.stage.setScene(startNewGameScene);
+        this.stage.show();
     }
 
     
@@ -114,23 +110,32 @@ public class GUI extends Application {
         Parent game = gameLoader.load();
         this.gameController = gameLoader.getController();
         
-        gameController.setApplication(this);
-        
-        
-        
-        gameController.setUpLabel();
-        gameController.setUpBars();
+        this.gameController.setApplication(this);
+        this.gameController.setUpLabel();
+        this.gameController.setUpBars();
         
         this.gameScene = new Scene(game);
         
-        renderer = new GameRenderer(gameController.getCanvas());
+        this.renderer = new GameRenderer(this.gameController.getCanvas());
         
+        this.stage.setTitle("Tamagotchi");
         this.stage.setScene(gameScene);
-        stage.show();
+        this.stage.show();
     }
     
-    public void setGameOverScene() {
+    public void setGameOverScene() throws IOException {
         this.isPaused = true;
+        
+        FXMLLoader gameOverLoader = new FXMLLoader(getClass().getResource("/fxml/GameOverScene.fxml"));
+        Parent restartScene = gameOverLoader.load();
+        GameOverSceneController gameOverController = gameOverLoader.getController();
+        
+        gameOverController.setApplication(this);
+        this.gameOverScene = new Scene(restartScene);
+        
+        this.stage.setTitle("Tamagotchi");
+        this.stage.setScene(this.gameOverScene);
+        this.stage.show();
     }
     
     
@@ -141,6 +146,10 @@ public class GUI extends Application {
     
     public PetCare getPetCare() {
         return this.petCare;
+    }
+    
+    public void setUpNewPetCare() throws Exception {
+        this.petCare.createNewPetSave();
     }
     
     

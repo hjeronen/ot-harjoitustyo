@@ -24,7 +24,6 @@ import tamagotchi.domain.PetCare;
  */
 public class MainGameSceneController implements Initializable {
     
-    private PetCare petCare;
     private GUI userinterface;
     
     @FXML
@@ -77,14 +76,6 @@ public class MainGameSceneController implements Initializable {
         System.out.println(this.userinterface.getPetCare().getPet().toString());
     }
     
-//    public void givePetName(String petName) {
-//        this.userinterface.getPetCare().getPet().setName(petName);
-//    }
-    
-//    public void setUpPetCare() {
-//        this.petCare = this.userinterface.getPetCare();
-//        this.petName.setText(this.petCare.getPet().getName());
-//    }
     
     public void setUpBars() {
         energyProgressBar.setProgress(this.userinterface.getPetCare().getPet().getEnergy().getValue() / 100);
@@ -101,10 +92,10 @@ public class MainGameSceneController implements Initializable {
         return this.gameCanvas;
     }
     
-    private void initialiseCanvas() {
-        gameCanvas.widthProperty().bind(gameAnchor.widthProperty());
-        gameCanvas.heightProperty().bind(gameAnchor.heightProperty());
-    }
+//    private void initialiseCanvas() {
+//        gameCanvas.widthProperty().bind(gameAnchor.widthProperty());
+//        gameCanvas.heightProperty().bind(gameAnchor.heightProperty());
+//    }
     
     
     @Override
@@ -112,10 +103,6 @@ public class MainGameSceneController implements Initializable {
         
 
     }
-    //TODO: Move this to the GUI!
-//    public void update() {
-//        setUpBars();
-//    }
        
     
 }
