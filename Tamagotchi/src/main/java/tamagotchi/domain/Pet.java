@@ -59,7 +59,7 @@ public class Pet {
     public String toString() {
         return "Name: " + this.name + ", Birthday: " + this.getBirthday() + ", Age: " + this.getAge() + " days, Energy: " 
                 + this.energy + ", Happiness: " + this.happiness 
-                + ", Health: " + this.health;
+                + ", Health: " + this.health + ", Hygiene: " + this.hygiene;
     }
     
     public void setName(String name) {

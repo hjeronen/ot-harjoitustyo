@@ -25,6 +25,7 @@ public class GUI extends Application {
     private PetCare petCare;
     private Scene gameScene;
     private Scene startNewGameScene;
+    private Scene gameOverScene;
     private boolean isPaused;
     
     private MainGameSceneController gameController;
@@ -48,7 +49,13 @@ public class GUI extends Application {
         if (!this.petCare.getPetDao().saveExists()) {
             setNewGameScene();
         } else {
-            setGameScene();
+            this.petCare.calculatePetStats();
+            if (this.petCare.petIsAlive()) {
+               setGameScene(); 
+            } else {
+                setGameOverScene();
+            }
+            
         }
           
         new AnimationTimer() {
@@ -108,6 +115,9 @@ public class GUI extends Application {
         this.gameController = gameLoader.getController();
         
         gameController.setApplication(this);
+        
+        
+        
         gameController.setUpLabel();
         gameController.setUpBars();
         
@@ -117,6 +127,10 @@ public class GUI extends Application {
         
         this.stage.setScene(gameScene);
         stage.show();
+    }
+    
+    public void setGameOverScene() {
+        this.isPaused = true;
     }
     
     

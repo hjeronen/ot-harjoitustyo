@@ -27,7 +27,7 @@ public class PetCare {
     public PetCare(PetDao petDao) {
         this.petDao = petDao;
         this.pet = this.petDao.getPet();
-        this.decayRate = 1/864;
+        this.decayRate = 0.0009; // 1/108 //1/432; //1/864;
     }
     
     public void setUpPetDao(PetDao petDao) {
@@ -69,9 +69,12 @@ public class PetCare {
     }
     
     // Energy should drop approx. by 1 per 864 seconds (because it should go to 0 in 24h without care)
+    // UPDATE! Pet will be dead in 3h without care
     public void updateEnergy(double modifier) {
         this.pet.getEnergy().decrease(modifier * this.decayRate);
-        System.out.println("Energy drops by " + modifier * this.decayRate);
+        System.out.println(modifier);
+        System.out.println(this.decayRate);
+        System.out.println("Energy drops by " + (modifier * this.decayRate));
     }
     
     // Happiness drops faster than energy
