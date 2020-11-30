@@ -29,10 +29,10 @@ public class Pet {
     public Pet(String name) {
         this.name = name;
         
-        this.energy = new Stat(50);
-        this.happiness = new Stat(50);
-        this.health = new Stat(50);
-        this.hygiene = new Stat(50);
+        this.energy = new Stat(50.0);
+        this.happiness = new Stat(50.0);
+        this.health = new Stat(50.0);
+        this.hygiene = new Stat(50.0);
         
         this.birthday = LocalDate.now();
         
@@ -91,7 +91,7 @@ public class Pet {
         return this.energy;
     }
     
-    public void setEnergy(int value) {
+    public void setEnergy(double value) {
         this.energy.setValue(value);
     }
     
@@ -100,7 +100,7 @@ public class Pet {
         return this.happiness;
     }
     
-    public void setHappiness(int value) {
+    public void setHappiness(double value) {
         this.happiness.setValue(value);
     }
     
@@ -108,7 +108,7 @@ public class Pet {
         return this.health;
     }
     
-    public void setHealth(int value) {
+    public void setHealth(double value) {
         this.health.setValue(value);
     }
     
@@ -116,7 +116,7 @@ public class Pet {
         return this.hygiene;
     }
     
-    public void setHygiene(int value) {
+    public void setHygiene(double value) {
         this.hygiene.setValue(value);
     }
     

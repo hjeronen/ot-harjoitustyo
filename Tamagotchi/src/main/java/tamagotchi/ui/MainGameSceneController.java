@@ -52,7 +52,7 @@ public class MainGameSceneController implements Initializable {
     @FXML
     private void handleButtonActionFeed() {
         this.userinterface.getPetCare().feedPet();
-        energyProgressBar.setProgress(this.userinterface.getPetCare().getPet().getEnergy().getValueDouble());
+        energyProgressBar.setProgress(this.userinterface.getPetCare().getPet().getEnergy().getValue() / 100);
     }
     
     @FXML
@@ -63,13 +63,13 @@ public class MainGameSceneController implements Initializable {
     @FXML
     private void handleButtonActionHeal() {
         this.userinterface.getPetCare().healPet();
-        healthProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHealth().getValueDouble());
+        healthProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHealth().getValue() / 100);
     }
     
     @FXML
     private void handleButtonActionClean() {
         this.userinterface.getPetCare().cleanPet();
-        hygieneProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHygiene().getValueDouble());
+        hygieneProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHygiene().getValue() / 100);
     }
     
     @FXML
@@ -87,10 +87,10 @@ public class MainGameSceneController implements Initializable {
 //    }
     
     public void setUpBars() {
-        energyProgressBar.setProgress(this.userinterface.getPetCare().getPet().getEnergy().getValueDouble());
-        happinessProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHappiness().getValueDouble());
-        healthProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHealth().getValueDouble());
-        hygieneProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHygiene().getValueDouble());
+        energyProgressBar.setProgress(this.userinterface.getPetCare().getPet().getEnergy().getValue() / 100);
+        happinessProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHappiness().getValue() / 100);
+        healthProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHealth().getValue() / 100);
+        hygieneProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHygiene().getValue() / 100);
     }
     
     public void setUpLabel() {

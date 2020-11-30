@@ -10,33 +10,34 @@ package tamagotchi.domain;
  * @author Heli
  */
 public class Stat {
-    private int min;
-    private int max;
-    private int value;
+    private double min;
+    private double max;
+    private double value;
     
-    public Stat(int initialValue) {
-        this.min = 0;
-        this.max = 100;
+    public Stat(double initialValue) {
+        this.min = 0.0;
+        this.max = 100.0;
         this.value = initialValue;
     }
     
-    public int getMin() {
+    public double getMin() {
         return this.min;
     }
     
-    public int getMax() {
+    public double getMax() {
         return this.max;
     }
     
-    public int getValue() {
+    public double getValue() {
         return this.value;
     }
     
+    //Obsolete
     public double getValueDouble() {
         return (float) this.value / this.max;
     }
     
-    public void increase(int amount) {
+    public void increase(double amount) {
         if (this.value + amount >= this.max) {
             this.value = this.max;
         } else {
@@ -45,10 +46,10 @@ public class Stat {
     }
     
     public void increase() {
-        this.increase(1);
+        this.increase(1.0);
     }
     
-    public void decrease(int amount) {
+    public void decrease(double amount) {
         if (this.value - amount <= this.min) {
             this.value = this.min;
         } else {
@@ -57,10 +58,10 @@ public class Stat {
     }
     
     public void decrease() {
-        this.decrease(1);
+        this.decrease(1.0);
     }
     
-    public void setValue(int newValue) {
+    public void setValue(double newValue) {
         this.value = newValue;
     }
     

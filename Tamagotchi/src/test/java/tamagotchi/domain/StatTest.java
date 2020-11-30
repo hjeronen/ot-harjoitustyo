@@ -35,7 +35,7 @@ public class StatTest {
     
     @Before
     public void setUp() {
-        stat = new Stat(10);
+        stat = new Stat(10.0);
     }
     
     @After
@@ -50,64 +50,64 @@ public class StatTest {
     
     @Test
     public void constructorSetsInitialValueCorrectly() {
-        assertTrue(stat.getValue() == 10);
+        assertTrue(stat.getValue() == 10.0);
     }
     
     @Test
     public void defaultDecreaseDecreasesValueByOne() {
         stat.decrease();
-        assertTrue(stat.getValue() == 9);
+        assertTrue(stat.getValue() == 9.0);
     }
     
     @Test
     public void decreaseDecreasesValueByGivenAmount() {
-        stat.decrease(5);
-        assertTrue(stat.getValue() == 5);
+        stat.decrease(5.0);
+        assertTrue(stat.getValue() == 5.0);
     }
     
     @Test
     public void statValueWontGoBelowMin() {
-        stat.decrease(20);
-        assertTrue(stat.getValue() == 0);
+        stat.decrease(20.0);
+        assertTrue(stat.getValue() == 0.0);
     }
     
     @Test
     public void defaultIncreaseIncreasesValueByOne() {
         stat.increase();
-        assertTrue(stat.getValue() == 11);
+        assertTrue(stat.getValue() == 11.0);
     }
     
     @Test
     public void increaseIncreasesValueByGivenAmount() {
-        stat.increase(10);
-        assertTrue(stat.getValue() == 20);
+        stat.increase(10.0);
+        assertTrue(stat.getValue() == 20.0);
     }
     
     @Test
     public void statValueWontGoAboveMax() {
-        stat.increase(110);
-        assertTrue(stat.getValue() == 100);
+        stat.increase(110.0);
+        assertTrue(stat.getValue() == 100.0);
     }
     
     @Test
     public void setValueSetsNewValue() {
-        stat.setValue(50);
-        assertTrue(stat.getValue() == 50);
+        stat.setValue(50.0);
+        assertTrue(stat.getValue() == 50.0);
     }
     
     @Test
     public void toStringWorksProperly() {
-        assertEquals(stat.toString(), "10");
+        assertEquals(stat.toString(), "10.0");
     }
     
     @Test
     public void getMinReturnsZero() {
-        assertTrue(stat.getMin() == 0);
+        assertTrue(stat.getMin() == 0.0);
     }
     
     @Test
     public void getMaxReturnsOneHundred() {
-        assertTrue(stat.getMax() == 100);
+        assertTrue(stat.getMax() == 100.0);
     }
     
 }

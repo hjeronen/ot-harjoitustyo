@@ -61,10 +61,10 @@ public class FilePetDao implements PetDao {
             this.pet.setName(parts[0]);
             this.pet.setBirthday(parts[1]);
             this.pet.setLastLogin(Long.parseLong(parts[2]));
-            this.pet.setEnergy(Integer.valueOf(parts[3]));
-            this.pet.setHappiness(Integer.valueOf(parts[4]));
-            this.pet.setHealth(Integer.valueOf(parts[5]));
-            this.pet.setHygiene(Integer.valueOf(parts[6]));
+            this.pet.setEnergy(Double.parseDouble(parts[3]));
+            this.pet.setHappiness(Double.parseDouble(parts[4]));
+            this.pet.setHealth(Double.parseDouble(parts[5]));
+            this.pet.setHygiene(Double.parseDouble(parts[6]));
             this.saveExists = true;
         } catch(Exception NoSuchElementException){
             this.saveExists = false;

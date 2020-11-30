@@ -49,18 +49,18 @@ public class PetCareTest {
      
     @Test
     public void feedPetIncreasesEnergyRight() {
-        int originalValue = this.petCare.getPet().getEnergy().getValue();
+        double originalValue = this.petCare.getPet().getEnergy().getValue();
         this.petCare.feedPet();
-        int newValue = this.petCare.getPet().getEnergy().getValue();
-        assertTrue(newValue - originalValue == 10);
+        double newValue = this.petCare.getPet().getEnergy().getValue();
+        assertTrue(newValue - originalValue == 10.0);
     }
     
     @Test
     public void healPetIncreasesHealthRight() {
-        int originalValue = this.petCare.getPet().getHealth().getValue();
+        double originalValue = this.petCare.getPet().getHealth().getValue();
         this.petCare.healPet();
-        int newValue = this.petCare.getPet().getHealth().getValue();
-        assertTrue(newValue - originalValue == 10);
+        double newValue = this.petCare.getPet().getHealth().getValue();
+        assertTrue(newValue - originalValue == 10.0);
     }
     
     @Test
@@ -77,19 +77,19 @@ public class PetCareTest {
     @Test
     public void cleanPetSetsPetHygieneCorrectly() {
         this.petCare.cleanPet();
-        assertTrue(this.petCare.getPet().getHygiene().getValue() == 100);
+        assertTrue(this.petCare.getPet().getHygiene().getValue() == 100.0);
     }
     
     @Test
     public void petDoesNotGetSickIfHealthIsMaxed() {
-        this.petCare.getPet().getHealth().setValue(100);
+        this.petCare.getPet().getHealth().setValue(100.0);
         this.petCare.checkIfPetGetsSick();
         assertTrue(!this.petCare.getPet().getIsSick());
     }
     
     @Test
     public void petGetsSickIfHealthIsZero() {
-        this.petCare.getPet().getHealth().setValue(0);
+        this.petCare.getPet().getHealth().setValue(0.0);
         this.petCare.checkIfPetGetsSick();
         assertTrue(this.petCare.getPet().getIsSick());
     }
