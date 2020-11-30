@@ -60,48 +60,64 @@ public class PetCare {
         this.pet.setHygiene(100.0);
     }
     
-    
+    // Move to Pet!
     public boolean petIsAlive() {
-        if (this.pet.getEnergy().getValue() == 0.0) {
+        if (this.pet.getEnergy().getValue() == 0.0 && this.pet.getHealth().getValue() == 0.0) {
             return false;
         }
         return true;
     }
     
-    public void updateEnergy() {
-        this.pet.getEnergy().decrease(10.0);
+    // Energy should drop approx. by 1 per 864 seconds (because it should go to 0 in 24h without care)
+    public void updateEnergy(double modifier) {
+        this.pet.getEnergy().decrease(modifier * this.decayRate);
+        System.out.println("Energy drops by " + modifier * this.decayRate);
     }
     
-    public void updateHealth() {
-        this.pet.getHealth().decrease();
+    // Happiness drops faster than energy
+    public void updateHappiness(double modifier) {
+        this.pet.getHappiness().decrease(modifier * (this.decayRate * 2));
     }
     
-    public void updateHygiene() {
-        this.pet.getHygiene().decrease();
+    // Health only drops under certain conditions
+    public void updateHealth(double modifier) {
+        if (this.pet.getIsSick()) {
+            this.pet.getHealth().decrease( modifier * (this.decayRate * 4));
+        }
+        // When energy drops too low, health starts to drop fast
+        if (this.pet.getEnergy().getValue() == 0.0 ) {
+            this.pet.getHealth().decrease(modifier * (this.decayRate * 2));
+        }
+        // When hygiene drops below half, health starts to drop fast
+        if (this.pet.getHygiene().getValue() <= 50.0) {
+            this.pet.getHealth().decrease(modifier * (this.decayRate * 2));
+        }
+        
     }
     
-    // Between last login and new login, energy drops approx. by 1 per 864 seconds (because pet should be dead in 24h without care)
-    public void calculatePetStats(Date timeNow) {
-        long differenceInSeconds = TimeUnit.MILLISECONDS.toSeconds(timeNow.getTime()) - this.pet.getLastLogin();
+    // Hygiene drops half the rate of energy
+    public void updateHygiene(double modifier) {
+        this.pet.getHygiene().decrease(modifier * (this.decayRate / 2));
+    }
+    
+    //Updates stats during game
+    public void updateStats(double time) {
+        updateEnergy(time);
+        updateHappiness(time);
+        updateHygiene(time);
+        updateHealth(time);
+    }
+    
+    // Updates stats between logins
+    public void calculatePetStats() {
+        Date today = new Date();
+        long timeNow = TimeUnit.MILLISECONDS.toSeconds(today.getTime());
+        long differenceInSeconds = timeNow - this.pet.getLastLogin();
         double seconds = (double) differenceInSeconds;
-        this.pet.getEnergy().decrease((double) (seconds * this.decayRate));
-        // When energy drops too low, health starts to drop
-        if (this.pet.getEnergy().getValue() == 0.0) {
-            this.pet.getHealth().decrease((double) (seconds * (this.decayRate / 4)));
-            this.pet.getHappiness().decrease((double) (seconds * (this.decayRate / 4)));
-        }
-        // Hygiene drops half the rate of energy
-        this.pet.getHygiene().decrease((double) (seconds * (this.decayRate / 2)));
-        // When hygiene drops below half, health starts to drop
-        if (this.pet.getHygiene().getValue() < 50) {
-            this.pet.getHealth().decrease((double) (seconds * (this.decayRate / 4)));
-            this.pet.getHappiness().decrease((double) (seconds * (this.decayRate / 4)));
-        }
+        
+        updateStats(seconds);      
     }
     
-    public void setLastLogin(Date newLogin) {
-//        this.lastLogin = TimeUnit.MILLISECONDS.toSeconds(newLogin.getTime());
-    }
     
     public void checkIfPetGetsSick() {
         if (!this.pet.getIsSick()) {

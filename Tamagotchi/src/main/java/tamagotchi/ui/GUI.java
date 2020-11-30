@@ -65,12 +65,13 @@ public class GUI extends Application {
                         petCare.checkIfPetNeedsCleaning();
                         renderer.setNeedCleaning(petCare.getPet().getNeedsWash());
                         
-                       occurrenceCheck = now;
+                        occurrenceCheck = now;
                     }
-                    
-                    if (now - lastCheck >= 1500) {
+                    long time = now - lastCheck;
+                    if (time >= 1500) {
                         renderer.render();
-                        update();
+                        
+                        update((double) time/1000);
                     
                         lastCheck = now;
                     }
@@ -119,8 +120,8 @@ public class GUI extends Application {
     }
     
     
-    public void update() {
-        this.petCare.updateEnergy();
+    public void update(double time) {
+        this.petCare.updateStats(time);
         this.gameController.setUpBars();
     }
     
