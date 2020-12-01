@@ -26,4 +26,9 @@ Pe 27.11. | 4h | Lisätty toimintoja, muuta ohjelman hienosäätöä ja uudellee
 La 28.11. | 5h | Daon harjoittelua, tallennuksen järjestelyä.
 Su 29.11. | 3h | Tallennusongelmien ratkomista, yksinkertainen tallennusmetodi luotu.
 &nbsp; | 2h | JAR-tiedosto luotu, javan ongelmien ratkomista, toimintalogiikan hiomista ja testien kirjoittelua.
-Yht. | 64h | &nbsp;
+Ma 30.11. | 2h | Pelilogiikkaa edistetty, petin statit päivittyvät nyt säännöllisesti (ja jotenkin järkevästi).
+&nbsp; | 1.5h | GameOver toiminnallisuus ja scene lisätty.
+&nbsp; | 2h | Grafiikan kanssa puuhastelua, lisätty taas pientä toiminnallisuutta.
+Ti 1.12. | 1.5h | Kirjoitettu lisää testejä.
+&nbsp; | 4h | Sekvenssikaavion teko, "animaation" päivitystä, muuta ohjelman parantelua ja hiomista, releasen valmistelua.
+Yht. | 75h | &nbsp;
