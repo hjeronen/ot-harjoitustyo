@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
-import tamagotchi.domain.PetCare;
 
 /**
  * FXML Controller class
@@ -91,12 +90,6 @@ public class MainGameSceneController implements Initializable {
     public Canvas getCanvas() {
         return this.gameCanvas;
     }
-    
-//    private void initialiseCanvas() {
-//        gameCanvas.widthProperty().bind(gameAnchor.widthProperty());
-//        gameCanvas.heightProperty().bind(gameAnchor.heightProperty());
-//    }
-    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

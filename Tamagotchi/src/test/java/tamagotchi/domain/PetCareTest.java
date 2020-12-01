@@ -48,6 +48,11 @@ public class PetCareTest {
     public void hello() {}
      
     @Test
+    public void getPetDoesNotReturnNull() {
+        assertTrue(this.petCare.getPet() != null);
+    }
+    
+    @Test
     public void feedPetIncreasesEnergyRight() {
         double originalValue = this.petCare.getPet().getEnergy().getValue();
         this.petCare.feedPet();
@@ -64,20 +69,70 @@ public class PetCareTest {
     }
     
     @Test
-    public void getPetReturnsTheCorrectPet() {
-        Pet pet = new Pet();
-        assertTrue(pet != this.petCare.getPet());
-    }
-    
-    @Test
-    public void getPetDoesNotReturnNull() {
-        assertTrue(this.petCare.getPet() != null);
-    }
-    
-    @Test
     public void cleanPetSetsPetHygieneCorrectly() {
         this.petCare.cleanPet();
         assertTrue(this.petCare.getPet().getHygiene().getValue() == 100.0);
+    }
+    
+    @Test
+    public void cleanPetSetsNeedsWashValueToFalse() {
+        this.petCare.getPet().setNeedsWash(true);
+        this.petCare.cleanPet();
+        assertTrue(this.petCare.getPet().getNeedsWash() == false);
+    }
+    
+    @Test
+    public void petIsAliveReturnsFalseWhenEnergyAndHealthAreAtZero() {
+        this.petCare.getPet().setEnergy(0);
+        this.petCare.getPet().setHealth(0);
+        assertTrue(!this.petCare.petIsAlive());
+    }
+    
+    @Test
+    public void petIsAliveReturnsTrueWhenOnlyEnergyIsAtZero() {
+        this.petCare.getPet().setEnergy(0);
+        assertTrue(this.petCare.petIsAlive());
+    }
+    
+    @Test
+    public void petIsAliveReturnsTrueWhenOnlyHealthIsAtZero() {
+        this.petCare.getPet().setHealth(0);
+        assertTrue(this.petCare.petIsAlive());
+    }
+    
+    @Test
+    public void updateEnergyDecreasesEnergyRight() {
+        this.petCare.updateEnergy(10000);
+        assertTrue(this.petCare.getPet().getEnergy().getValue() == 41.0);
+    }
+    
+    @Test
+    public void updateHealthDoesNotDecreaseHealthIfPetIsNotSick() {
+        this.petCare.getPet().setHygiene(100.0);
+        this.petCare.updateHealth(10000);
+        assertTrue(this.petCare.getPet().getHealth().getValue() == 50.0);
+    }
+    
+    @Test
+    public void updateHealthDoesDecreaseHealthFastIfPetIsSick() {
+        this.petCare.getPet().setIsSick(true);
+        this.petCare.getPet().setHygiene(100.0);
+        this.petCare.updateHealth(10000);
+        assertTrue(this.petCare.getPet().getHealth().getValue() == 14);
+    }
+    
+    @Test
+    public void updateHealthDecreasesHealthIfEnergyIsAtZero() {
+        this.petCare.getPet().setEnergy(0);
+        this.petCare.getPet().setHygiene(100.0);
+        this.petCare.updateHealth(10000);
+        assertTrue(this.petCare.getPet().getHealth().getValue() == 32.0);
+    }
+    
+    @Test
+    public void updateHealthDecreasesHealthIfHygieneIsAtFifty() {
+        this.petCare.updateHealth(10000);
+        assertTrue(this.petCare.getPet().getHealth().getValue() == 32.0);
     }
     
     @Test

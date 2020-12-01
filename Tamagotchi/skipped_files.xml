@@ -8,4 +8,7 @@
     <suppress files="tamagotchi.ui.GUI.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="tamagotchi.ui.MainGameSceneController.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="tamagotchi.ui.NewGameController.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="tamagotchi.ui.GameOverSceneController.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="tamagotchi.ui.Sprite.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="tamagotchi.ui.GameRenderer.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

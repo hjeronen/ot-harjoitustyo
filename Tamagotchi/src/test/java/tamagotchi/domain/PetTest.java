@@ -63,10 +63,63 @@ public class PetTest {
     }
     
     @Test
+    public void setNameSetsTheCorrectName() {
+        String name = "Fluffy";
+        this.pet.setName(name);
+        assertEquals(this.pet.getName(), name);
+    }
+    
+    @Test
     public void setBirthdaySetsCorrectDate() {
         String date = "2020-09-20";
         this.pet.setBirthday(date);
         LocalDate testDate = LocalDate.parse(date);
         assertEquals(this.pet.getBirthday().toString(), testDate.toString());
+    }
+    
+    @Test
+    public void setEnergySetsValueRight() {
+        this.pet.setEnergy(100.0);
+        assertTrue(this.pet.getEnergy().getValue() == 100.0);
+    }
+    
+    @Test
+    public void setHappinessSetsValueRight() {
+        this.pet.setHappiness(100.0);
+        assertTrue(this.pet.getHappiness().getValue() == 100.0);
+    }
+    
+    @Test
+    public void setHealthSetsValueRight() {
+        this.pet.setHealth(100.0);
+        assertTrue(this.pet.getHealth().getValue() == 100.0);
+    }
+    
+    @Test
+    public void setHygieneSetsValueRight() {
+        this.pet.setHygiene(100.0);
+        assertTrue(this.pet.getHygiene().getValue() == 100.0);
+    }
+    
+    @Test
+    public void getIsSickReturnsRightValue() {
+        assertTrue(this.pet.getIsSick() == false);
+    }
+    
+    @Test
+    public void setIsSickSetsValueRight() {
+        this.pet.setIsSick(true);
+        assertTrue(this.pet.getIsSick() == true);
+    }
+    
+    @Test
+    public void getNeedsWashReturnsRightValue() {
+        assertTrue(this.pet.getNeedsWash() == false);
+    }
+    
+    @Test
+    public void setNeedsWashSetsValueRight() {
+        this.pet.setNeedsWash(true);
+        assertTrue(this.pet.getNeedsWash() == true);
     }
 }

@@ -66,15 +66,14 @@ public class GUI extends Application {
                 if (!isPaused) {
                     if (now - occurrenceCheck >= 10000) {
                         petCare.checkIfPetGetsSick();
-                        renderer.setShowVirus(petCare.getPet().getIsSick());
-                        
                         petCare.checkIfPetNeedsCleaning();
-                        renderer.setNeedCleaning(petCare.getPet().getNeedsWash());
-                        
                         occurrenceCheck = now;
                     }
                     long time = now - lastCheck;
                     if (time >= 1500) {
+                        renderer.setShowVirus(petCare.getPet().getIsSick());
+                        renderer.setNeedCleaning(petCare.getPet().getNeedsWash());
+                        
                         renderer.render();
                         
                         update((double) time/1000);
@@ -117,6 +116,10 @@ public class GUI extends Application {
         this.gameScene = new Scene(game);
         
         this.renderer = new GameRenderer(this.gameController.getCanvas());
+        petCare.checkIfPetGetsSick();
+        renderer.setShowVirus(petCare.getPet().getIsSick());
+        petCare.checkIfPetNeedsCleaning();
+        renderer.setNeedCleaning(petCare.getPet().getNeedsWash());
         
         this.stage.setTitle("Tamagotchi");
         this.stage.setScene(gameScene);

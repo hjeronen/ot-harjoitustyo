@@ -66,7 +66,7 @@ public class FilePetDao implements PetDao {
             this.pet.setHealth(Double.parseDouble(parts[5]));
             this.pet.setHygiene(Double.parseDouble(parts[6]));
             this.saveExists = true;
-        } catch(Exception NoSuchElementException){
+        } catch (Exception noSuchElementException) {
             this.saveExists = false;
         }
     }
@@ -90,7 +90,7 @@ public class FilePetDao implements PetDao {
                     + this.pet.getHygiene());
             writer.close();
             this.saveExists = true;
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

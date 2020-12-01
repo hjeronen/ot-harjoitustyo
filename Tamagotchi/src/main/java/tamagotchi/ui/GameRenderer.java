@@ -11,6 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
+
 /**
  *
  * @author Heli
@@ -30,6 +31,9 @@ public class GameRenderer {
     
     private boolean needCleaning;
     private boolean showVirus;
+    
+    private Image skull;
+    private Image waste;
 
     
     
@@ -44,25 +48,34 @@ public class GameRenderer {
         this.yDirection = 1;
         this.needCleaning = false;
         this.showVirus = false;
+        this.skull = new Image("/images/skull.jpg");
+        this.waste = new Image("/images/alienWaste.jpg");
     }
     
-    public void prepare(){
-        context.setFill( Color.web("#f0f2f5",1.0));
-        context.fillRect(0,0, canvas.getWidth(),canvas.getHeight());
+    public void prepare() {
+        context.setFill(Color.web("#f0f2f5", 1.0));
+        context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
     
     public void render() {
-        //context.save();
-        //context.restore();
         prepare();
         
-        Image spriteImage = new Image("/images/PracticeSprite.jpg");
-//        this.sprite.setImage(spriteImage); //DOES NOT WORK!
-        //spritePlaceCenter();
+        
         spriteIdleMovement();
-        context.drawImage(spriteImage, sprite.getX(), sprite.getY(), sprite.getHeight(), sprite.getWidth());
-
-        //context.restore();
+        
+        if (this.spriteOrientation.equals("right")) {
+            context.drawImage(sprite.getImageRight(), sprite.getX(), sprite.getY(), sprite.getHeight(), sprite.getWidth());
+        } else {
+            context.drawImage(sprite.getImageLeft(), sprite.getX(), sprite.getY(), sprite.getHeight(), sprite.getWidth());
+        }
+        
+        if (this.showVirus) {
+            context.drawImage(skull, this.canvas.getWidth() - 64.0, 0.0);
+        }
+        
+        if (this.needCleaning) {
+            context.drawImage(waste, this.canvas.getWidth() * 0.25, this.canvas.getHeight() - 64.0);
+        }
     }
     
     public void spriteIdleMovement() {
@@ -71,7 +84,6 @@ public class GameRenderer {
             this.firstRotation = false;
         } else {
             double distanceFromCenter = Math.abs(this.sprite.getX() - this.centerX);
-            
             if (this.spriteOrientation.equals("left")) {
                 if (distanceFromCenter < this.sprite.getWidth() * 1.5) {
                     spriteStepLeft();
@@ -79,7 +91,6 @@ public class GameRenderer {
                     this.spriteOrientation = "right";
                     spriteStepRight();
                 }
-                
             } else {
                 if (distanceFromCenter < this.sprite.getWidth() * 1.5) {
                     spriteStepRight();
@@ -88,14 +99,12 @@ public class GameRenderer {
                     spriteStepLeft();
                 }
             }
-            
             if (this.yDirection < 0) {
                 spriteStepDown();
             } else {
                 spriteStepUp();
             }
             this.yDirection *= (-1);
-            
         }
     }
     

@@ -5,11 +5,9 @@
  */
 package tamagotchi.domain;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import tamagotchi.dao.FilePetDao;
 import tamagotchi.dao.PetDao;
 
 /**
@@ -27,7 +25,7 @@ public class PetCare {
     public PetCare(PetDao petDao) {
         this.petDao = petDao;
         this.pet = this.petDao.getPet();
-        this.decayRate = 0.0009; // 1/108 //1/432; //1/864;
+        this.decayRate = 0.0009; // 1/108
     }
     
     public void setUpPetDao(PetDao petDao) {
@@ -62,23 +60,17 @@ public class PetCare {
     
     public void cleanPet() {
         this.pet.setHygiene(100.0);
+        this.pet.setNeedsWash(false);
     }
     
-    // Move to Pet!
+    
     public boolean petIsAlive() {
-        if (this.pet.getEnergy().getValue() == 0.0 && this.pet.getHealth().getValue() == 0.0) {
-            return false;
-        }
-        return true;
+        return (!(this.pet.getEnergy().getValue() == 0.0 && this.pet.getHealth().getValue() == 0.0));
     }
     
-    // Energy should drop approx. by 1 per 864 seconds (because it should go to 0 in 24h without care)
-    // UPDATE! Pet will be dead in 3h without care
+    //Energy drops by 1/108 per second
     public void updateEnergy(double modifier) {
         this.pet.getEnergy().decrease(modifier * this.decayRate);
-        System.out.println(modifier);
-        System.out.println(this.decayRate);
-        System.out.println("Energy drops by " + (modifier * this.decayRate));
     }
     
     // Happiness drops faster than energy
@@ -89,10 +81,10 @@ public class PetCare {
     // Health only drops under certain conditions
     public void updateHealth(double modifier) {
         if (this.pet.getIsSick()) {
-            this.pet.getHealth().decrease( modifier * (this.decayRate * 4));
+            this.pet.getHealth().decrease(modifier * (this.decayRate * 4));
         }
         // When energy drops too low, health starts to drop fast
-        if (this.pet.getEnergy().getValue() == 0.0 ) {
+        if (this.pet.getEnergy().getValue() == 0.0) {
             this.pet.getHealth().decrease(modifier * (this.decayRate * 2));
         }
         // When hygiene drops below half, health starts to drop fast
@@ -138,14 +130,13 @@ public class PetCare {
         }
     }
     
+    
     public void checkIfPetNeedsCleaning() {
         if (!this.pet.getNeedsWash()) {
-            if (this.pet.getHygiene().getValue() < 50.0) {
-                Random generator = new Random();
-                int randomInt = generator.nextInt(100);
-                if (randomInt >= this.pet.getHealth().getValue()) {
-                    this.pet.setNeedsWash(true);
-                }
+            Random generator = new Random();
+            int randomInt = generator.nextInt(100);
+            if (randomInt >= this.pet.getHygiene().getValue()) {
+                this.pet.setNeedsWash(true);
             }
         }
     }
