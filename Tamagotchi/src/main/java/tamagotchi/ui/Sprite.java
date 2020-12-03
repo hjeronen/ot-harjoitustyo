@@ -24,8 +24,8 @@ public class Sprite {
         this.positionY = 52.0;
         this.hight = 64.0;
         this.width = 64.0;
-        this.imageLeft = new Image("/images/spriteLeft.jpg");
-        this.imageRight = new Image("/images/spriteRight.jpg");
+//        this.imageLeft = new Image("/images/spriteLeft.jpg"); // SPRITE DOES NOT SHARE!!!
+//        this.imageRight = new Image("/images/spriteRight.jpg");
     }
     
     public void setImage(String filename) {
@@ -36,13 +36,13 @@ public class Sprite {
         this.imageLeft = i;
     }
     
-    public Image getImageLeft() {
-        return this.imageLeft;
-    }
-    
-    public Image getImageRight() {
-        return this.imageRight;
-    }
+//    public Image getImageLeft() {
+//        return this.imageLeft;
+//    }
+//    
+//    public Image getImageRight() {
+//        return this.imageRight;
+//    }
     
     public double getX() {
         return this.positionX;

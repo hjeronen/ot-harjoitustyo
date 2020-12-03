@@ -14,6 +14,7 @@ import tamagotchi.domain.PetCare;
 import javafx.fxml.FXMLLoader;
 import javafx.animation.AnimationTimer;
 import tamagotchi.dao.FilePetDao;
+import tamagotchi.logic.MiniGame;
 
 
 /**
@@ -31,6 +32,8 @@ public class GUI extends Application {
     private MainGameSceneController gameController;
     
     private GameRenderer renderer;
+    
+    private MiniGame minigame;
     
     
     @Override
@@ -139,6 +142,10 @@ public class GUI extends Application {
         this.stage.setTitle("Tamagotchi");
         this.stage.setScene(this.gameOverScene);
         this.stage.show();
+    }
+    
+    public void setMiniGameScene() {
+        
     }
     
     

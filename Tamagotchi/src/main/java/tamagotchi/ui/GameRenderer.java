@@ -32,9 +32,11 @@ public class GameRenderer {
     private boolean needCleaning;
     private boolean showVirus;
     
+    private Image spriteImageLeft;
+    private Image spriteImageRight;
+    
     private Image skull;
     private Image waste;
-
     
     
     public GameRenderer(Canvas canvas) {
@@ -48,6 +50,8 @@ public class GameRenderer {
         this.yDirection = 1;
         this.needCleaning = false;
         this.showVirus = false;
+        this.spriteImageLeft = new Image("/images/spriteLeft.jpg");
+        this.spriteImageRight = new Image("/images/spriteRight.jpg");
         this.skull = new Image("/images/skull.jpg");
         this.waste = new Image("/images/alienWaste.jpg");
     }
@@ -60,13 +64,12 @@ public class GameRenderer {
     public void render() {
         prepare();
         
-        
         spriteIdleMovement();
         
         if (this.spriteOrientation.equals("right")) {
-            context.drawImage(sprite.getImageRight(), sprite.getX(), sprite.getY(), sprite.getHeight(), sprite.getWidth());
+            context.drawImage(spriteImageRight, sprite.getX(), sprite.getY(), sprite.getHeight(), sprite.getWidth());
         } else {
-            context.drawImage(sprite.getImageLeft(), sprite.getX(), sprite.getY(), sprite.getHeight(), sprite.getWidth());
+            context.drawImage(spriteImageLeft, sprite.getX(), sprite.getY(), sprite.getHeight(), sprite.getWidth());
         }
         
         if (this.showVirus) {
