@@ -51,6 +51,10 @@ public class PetCare {
         this.pet.getEnergy().increase(10.0);
     }
     
+    public void play(int score) {
+        this.pet.getHappiness().increase(score * 10);
+    }
+    
     public void healPet() {
         this.pet.getHealth().increase(10.0);
         if (this.pet.getHealth().getValue() == 100.0) {

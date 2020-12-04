@@ -30,6 +30,7 @@ public class GUI extends Application {
     private boolean isPaused;
     
     private MainGameSceneController gameController;
+    private MiniGameSceneController minigameController;
     
     private GameRenderer renderer;
     
@@ -40,7 +41,7 @@ public class GUI extends Application {
     public void init() throws Exception {
         FilePetDao petDao = new FilePetDao("saveFile.txt");
         this.petCare = new PetCare(petDao);
-        
+        this.minigame = new MiniGame();
     }
     
     
@@ -144,8 +145,21 @@ public class GUI extends Application {
         this.stage.show();
     }
     
-    public void setMiniGameScene() {
+    public void setMiniGameScene() throws IOException {
+        this.isPaused = true;
         
+        FXMLLoader miniGameLoader = new FXMLLoader(getClass().getResource("/fxml/MiniGameScene.fxml"));
+        Parent miniGameScene = miniGameLoader.load();
+        this.minigameController = miniGameLoader.getController();
+        Scene miniGame = new Scene(miniGameScene);
+        
+        this.minigameController.setApplication(this);
+        this.minigame.play();
+        this.minigameController.setUpTextFieldNumber(minigame.getNumber());
+        
+        this.stage.setTitle("Tamagotchi");
+        this.stage.setScene(miniGame);
+        this.stage.show();
     }
     
     
@@ -158,8 +172,17 @@ public class GUI extends Application {
         return this.petCare;
     }
     
+    public MiniGame getMiniGame() {
+        return this.minigame;
+    }
+    
+    
     public void setUpNewPetCare() throws Exception {
         this.petCare.createNewPetSave();
+    }
+    
+    public void setIsPaused(boolean value) {
+        this.isPaused = value;
     }
     
     

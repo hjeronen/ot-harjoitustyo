@@ -7,6 +7,7 @@ package tamagotchi.ui;
  */
 
 
+import java.io.IOException;
 import javafx.scene.canvas.Canvas;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,8 +55,8 @@ public class MainGameSceneController implements Initializable {
     }
     
     @FXML
-    private void handleButtonActionPlay() {
-        System.out.println("Not supported yet.");
+    private void handleButtonActionPlay() throws IOException {
+        this.userinterface.setMiniGameScene();
     }
     
     @FXML
