@@ -10,7 +10,7 @@ Kaikki käyttöliittymän koostamiseen liittyvät luokat on sijoitettu pakkaukse
 
 ### Käyttöliittymä
 
-Käyttöliittymä on toteutettu JavaFX:llä, ja kaikki sen koostamiseen käytety luokat löytyvät pakkauksesta ui. Pääasiallinen käyttöliittymän hallinnasta vastaava luokka on GUI, joka vastaa eri pelinäkymien käytöstä ja pelilogiikan yhdistämisestä niihin. Pelinäkymiä on neljä, NewGameScene, MainGameScene, MiniGameScene ja GameOverScene. Jokainen niistä on siis FXML-dokumentin määrittelemä Scene-olio, joka GUI:ssa ladataan ja asetetaan oliomuuttujaan stage käyttäjälle näytettäväksi. Jokaisella on oma controller-luokka, jossa ko. näkymän toiminta on määritelty, ja nämä luokat on esitetty alempana luokka/pakkauskaaviossa.
+Käyttöliittymä on toteutettu JavaFX:llä, ja kaikki sen koostamiseen käytety luokat löytyvät pakkauksesta ui. Pääasiallinen käyttöliittymän hallinnasta vastaava luokka on GUI, joka vastaa eri pelinäkymien käytöstä ja pelilogiikan yhdistämisestä niihin. Pelinäkymiä on neljä, NewGameScene, MainGameScene, MiniGameScene ja GameOverScene. Jokainen niistä on siis FXML-dokumentin määrittelemä Scene-olio, joka GUI:ssa ladataan ja asetetaan oliomuuttujaan stage käyttäjälle näytettäväksi. Jokaisella on oma controller-luokka, jossa ko. näkymän toiminta on määritelty. Nämä kontrolleriluokat on esitetty alempana luokka/pakkauskaaviossa.
 
 Itse pelilogiikasta vastaa luokka PetCare, jonka tuntee vain luokka GUI. GUI:n kautta muissa näkymissä tapahtuvat toiminnot kutsuvat PetCaren tai sen sisältämien luokkien metodeja, tai näkymille välitetään tietoja Petin tilasta. Ainoastaan näkymän MiniGameScene kontrolleriluokka tietää itse ja yksin käyttämänsä MiniGame-luokan, joka siis vastaa ohjelman sisäisen minipelin toimintalogiikasta.
 
