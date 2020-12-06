@@ -36,9 +36,13 @@ Alla on vielä esitetty ohjelman luokka/pakkauskaavio sovelluslogiikan kannalta 
 
 ### Tallennus
 
-Pakkauksessa dao on Petin tallennuksesta vastaava luokka FilePetDao. Tällä hetkellä Petin nimi, syntymäpäivä, aika jolloin sovellus suljettiin (Petin lastLogin) ja stattien tila kirjoitetaan yksinkertaisesti tekstitiedostoon sovelluksen sulkeutuessa, samoin kun sovellus taas avataan tallennetun Petin tiedot luetaan ja asetetaan luodulle Pet-oliolle, joka välitetään oliolle PetCare. Tiedot tallennetaan String-muodossa ja puolipisteillä erotettuna, esim. "Zorblax;2020-11-30;1607261049;98.16759699999999;99.9754336;100.0;99.08424970000007".
+Pakkauksessa dao on Petin tallennuksesta vastaava luokka FilePetDao. Tällä hetkellä Petin nimi, syntymäpäivä, aika jolloin sovellus suljettiin (Petin lastLogin) ja stattien tila kirjoitetaan yksinkertaisesti tekstitiedostoon sovelluksen sulkeutuessa, samoin kun sovellus taas avataan tallennetun Petin tiedot luetaan ja asetetaan luodulle Pet-oliolle, jonka FilePetDao antaa takaisin oliolle PetCare. Tiedot tallennetaan String-muodossa ja puolipisteillä erotettuna, esim. 
 
-Periaatteessa käyttäjä voi halutessaan manipuloida Petin tilaa muokkaamalla tallennustiedostoa, esim. tehdä siitä vanhemman muuttamalla syntymäpäivää - kunhan kirjoitusasu pysyy oikeana!
+```
+Zorblax;2020-11-30;1607261049;98.0;99.0;100.0;99.0
+```
+
+Periaatteessa käyttäjä voi halutessaan vaihtaa Petin nimeä tai manipuloida sen tilaa muokkaamalla tallennustiedostoa, esim. tehdä siitä vanhemman muuttamalla syntymäpäivää - kunhan kirjoitusasu (yyyy-mm-dd) pysyy oikeana!
 
 Tallennuksessa on käytetty Data Access Object -mallia, ja pelilogiikan koodissa käsitellään rajapintaa PetDao varsinaisen FilePetDao-luokan sijasta, sillä tallennusmetodia on tarkoitus muuttaa myöhemmin. Käyttöliittymää käynnistettäessä tarpeen mukaan luodaan tai ladataan tallennustiedosto "saveFile.txt". Koska pelissä on vain yksi käyttäjä ja yksi Pet (tällä hetkellä), on tallennustiedostojakin vain yksi. FakePetDao-luokka on olemassa tallennuksen testausta varten.
 
