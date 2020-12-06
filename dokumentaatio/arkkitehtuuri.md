@@ -14,11 +14,11 @@ Käyttöliittymä on toteutettu JavaFX:llä, ja kaikki sen koostamiseen käytety
 
 Itse pelilogiikasta vastaa luokka PetCare, jonka tuntee vain luokka GUI. GUI:n kautta muissa näkymissä tapahtuvat toiminnot kutsuvat PetCaren tai sen sisältämien luokkien metodeja, tai näkymille välitetään tietoja Petin tilasta. Ainoastaan näkymän MiniGameScene kontrolleriluokka tietää itse ja yksin käyttämänsä MiniGame-luokan, joka siis vastaa ohjelman sisäisen minipelin toimintalogiikasta.
 
-Se, mikä pelinäkymä on kulloinkin esillä riippuu pelitilanteesta. Aloitettaessa uutta peliä asetetaan näkyville ensin NewGameScene, jossa pelaaja voi valita Petille nimen. Tämän jälkeen tai jos ohjelma löytää edellisen pelin tallennuksen vaihdetaan näkymään MainGameScene, jossa itse peli tapahtuu. Pelaaja näkee mittareista Petin eri stattien tilan, ja voi napeilla Feed, Heal ja Clean hoitaa pettiä. Play napista painamalla vaihtuu näkymäksi MiniGameScene, jossa voi pelata minipeliä Petin kanssa. Jos Pettiä ei ole pitkään aikaan hoitanut, se kuolee ja näkymäksi vaihtuu GameOverScene, josta pääsee takaisin uuden pelin aloitukseen.
+Se, mikä pelinäkymä on kulloinkin esillä, riippuu pelitilanteesta. Aloitettaessa uutta peliä asetetaan näkyville ensin NewGameScene, jossa pelaaja voi valita Petille nimen. Tämän jälkeen tai jos ohjelma löytää edellisen pelin tallennuksen vaihdetaan näkymään MainGameScene, jossa itse peli tapahtuu. Pelaaja näkee mittareista Petin eri stattien tilan, ja voi napeilla Feed, Heal ja Clean hoitaa Pettiä. Play napista painamalla vaihtuu näkymäksi MiniGameScene, jossa voi pelata minipeliä Petin kanssa. Jos Pettiä ei ole pitkään aikaan hoitanut, se kuolee ja näkymäksi vaihtuu GameOverScene, josta pääsee takaisin uuden pelin aloitukseen.
 
 #### AnimationTimer
 
-Koska käyttöliittymä on toteutettu JavaFX:llä, on ns. GameLoop toteutettu sen ominaisuudella AnimationTimer. Se luodaan start()-metodin sisällä, ja sen handle()-metodissa päivitetään Petin tila joka 1500 millisekunti, eli 1.5 sekunnin välein. 10 sekunnin välein tarkastetaan myös sairastuuko Pet tai jättääkö se jätöksiä. Renderer-luokkaa käytetään peliloopissa piirtämään Petin visuaalinen representaatio (Sprite) MainGameScenen canvas-oliolle.
+Koska käyttöliittymä on toteutettu JavaFX:llä, on ns. GameLoop toteutettu sen ominaisuudella AnimationTimer. Se luodaan GUI:n start()-metodin sisällä, ja sen handle()-metodissa päivitetään Petin tila joka 1500 millisekunti, eli 1.5 sekunnin välein. 10 sekunnin välein tarkastetaan myös sairastuuko Pet tai jättääkö se jätöksiä. Renderer-luokkaa käytetään peliloopissa piirtämään Petin visuaalinen representaatio (Sprite) MainGameScenen canvas-oliolle.
 
 ### Sovelluslogiikka
 
