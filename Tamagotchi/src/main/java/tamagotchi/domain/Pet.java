@@ -25,6 +25,7 @@ public class Pet {
     private boolean isSick;
     private boolean needsWash;
     private long lastLogin;
+    private int developmentStage;
     
     public Pet(String name) {
         this.name = name;
@@ -41,6 +42,8 @@ public class Pet {
         
         Date time = new Date();
         this.lastLogin = TimeUnit.MILLISECONDS.toSeconds(time.getTime());
+        
+        this.developmentStage = 1; // 1 = baby, 2 = youngling, 3 = adult
     }
     
     public Pet() {
@@ -134,5 +137,19 @@ public class Pet {
     
     public void setNeedsWash(boolean value) {
         this.needsWash = value;
+    }
+    
+    public void setDevelopmentStage() {
+        if (this.getAge() <= 3) {
+            this.developmentStage = 2;
+        } else if (this.getAge() <= 7) {
+            this.developmentStage = 3;
+        } else {
+            this.developmentStage = 1;
+        }
+    }
+    
+    public int getDevelopmentStage() {
+        return this.developmentStage;
     }
 }

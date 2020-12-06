@@ -28,6 +28,8 @@ public class MiniGameSceneController implements Initializable {
      */
     
     private GUI userinterface;
+    private GameRenderer renderer;
+    private MiniGame minigame;
     
     
     @FXML
@@ -70,43 +72,55 @@ public class MiniGameSceneController implements Initializable {
     
     @FXML
     private void handleButtonActionGuessHigher() throws Exception {
-        if (this.userinterface.getMiniGame().isHigher(true)) {
-            this.guessResult.setText("Correct!");
-            this.userinterface.getMiniGame().increaseScore();
+        if (this.minigame.handleGuess(true)) {
+            handleGuessCorrect();
         } else {
-            this.guessResult.setText("Wrong!");
+            handleGuessWrong();
         }
-        setUpTextFieldAnswer(this.userinterface.getMiniGame().getAnswer());
+        setUpTextFieldAnswer(this.minigame.getAnswer());
     }
     
     @FXML
     private void handleButtonActionGuessLower() throws Exception {
-        if (this.userinterface.getMiniGame().isHigher(false)) {
-            this.guessResult.setText("Correct!");
-            this.userinterface.getMiniGame().increaseScore();
+        if (this.minigame.handleGuess(false)) {
+            handleGuessCorrect();
         } else {
-            this.guessResult.setText("Wrong!");
+            handleGuessWrong();
         }
-        setUpTextFieldAnswer(this.userinterface.getMiniGame().getAnswer());
+        setUpTextFieldAnswer(this.minigame.getAnswer());
+    }
+    
+    private void handleGuessCorrect() {
+        this.guessResult.setText("Correct!");
+        this.renderer.renderHappy();
+    }
+    
+    private void handleGuessWrong() {
+        this.guessResult.setText("Wrong!");
+        this.renderer.renderAngry();
     }
     
     @FXML
     private void handleButtonActionNext() throws Exception {
-        if (this.userinterface.getMiniGame().getRound() == 5) {
-            this.score.setText("Game Over! Your score: " + this.userinterface.getMiniGame().getScore() + "/5.");
-            this.userinterface.getPetCare().play(this.userinterface.getMiniGame().getScore());
-            this.userinterface.getMiniGame().setRound(0);
-            this.userinterface.getMiniGame().setScore(0);
+        if (this.minigame.getRound() == 5) {
+            this.score.setText("Game Over! Your score: " + this.minigame.getScore() + "/5.");
+            this.userinterface.getPetCare().play(this.minigame.getScore());
+            this.minigame.resetGame();
+            this.renderer.renderSprite();
         } else {
-            this.userinterface.setMiniGameScene();
+            this.minigame.setNewRound();
+            this.minigame.play();
+            this.renderer.renderSprite();
+            setUpTextFieldNumber(this.minigame.getNumber());
+            this.answer.setText("");
+            this.guessResult.setText("");
+            this.score.setText("");
         }
-        
     }
     
     @FXML
     private void handleButtonActionBack() throws Exception {
-        this.userinterface.getMiniGame().setRound(0);
-        this.userinterface.getMiniGame().setScore(0);
+        this.minigame.resetGame();
         this.userinterface.setGameScene();
     }
     
@@ -116,7 +130,11 @@ public class MiniGameSceneController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.renderer = new GameRenderer(this.gameCanvas);
+        this.renderer.renderSprite();
+        this.minigame = new MiniGame();
+        this.minigame.play();
+        setUpTextFieldNumber(this.minigame.getNumber());
     }    
     
 }

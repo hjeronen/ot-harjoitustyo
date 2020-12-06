@@ -3,73 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tamagotchi.domain;
+package tamagotchi.logic;
 
 import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import tamagotchi.dao.PetDao;
+import tamagotchi.domain.Pet;
 
-/**
+/** PetCare uses to calculate decay for pet's stats
  *
  * @author Heli
  */
-
-// Game logic
-
-public class PetCare {
+public class StatManager {
     private Pet pet;
-    private PetDao petDao;
     private double decayRate;
     
-    public PetCare(PetDao petDao) {
-        this.petDao = petDao;
-        this.pet = this.petDao.getPet();
-        this.decayRate = 0.0009; // 1/108
+    
+    public StatManager(Pet pet) {
+        this.pet = pet;
+        this.decayRate = 0.0009; // Base rate: 1/108
     }
     
-    public void setUpPetDao(PetDao petDao) {
-        this.petDao = petDao;
-        this.pet = this.petDao.getPet();
+    public void setPet(Pet newPet) {
+        this.pet = newPet;
     }
     
-    public PetDao getPetDao() {
-        return this.petDao;
-    }
-    
-    public void createNewPetSave() throws Exception {
-        this.pet = new Pet();
-        this.petDao.createSave(this.pet);
-    }
-    
-    public Pet getPet() {
-        return this.pet;
-    }
-    
-    
-    public void feedPet() {
-        this.pet.getEnergy().increase(10.0);
-    }
-    
-    public void play(int score) {
-        this.pet.getHappiness().increase(score * 10);
-    }
-    
-    public void healPet() {
-        this.pet.getHealth().increase(10.0);
-        if (this.pet.getHealth().getValue() == 100.0) {
-            this.pet.setIsSick(false);
-        }
-    }
-    
-    public void cleanPet() {
-        this.pet.setHygiene(100.0);
-        this.pet.setNeedsWash(false);
-    }
-    
-    
-    public boolean petIsAlive() {
-        return (!(this.pet.getEnergy().getValue() == 0.0 && this.pet.getHealth().getValue() == 0.0));
+    public void setDecayRate() {
+        this.decayRate = this.decayRate / this.pet.getDevelopmentStage();
     }
     
     //Energy drops by 1/108 per second
@@ -115,10 +75,11 @@ public class PetCare {
     public void calculatePetStats() {
         Date today = new Date();
         long timeNow = TimeUnit.MILLISECONDS.toSeconds(today.getTime());
-        long differenceInSeconds = timeNow - this.pet.getLastLogin();
+        long differenceInSeconds = timeNow - pet.getLastLogin();
         double seconds = (double) differenceInSeconds;
-        
-        updateStats(seconds);      
+        this.pet.setDevelopmentStage();
+        setDecayRate();
+        updateStats(seconds);
     }
     
     
@@ -144,7 +105,4 @@ public class PetCare {
             }
         }
     }
-
-    
-
 }

@@ -10,11 +10,10 @@ import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import tamagotchi.domain.PetCare;
+import tamagotchi.logic.PetCare;
 import javafx.fxml.FXMLLoader;
 import javafx.animation.AnimationTimer;
 import tamagotchi.dao.FilePetDao;
-import tamagotchi.logic.MiniGame;
 
 
 /**
@@ -30,18 +29,14 @@ public class GUI extends Application {
     private boolean isPaused;
     
     private MainGameSceneController gameController;
-    private MiniGameSceneController minigameController;
     
     private GameRenderer renderer;
-    
-    private MiniGame minigame;
     
     
     @Override
     public void init() throws Exception {
         FilePetDao petDao = new FilePetDao("saveFile.txt");
         this.petCare = new PetCare(petDao);
-        this.minigame = new MiniGame();
     }
     
     
@@ -53,7 +48,7 @@ public class GUI extends Application {
         if (!this.petCare.getPetDao().saveExists()) {
             setNewGameScene();
         } else {
-            this.petCare.calculatePetStats();
+            this.petCare.getStatManager().calculatePetStats();
             if (this.petCare.petIsAlive()) {
                 setGameScene(); 
             } else {
@@ -69,15 +64,15 @@ public class GUI extends Application {
                 long now = java.lang.System.currentTimeMillis();
                 if (!isPaused) {
                     if (now - occurrenceCheck >= 10000) {
-                        petCare.checkIfPetGetsSick();
-                        petCare.checkIfPetNeedsCleaning();
+                        petCare.getStatManager().checkIfPetGetsSick();
+                        petCare.getStatManager().checkIfPetNeedsCleaning();
                         occurrenceCheck = now;
                     }
                     long time = now - lastCheck;
                     if (time >= 1500) {
                         renderer.setShowVirus(petCare.getPet().getIsSick());
                         renderer.setNeedCleaning(petCare.getPet().getNeedsWash());
-                        
+                        renderer.setSpriteImage(petCare.getPet().getDevelopmentStage());
                         renderer.render();
                         
                         update((double) time/1000);
@@ -120,9 +115,9 @@ public class GUI extends Application {
         this.gameScene = new Scene(game);
         
         this.renderer = new GameRenderer(this.gameController.getCanvas());
-        petCare.checkIfPetGetsSick();
+        petCare.getStatManager().checkIfPetGetsSick();
         renderer.setShowVirus(petCare.getPet().getIsSick());
-        petCare.checkIfPetNeedsCleaning();
+        petCare.getStatManager().checkIfPetNeedsCleaning();
         renderer.setNeedCleaning(petCare.getPet().getNeedsWash());
         
         this.stage.setTitle("Tamagotchi");
@@ -150,12 +145,10 @@ public class GUI extends Application {
         
         FXMLLoader miniGameLoader = new FXMLLoader(getClass().getResource("/fxml/MiniGameScene.fxml"));
         Parent miniGameScene = miniGameLoader.load();
-        this.minigameController = miniGameLoader.getController();
+        MiniGameSceneController minigameController = miniGameLoader.getController();
         Scene miniGame = new Scene(miniGameScene);
         
-        this.minigameController.setApplication(this);
-        this.minigame.play();
-        this.minigameController.setUpTextFieldNumber(minigame.getNumber());
+        minigameController.setApplication(this);
         
         this.stage.setTitle("Tamagotchi");
         this.stage.setScene(miniGame);
@@ -164,18 +157,13 @@ public class GUI extends Application {
     
     
     public void update(double time) {
-        this.petCare.updateStats(time);
+        this.petCare.getStatManager().updateStats(time);
         this.gameController.setUpBars();
     }
     
     public PetCare getPetCare() {
         return this.petCare;
     }
-    
-    public MiniGame getMiniGame() {
-        return this.minigame;
-    }
-    
     
     public void setUpNewPetCare() throws Exception {
         this.petCare.createNewPetSave();

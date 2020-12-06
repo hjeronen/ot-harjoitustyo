@@ -35,6 +35,9 @@ public class GameRenderer {
     private Image spriteImageLeft;
     private Image spriteImageRight;
     
+    private Image spriteAngry;
+    private Image spriteHappy;
+    
     private Image skull;
     private Image waste;
     
@@ -52,6 +55,8 @@ public class GameRenderer {
         this.showVirus = false;
         this.spriteImageLeft = new Image("/images/spriteLeft.jpg");
         this.spriteImageRight = new Image("/images/spriteRight.jpg");
+        this.spriteAngry = new Image("/images/angrySprite.jpg");
+        this.spriteHappy = new Image("/images/happySprite.jpg");
         this.skull = new Image("/images/skull.jpg");
         this.waste = new Image("/images/alienWaste.jpg");
     }
@@ -140,5 +145,30 @@ public class GameRenderer {
         this.needCleaning = value;
     }
     
+    public void setSpriteImage(int petDevelopmentStage) {
+        if (petDevelopmentStage == 1) {
+            this.spriteImageLeft = new Image("/images/spriteLeft.jpg");
+            this.spriteImageRight = new Image("/images/spriteRight.jpg");
+        } else if (petDevelopmentStage == 2) {
+            this.spriteImageLeft = new Image("/images/spriteLeft.jpg");
+            this.spriteImageRight = new Image("/images/spriteRight.jpg");
+        } else {
+            this.spriteImageLeft = new Image("/images/spriteLeft.jpg");
+            this.spriteImageRight = new Image("/images/spriteRight.jpg");
+        }
+    }
     
+    public void renderSprite() {
+        prepare();
+        context.drawImage(this.spriteImageLeft, this.centerX, this.centerY);
+    }
+    public void renderAngry() {
+        prepare();
+        context.drawImage(this.spriteAngry, this.centerX, this.centerY);
+    }
+    
+    public void renderHappy() {
+        prepare();
+        context.drawImage(this.spriteHappy, this.centerX, this.centerY);
+    }
 }

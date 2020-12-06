@@ -17,6 +17,7 @@ public class MiniGame {
     Random generator;
     int round;
     int score;
+    boolean answerGiven;
     
     public MiniGame() {
         this.generator = new Random();
@@ -24,6 +25,7 @@ public class MiniGame {
         this.answer = 0;
         this.round = 0;
         this.score = 0;
+        this.answerGiven = false;
     }
     
     public int generateNumber() {
@@ -78,5 +80,26 @@ public class MiniGame {
         this.round += 1;
         generateNumber();
         generateAnswer();
+    }
+    
+    public boolean handleGuess(boolean guess) {
+        if (!this.answerGiven) {
+            this.answerGiven = true;
+            if (isHigher(guess)) {
+                this.score++;
+            }
+            return isHigher(guess);
+        }
+        return false;
+    }
+    
+    public void setNewRound() {
+        this.answerGiven = false;
+    }
+    
+    public void resetGame() {
+        this.round = 0;
+        this.score = 0;
+        this.answerGiven = false;
     }
 }

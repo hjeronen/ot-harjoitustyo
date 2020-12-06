@@ -9,7 +9,7 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tamagotchi.ui.MiniGameSceneController">
    <children>
       <TextField fx:id="answer" editable="false" layoutX="297.0" layoutY="157.0" prefHeight="25.0" prefWidth="82.0" />
-      <Canvas height="200.0" layoutX="58.0" layoutY="100.0" width="200.0" />
+      <Canvas fx:id="gameCanvas" height="200.0" layoutX="58.0" layoutY="100.0" width="200.0" />
       <Button layoutX="431.0" layoutY="119.0" mnemonicParsing="false" onAction="#handleButtonActionGuessHigher" prefHeight="25.0" prefWidth="126.0" text="Higher" />
       <Button layoutX="431.0" layoutY="157.0" mnemonicParsing="false" onAction="#handleButtonActionGuessLower" prefHeight="25.0" prefWidth="126.0" text="Lower" />
       <Label layoutX="99.0" layoutY="24.0" prefHeight="36.0" prefWidth="395.0" text="Am I thinking higher or lower than the number below?" />

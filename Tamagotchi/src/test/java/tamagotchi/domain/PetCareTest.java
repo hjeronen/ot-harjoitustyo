@@ -6,6 +6,7 @@ package tamagotchi.domain;
  * and open the template in the editor.
  */
 
+import tamagotchi.logic.PetCare;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

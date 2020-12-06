@@ -7,7 +7,7 @@ package tamagotchi.ui;
 
 
 import java.util.Scanner;
-import tamagotchi.domain.PetCare;
+import tamagotchi.logic.PetCare;
 import java.util.concurrent.TimeUnit;
 
 
