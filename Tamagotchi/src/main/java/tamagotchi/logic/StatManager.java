@@ -82,27 +82,4 @@ public class StatManager {
         updateStats(seconds);
     }
     
-    
-    public void checkIfPetGetsSick() {
-        if (!this.pet.getIsSick()) {
-            if (this.pet.getHealth().getValue() < 50.0) {
-                Random generator = new Random();
-                int randomInt = generator.nextInt(100);
-                if (randomInt >= this.pet.getHealth().getValue()) {
-                    this.pet.setIsSick(true);
-                }
-            }
-        }
-    }
-    
-    
-    public void checkIfPetNeedsCleaning() {
-        if (!this.pet.getNeedsWash()) {
-            Random generator = new Random();
-            int randomInt = generator.nextInt(100);
-            if (randomInt >= this.pet.getHygiene().getValue()) {
-                this.pet.setNeedsWash(true);
-            }
-        }
-    }
 }
