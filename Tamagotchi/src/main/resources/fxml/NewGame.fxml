@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tamagotchi.ui.NewGameController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tamagotchi.ui.NewGameSceneController">
    <children>
       <Label id="PetName" layoutX="243.0" layoutY="152.0" text="Give your pet a name" />
       <TextField id="inputPetName" fx:id="inputPetName" layoutX="226.0" layoutY="175.0" onAction="#setPetName" onInputMethodTextChanged="#setPetName" text="Zorblax" />
