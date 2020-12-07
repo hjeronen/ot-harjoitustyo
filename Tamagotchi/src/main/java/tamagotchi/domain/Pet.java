@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class Pet {
     private String name;
+    private String defaultName;
     private Stat energy;
     private Stat happiness;
     private Stat health;
@@ -27,8 +28,9 @@ public class Pet {
     private long lastLogin;
     private int developmentStage;
     
-    public Pet(String name) {
-        this.name = name;
+    public Pet() {
+        this.defaultName = "Zorblax";
+        this.name = this.defaultName;
         
         this.energy = new Stat(50.0);
         this.happiness = new Stat(50.0);
@@ -46,9 +48,6 @@ public class Pet {
         this.developmentStage = 1; // 1 = baby, 2 = youngling, 3 = adult
     }
     
-    public Pet() {
-        this("Zorblax");
-    }
     
     
     public long getLastLogin() {
@@ -66,7 +65,11 @@ public class Pet {
     }
     
     public void setName(String name) {
-        this.name = name;
+        if (name == null) {
+            this.name = this.defaultName;
+        } else {
+            this.name = name;
+        }
     }
     
     public String getName() {
@@ -141,11 +144,11 @@ public class Pet {
     
     public void setDevelopmentStage() {
         if (this.getAge() <= 3) {
-            this.developmentStage = 2;
-        } else if (this.getAge() <= 7) {
-            this.developmentStage = 3;
-        } else {
             this.developmentStage = 1;
+        } else if (this.getAge() <= 7) {
+            this.developmentStage = 2;
+        } else {
+            this.developmentStage = 3;
         }
     }
     

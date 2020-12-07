@@ -8,7 +8,6 @@
 
 <AnchorPane id="AnchorPane" fx:id="gameAnchor" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tamagotchi.ui.MainGameSceneController">
     <children>
-      <Button fx:id="testi" layoutX="508.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionTest" text="PrintPet" />
       <Label fx:id="petName" layoutX="276.0" layoutY="24.0" text="PetName" />
         <Button layoutX="118.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionFeed" prefHeight="25.0" prefWidth="65.0" text="Feed" />
         <Button layoutX="205.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionPlay" prefHeight="25.0" prefWidth="65.0" text="Play" />

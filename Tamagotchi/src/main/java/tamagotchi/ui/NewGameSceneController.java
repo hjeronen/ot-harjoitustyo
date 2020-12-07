@@ -18,7 +18,7 @@ import javafx.scene.control.TextField;
  *
  * @author Heli
  */
-public class NewGameController implements Initializable {
+public class NewGameSceneController implements Initializable {
     
     private GUI userinterface;
     private String petName;
@@ -34,11 +34,7 @@ public class NewGameController implements Initializable {
     
     @FXML
     public void setPetName(ActionEvent event) {
-        if (inputPetName.getText() == null) {
-            this.petName = "Zorblax";
-        } else {
-            this.petName = inputPetName.getText();
-        }
+        this.petName = inputPetName.getText();
     }
     
     public String getPetName() {
@@ -51,9 +47,7 @@ public class NewGameController implements Initializable {
         this.userinterface.setGameScene();
     }
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

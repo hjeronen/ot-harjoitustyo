@@ -6,11 +6,10 @@
 package tamagotchi.logic;
 
 import java.util.Date;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import tamagotchi.domain.Pet;
 
-/** PetCare uses to calculate decay for pet's stats
+/** StatManager calculates the decay of pet's stats
  *
  * @author Heli
  */
@@ -55,12 +54,15 @@ public class StatManager {
         if (this.pet.getHygiene().getValue() <= 50.0) {
             this.pet.getHealth().decrease(modifier * (this.decayRate * 2));
         }
-        
     }
     
-    // Hygiene drops half the rate of energy
+    // Hygiene drops half the rate of energy, unless pet needs cleaning
     public void updateHygiene(double modifier) {
-        this.pet.getHygiene().decrease(modifier * (this.decayRate / 2));
+        if (this.pet.getNeedsWash()) {
+            this.pet.getHygiene().decrease(modifier * (this.decayRate * 4));
+        } else {
+            this.pet.getHygiene().decrease(modifier * (this.decayRate / 2));
+        }
     }
     
     //Updates stats during game

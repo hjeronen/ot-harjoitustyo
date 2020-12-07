@@ -71,11 +71,6 @@ public class MainGameSceneController implements Initializable {
         hygieneProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHygiene().getValue() / 100);
     }
     
-    @FXML
-    private void handleButtonActionTest() {
-        System.out.println(this.userinterface.getPetCare().getPet().toString());
-    }
-    
     
     public void setUpBars() {
         energyProgressBar.setProgress(this.userinterface.getPetCare().getPet().getEnergy().getValue() / 100);

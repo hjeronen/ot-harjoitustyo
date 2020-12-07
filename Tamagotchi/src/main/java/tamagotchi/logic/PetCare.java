@@ -5,9 +5,7 @@
  */
 package tamagotchi.logic;
 
-import java.util.Date;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 import tamagotchi.dao.PetDao;
 import tamagotchi.domain.Pet;
 
@@ -52,7 +50,6 @@ public class PetCare {
         return this.statManager;
     }
     
-    // Move feed, play, heal and clean to StatManager?
     public void feedPet() {
         this.pet.getEnergy().increase(10.0);
     }

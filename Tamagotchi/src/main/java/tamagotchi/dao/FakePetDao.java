@@ -21,8 +21,7 @@ public class FakePetDao implements PetDao {
     
     
     public FakePetDao() {
-        this.pet = new Pet("Zorblax");
-        
+        this.pet = new Pet();
     }
 
     @Override

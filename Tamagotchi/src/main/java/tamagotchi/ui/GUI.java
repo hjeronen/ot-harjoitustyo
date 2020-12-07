@@ -90,7 +90,7 @@ public class GUI extends Application {
         
         FXMLLoader newGameLoader = new FXMLLoader(getClass().getResource("/fxml/NewGame.fxml"));
         Parent startScene = newGameLoader.load();
-        NewGameController startController = newGameLoader.getController();
+        NewGameSceneController startController = newGameLoader.getController();
         
         startController.setApplication(this);
         this.startNewGameScene = new Scene(startScene);

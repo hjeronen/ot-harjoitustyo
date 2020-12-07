@@ -101,16 +101,17 @@ public class PetCareTest {
         assertTrue(this.petCare.petIsAlive());
     }
     
+    // MOVE TO STATMANAGER-TESTS!!!
     @Test
     public void updateEnergyDecreasesEnergyRight() {
-        this.petCare.updateEnergy(10000);
+        this.petCare.getStatManager().updateEnergy(10000);
         assertTrue(this.petCare.getPet().getEnergy().getValue() == 41.0);
     }
     
     @Test
     public void updateHealthDoesNotDecreaseHealthIfPetIsNotSick() {
         this.petCare.getPet().setHygiene(100.0);
-        this.petCare.updateHealth(10000);
+        this.petCare.getStatManager().updateHealth(10000);
         assertTrue(this.petCare.getPet().getHealth().getValue() == 50.0);
     }
     
@@ -118,7 +119,7 @@ public class PetCareTest {
     public void updateHealthDoesDecreaseHealthFastIfPetIsSick() {
         this.petCare.getPet().setIsSick(true);
         this.petCare.getPet().setHygiene(100.0);
-        this.petCare.updateHealth(10000);
+        this.petCare.getStatManager().updateHealth(10000);
         assertTrue(this.petCare.getPet().getHealth().getValue() == 14);
     }
     
@@ -135,6 +136,10 @@ public class PetCareTest {
         this.petCare.updateHealth(10000);
         assertTrue(this.petCare.getPet().getHealth().getValue() == 32.0);
     }
+    
+    // MOVE EVERYTHING ABOVE TO STATMANAGER-TESTS!!!
+    
+    
     
     @Test
     public void petDoesNotGetSickIfHealthIsMaxed() {
