@@ -1,6 +1,6 @@
 # Arkkitehtuurikuvaus
 
-### Rakenne
+## Rakenne
 
 Pakkauskaaviossa on esitetty ohjelman pakkausrakenne:
 
@@ -8,7 +8,7 @@ Pakkauskaaviossa on esitetty ohjelman pakkausrakenne:
 
 Kaikki käyttöliittymän koostamiseen liittyvät luokat on sijoitettu pakkaukseen ui, pelilogiikka on pakkauksessa logic, pelissä hoidettavaa virtuaalilemmikkiä edustava luokka Pet ja siihen liittyvä luokka Stat ovat pakkauksessa domain ja pelin tallennuksesta vastaavat luokat pakkauksessa dao.
 
-### Käyttöliittymä
+## Käyttöliittymä
 
 Käyttöliittymä on toteutettu JavaFX:llä, ja kaikki sen koostamiseen käytety luokat löytyvät pakkauksesta ui. Pääasiallinen käyttöliittymän hallinnasta vastaava luokka on GUI, joka vastaa eri pelinäkymien käytöstä ja pelilogiikan yhdistämisestä niihin. Pelinäkymiä on neljä, NewGameScene, MainGameScene, MiniGameScene ja GameOverScene. Jokainen niistä on siis FXML-dokumentin määrittelemä Scene-olio, joka GUI:ssa ladataan ja asetetaan oliomuuttujaan stage käyttäjälle näytettäväksi. Jokaisella on oma controller-luokka, jossa ko. näkymän toiminta on määritelty. Nämä kontrolleriluokat on esitetty alempana luokka/pakkauskaaviossa.
 
@@ -16,11 +16,11 @@ Itse pelilogiikasta vastaa luokka PetCare, jonka tuntee vain luokka GUI. GUI:n k
 
 Se, mikä pelinäkymä on kulloinkin esillä, riippuu pelitilanteesta. Aloitettaessa uutta peliä asetetaan näkyville ensin NewGameScene, jossa pelaaja voi valita Petille nimen. Tämän jälkeen tai jos ohjelma löytää edellisen pelin tallennuksen vaihdetaan näkymään MainGameScene, jossa itse peli tapahtuu. Pelaaja näkee mittareista Petin eri stattien tilan, ja voi napeilla Feed, Heal ja Clean hoitaa Pettiä. Play napista painamalla vaihtuu näkymäksi MiniGameScene, jossa voi pelata minipeliä Petin kanssa. Jos Pettiä ei ole pitkään aikaan hoitanut, se kuolee ja näkymäksi vaihtuu GameOverScene, josta pääsee takaisin uuden pelin aloitukseen.
 
-#### AnimationTimer
+### AnimationTimer
 
-Koska käyttöliittymä on toteutettu JavaFX:llä, on ns. GameLoop toteutettu sen ominaisuudella AnimationTimer. Se luodaan GUI:n start()-metodin sisällä, ja sen handle()-metodissa päivitetään Petin tila joka 1500 millisekunti, eli 1.5 sekunnin välein. 10 sekunnin välein tarkastetaan myös sairastuuko Pet tai jättääkö se jätöksiä. Renderer-luokkaa käytetään peliloopissa piirtämään Petin visuaalinen representaatio (Sprite) MainGameScenen canvas-oliolle.
+Koska käyttöliittymä on toteutettu JavaFX:llä, on ns. GameLoop toteutettu sen ominaisuudella AnimationTimer. Se luodaan GUI:n start()-metodin sisällä, ja sen handle()-metodissa päivitetään Petin tila joka 1500 millisekunti, eli 1.5 sekunnin välein. 10 sekunnin välein tarkastetaan myös sairastuuko Pet tai jättääkö se jätöksiä. GameRenderer-luokkaa käytetään peliloopissa piirtämään Petin visuaalinen representaatio (Sprite) MainGameScenen canvas-oliolle.
 
-### Sovelluslogiikka
+## Sovelluslogiikka
 
 Pelin ideana on pitää hengissä virtuaalista lemmikkiä, jota edustaa luokka Pet. Pet käyttää luokan Stat ilmentymiä pitämään kirjaa omasta tilastaan, esim. Petin energian määrää ilmaisee Stat-olio, jolla on maksimi- ja minimiraja sekä arvo, jota voi kasvattaa tai vähentää. Pet ja Stat sijaitsevat pakkauksessa domain.
 
@@ -30,11 +30,11 @@ PetCare käyttää apunaan StatManager-luokkaa laskemaan Petin stattien tippumis
 
 Luokka MiniGame sisältää pelin sisäisen minipelin logiikan, ja sitä pelataan sen oman graafisen käyttöliittymän (MiniGameScene) kautta. MiniGamesta saatujen pisteiden perusteella PetCaren metodi play(int) kasvattaa Petin Happiness-stattia (pisteet annetaan metodille parametrina).
 
-Alla on vielä esitetty ohjelman luokka/pakkauskaavio sovelluslogiikan kannalta olennaisin osin. Pakkaus tamagotchi ja sen sisältämä luokka Main, joka käynnistää ohjelman, on tässä jätetty pois, samoin kuin luokat Renderer ja Sprite, joita käytetään vain graafisen ulkonäön luomiseen.
+Alla on vielä esitetty ohjelman luokka/pakkauskaavio sovelluslogiikan kannalta olennaisin osin. Pakkaus tamagotchi ja sen sisältämä luokka Main, joka käynnistää ohjelman, on tässä jätetty pois, samoin kuin luokat GameRenderer ja Sprite, joita käytetään vain graafisen ulkonäön luomiseen.
 
 ![TamagotchiLuokkaPakkauskaavio](https://user-images.githubusercontent.com/73843204/101286820-feb4bf80-37ec-11eb-88e2-0f4c37ff2c1e.png)
 
-### Tallennus
+## Tallennus
 
 Pakkauksessa dao on Petin tallennuksesta vastaava luokka FilePetDao. Tällä hetkellä Petin nimi, syntymäpäivä, aika jolloin sovellus suljettiin (Petin lastLogin) ja stattien tila kirjoitetaan yksinkertaisesti tekstitiedostoon sovelluksen sulkeutuessa, samoin kun sovellus taas avataan tallennetun Petin tiedot luetaan ja asetetaan luodulle Pet-oliolle, jonka FilePetDao antaa takaisin oliolle PetCare. Tiedot tallennetaan String-muodossa ja puolipisteillä erotettuna, esim. 
 
@@ -46,7 +46,7 @@ Periaatteessa käyttäjä voi halutessaan vaihtaa Petin nimeä tai manipuloida s
 
 Tallennuksessa on käytetty Data Access Object -mallia, ja pelilogiikan koodissa käsitellään rajapintaa PetDao varsinaisen FilePetDao-luokan sijasta, sillä tallennusmetodia on tarkoitus muuttaa myöhemmin. Käyttöliittymää käynnistettäessä tarpeen mukaan luodaan tai ladataan tallennustiedosto "saveFile.txt". Koska pelissä on vain yksi käyttäjä ja yksi Pet (tällä hetkellä), on tallennustiedostojakin vain yksi. FakePetDao-luokka on olemassa tallennuksen testausta varten.
 
-### Päätoiminnallisuudet
+## Päätoiminnallisuudet
 
 Alla on kuvattu sekvenssikaaviolla Petin ruokkiminen eli 'Feed'-toiminnallisuus.
 
@@ -56,6 +56,17 @@ Käyttäjä voi ruokkia lemmikkiä painamalla MainGameScenen 'Feed' nappia, joil
 
 Muut MainGameScenessä mahdolliset toiminnot toimivat saman periaatteen mukaisesti, hakemalla käyttöliittymältä olion PetCare ja kutsumalla sen metodia Petin statin kasvatukseen (tosin cleanPet() metodi nostaa Petin hygieniatason maksimiin). Jos Pet on sairas, tulee yläkulmaan näkyviin musta pääkallo, joka katoaa kun Pet on terve. Samoin Pet saattaa milloin tahansa jättää pieniä vihreitä jätöksiä (tällä hetkellä vain yhden kerrallaan), jotka katoavat kun käytetään Clean-toimintoa.
 
-Poikkeuksena muihin toimintoihin on Play-nappi, joka kutsuu GUI:n metodia setMiniGameScene(), joka siis vaihtaa näkymään Petin kanssa pelattavan minipelin.
+#### MiniGame
 
+Poikkeuksena muihin toimintoihin on Play-nappi, joka kutsuu GUI:n metodia setMiniGameScene(), joka siis vaihtaa näkymään Petin kanssa pelattavan minipelin. Minipelissä arvataan, ajatteleeko Pet korkeampaa vai matalampaa lukua kuin esillä oleva numero.
+
+Ohessa on sekvenssikaavio pelin toiminnasta, kun pelaaja painaa nappia 'Lower' eli arvaa vastauksen olevan matalampi (esimerkissä oletetaan, että vastaus on myös oikein):
+
+![MiniGameAnswerCorrect](https://user-images.githubusercontent.com/73843204/101374045-f83a4c80-38ad-11eb-8367-a053d4e26deb.png)
+
+Pelaajan painaessa nappia 'Lower' MiniGameControllerissa kutsutaan metodia handleButtonActionGuessLower(). Ensinnäkin kutsutaan oliomuuttujana olevan minipelin metodia handleGuess parametrilla 'false'. Metodi tarkastaa, että oliomuuttujan 'answerGiven' arvo on 'false', eli ettei tällä kierroksella ole jo annettu vastausta. Sen jälkeen muuttujan arvoksi asetetaan 'true', ja tarkastetaan oliko vastaus oikein kutsumalla metodia isHigher parametrina saadulla arvolla 'false'.
+
+Metodi isHigher vertaa arvoa 'false' lauseeseen this.answer > this.number, eli se kysyy onko epätotta että vastaus on suurempi kuin näytetty numero (ts. onko totta että vastaus on matalampi kuin numero) ja palauttaa vertailun tuloksen. Kaaviossa oletetaan, että vertailu on tosi (eli pelaaja on arvannut oikein matalampi) ja metodi handleGuess nostattaa pistemäärää (this.score-muuttujan arvoa) yhdellä. Tämän jälkeen kutsutaan em. vertailua uudestaan ja palautetaan se MiniGameSceneControllerin metodille. Ehtolauseen täyttyessä kutsutaan toista metodia handleGuessCorrect, joka kutsuu guessResult-oliomuuttujan (tyyppiä TextField) metodia setText parametrilla "Correct!", eli peli ilmoittaa pelaajan arvanneen oikein. HandleGuessCorrect metodi kutsuu vielä renderer-oliota piirtämään pelin canvas-oliolle kuvan iloisesta lemmikistä, mutta tätä ei ole tarkemmin kuvattu kaaviossa.
+
+Sen jälkeen palataan takaisin metodiin handleButtonActionGuessLower(), joka kutsuu MiniGameSceneControllerin metodia setUpTextFieldAnswer. Tätä varten haetaan ensin MiniGame-oliolta sen oliomuuttujan answer arvo ja annetaan se metodikutsun parametriksi. Metodi kutsuu oliomuuttujalle answer (TextField) metodia setText antaen parametrina minipeliltä saadun vastauksen yhdistettynä Stringiin. Näin peli näyttää pelaajalle myös oikean vastauksen.
 
