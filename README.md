@@ -6,6 +6,7 @@ Tamagotchi on lemmikinkasvatuspeli, jossa käyttäjä huolehtii virtuaalisesta l
 
 ## Dokumentaatio
 
+* [Käyttöohje](https://github.com/hjeronen/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 * [Vaatimusmäärittely](https://github.com/hjeronen/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 * [Työaikakirjanpito](https://github.com/hjeronen/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 * [Arkkitehtuurikuvaus](https://github.com/hjeronen/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
