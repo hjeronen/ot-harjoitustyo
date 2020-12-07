@@ -54,7 +54,7 @@ Painamalla nappia 'Play' käynnistyy lemmikin kanssa pelattava minipeli, jossa t
 
 Napeista painamalla voi arvata joko suurempi tai pienempi. Painikkeesta 'Next' siirrytään seuraavaan kierrokseen, ja peli arpoo uuden luvun. Pelissä pelataan viisi kierrosta, ja pelaaja saa oikein arvatessaan yhden pisteen. Lopussa pelistä saadut pisteet määrittävät sen, kuinka paljon onnellisuusmittari nousee - nolla pistettä ei siis nosta onnellisuutta ollenkaan!
 
-Painikkeesta 'Back to game' pääsee milloin tahansa takaisin pääpelinäkymään, mutta ansaitut pisteet eivät tällöin kasvata onnellisuutta.
+Painikkeesta 'Back to Game' pääsee milloin tahansa takaisin pääpelinäkymään, mutta ansaitut pisteet eivät tällöin kasvata onnellisuutta.
 
 ## Game Over
 
@@ -71,7 +71,7 @@ Ehkä pelaaja voi haastaa itsensä pitämään lemmikin hengissä mahdollisimman
 Peli ei ole kovin aktiivinen, eikä ajan kulkua tällä hetkellä pysty nopeuttamaan, mutta pelissä voi "huijata" hieman muokkaamalla tallennustiedostoa 'saveFile.txt'. Lemmikin tiedot tallennetaan muodossa
 
 ```
-LemmikinNimi;yyyy-mm-dd;unixAika;100.0;100.0;100.0;100.0
+LemmikinNimi;yyyy-mm-dd;unixAika;50.0;50.0;50.0;50.0
 ```
 
 Tiedostoa muokkaamalla voi esimerkiksi vaihtaa lemmikin nimen tai sen syntymäpäivän, kunhan sen esitysmuoto on oikea. Tallennettuna on myös sovelluksen edellisen sulkeutumisen ajankohta unix-ajassa ilmaistuna. Sitä seuraavat luvut ilmaisevat järjestyksessä lemmikin energiaa, onnellisuutta, terveyttä ja hygieniaa.
