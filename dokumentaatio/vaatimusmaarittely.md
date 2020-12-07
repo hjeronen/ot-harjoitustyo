@@ -11,21 +11,21 @@ terveeksi. Huonosti hoidettu lemmikki kuolee tai karkaa pois (game over).
 Sovelluksessa on ainoastaan yksi käyttäjä.
 
 ## Toiminnallisuudet
-* Anna lemmikille nimi // TEHTY
-* Ruoki lemmikkiä // TEHTY
-* Leiki lemmikin kanssa jonkinlaisella yksinkertaisella minipelillä
-* Siivoa lemmikin jätökset // TEHTY
-* Lääkitse sairasta lemmikkiä // TEHTY
-* Lemmikin tila ilmenee mittareista: energia, hupi, terveys //TEHTY
+* Anna lemmikille nimi (valmis)
+* Ruoki lemmikkiä (valmis)
+* Leiki lemmikin kanssa jonkinlaisella yksinkertaisella minipelillä // TEHTY VIIKKO 6
+* Siivoa lemmikin jätökset (valmis)
+* Lääkitse sairasta lemmikkiä (valmis)
+* Lemmikin tila ilmenee mittareista: energia, hupi, terveys (valmis)
 	* Mittarit hupenevat ajan kuluessa itsekseen, mutta myös pelaajan toimien seurauksena, esim. leikkiminen
 	kuluttaa energiaa, ja likainen elinympäristö heikentää terveyttä
 * Ajan kulkua laskettaessa otetaan huomioon myös aika, joka kuluu kun ohjelma ei ole käynnissä - lemmikistä
-on siis pidettävä säännöllisesti huolta // TEHTY
+on siis pidettävä säännöllisesti huolta (valmis)
 	* ohjelman testausta varten olisi hyvä olla myös jonkinlainen override ominaisuus, jolla ajan kulkua voi nopeuttaa
 	(esim. pelin sisällä avattava command line, jonne voi kirjoittaa ns. huijauskoodeja) // Lemmikki tallennetaan saveFile.txt -tiedostoon, jossa sen stattien arvoa voi muuttaa
-* Lemmikki ikääntyy, ja käy läpi kolme kehitysvaihetta: pentu, nuori ja aikuinen
+* Lemmikki ikääntyy, ja käy läpi kolme kehitysvaihetta: pentu, nuori ja aikuinen // TEHTY VIIKKO 6 (spritet puuttuu vielä)
 	* periaatteessa otus voi ikääntyä loputtomiin, ts. niin kauan kuin siitä pidetään huolta
-* Peli loppuu, kun lemmikki kuolee tai karkaa pois, ts. kun jokin tai kaikki mittarit ovat nollilla liian kauan // OSITTAIN TEHTY
+* Peli loppuu, kun lemmikki kuolee tai karkaa pois, ts. kun jokin tai kaikki mittarit ovat nollilla liian kauan (valmis, osittain)
 	* jos energia mittari putoaa nollaan otus kuolee nälkään, tai jos terveys putoaa liian matalalle se kuolee 
 	sairauteen - jos otuksen kanssa ei koskaan leiki se karkaa pois
 * Ohjelma pitää galluppia lemmikeistä, joita käyttäjällä on ollut - tietoihin listataan lemmikin nimi ja ikä (ehkä myös mitä sille tapahtui)
