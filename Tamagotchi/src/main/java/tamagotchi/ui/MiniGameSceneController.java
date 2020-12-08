@@ -86,11 +86,11 @@ public class MiniGameSceneController implements Initializable {
     private void handleButtonActionGuessLower() throws Exception {
         if (!this.minigame.getAnswerGiven()) {
             if (this.minigame.handleGuess(false)) {
-            handleGuessCorrect();
-        } else {
-            handleGuessWrong();
-        }
-        setUpTextFieldAnswer(this.minigame.getAnswer());
+                handleGuessCorrect();
+            } else {
+                handleGuessWrong();
+            }
+            setUpTextFieldAnswer(this.minigame.getAnswer());
         }
     }
     
