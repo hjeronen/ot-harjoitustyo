@@ -31,4 +31,17 @@ Ma 30.11. | 2h | Pelilogiikkaa edistetty, petin statit päivittyvät nyt säänn
 &nbsp; | 2h | Grafiikan kanssa puuhastelua, lisätty taas pientä toiminnallisuutta.
 Ti 1.12. | 1.5h | Kirjoitettu lisää testejä.
 &nbsp; | 4h | Sekvenssikaavion teko, "animaation" päivitystä, muuta ohjelman parantelua ja hiomista, releasen valmistelua.
-Yht. | 75h | &nbsp;
+To 3.12. | 3h | Play-toiminnallisuutta varten tehty MiniGame (pelilogiikka, FXML-tiedosto ja kontrolleri).
+&nbsp; | 2h | Yritetty implementoida MiniGame, ei toimi vielä.
+Pe 4.12. | 2h | MiniGame saatu toimimaan oikein.
+&nbsp; | 1.5h | Implementoitu Petin eri kehitysvaiheet.
+&nbsp; | 1.5h | Tehty ja lisätty MiniGamelle kuvitusta.
+Su 6.12. | 2h | PetCare-luokan uudelleenjärjestelyä, jaettu osa metodeista luokkaan StatManager, MiniGame siirretty GUI:lta MiniGameSceneControllerille.
+&nbsp; | 4h | Arkkitehtuurikuvauksen kirjoittamista, pakkauskaavio piirretty ja luokka/pakkauskaavio tehty uusiksi.
+Ma 7.12. | 2h | Käyttöohjeen kirjoitus, pieniä muokkauksia ohjelmaan.
+&nbsp; | 2h | Arkkitehtuurikuvaus tehty loppuun, sitä varten tehty uusi sekvenssikaavio.
+&nbsp; | 1h | JavaDocin tekeminen aloitettu.
+Ti 8.12. | 2h | JavaDoc dokumentaatiot kirjoitettu luokille Pet, Stat, PetCare, StatManager ja MiniGame.
+&nbsp; | 3h | Yritetty ymmärtää miksei JavaDocin muodostaminen onnistu (ei toimi omassa koneessa, virtuaalityöasemassa onnistuu).
+&nbsp; | 2h | Kirjoitettu lisää testejä, hiotu JavaDoc-kuvauksia, valmisteltu release GitHubiin.
+Yht. | 103h | &nbsp;
