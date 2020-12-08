@@ -53,9 +53,13 @@ Tiedoston [checkstyle.xml](https://github.com/hjeronen/ot-harjoitustyo/blob/mast
 mvn jxr:jxr checkstyle:checkstyle
 ```
 
+Checkstylen luoma raportti löytyy polusta target/site/checkstyle.html.
+
 ### JavaDoc
 
 JavaDoc luodaan komennolla
 ```
 mvn javadoc:javadoc
 ```
+
+JavaDoc luo tulokset kansioon target/site/apidocs.
