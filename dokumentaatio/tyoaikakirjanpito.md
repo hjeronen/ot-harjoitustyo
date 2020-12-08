@@ -43,5 +43,5 @@ Ma 7.12. | 2h | Käyttöohjeen kirjoitus, pieniä muokkauksia ohjelmaan.
 &nbsp; | 1h | JavaDocin tekeminen aloitettu.
 Ti 8.12. | 2h | JavaDoc dokumentaatiot kirjoitettu luokille Pet, Stat, PetCare, StatManager ja MiniGame.
 &nbsp; | 3h | Yritetty ymmärtää miksei JavaDocin muodostaminen onnistu (ei toimi omassa koneessa, virtuaalityöasemassa onnistuu).
-&nbsp; | 2h | Kirjoitettu lisää testejä, hiotu JavaDoc-kuvauksia, valmisteltu release GitHubiin.
+&nbsp; | 2h | Kirjoitettu lisää testejä, hiottu JavaDoc-kuvauksia, valmisteltu release GitHubiin.
 Yht. | 103h | &nbsp;
