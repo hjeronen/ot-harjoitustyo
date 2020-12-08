@@ -52,3 +52,10 @@ Tiedoston [checkstyle.xml](https://github.com/hjeronen/ot-harjoitustyo/blob/mast
 ```
 mvn jxr:jxr checkstyle:checkstyle
 ```
+
+### JavaDoc
+
+JavaDoc luodaan komennolla
+```
+mvn javadoc:javadoc
+```
