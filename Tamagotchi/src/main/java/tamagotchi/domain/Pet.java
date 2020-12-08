@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Holds all the information about the pet, the main focus of the game.
+ * Pet-class represents the pet, the main focus of the game.
  */
 /**
  *
@@ -82,6 +82,7 @@ public class Pet {
     }
     
     /**
+    * Sets a new birthday for the pet.
     * New date is given as a string using form yyyy-mm-dd
     * 
     * @param yyyymmdd new date for birthday
@@ -148,6 +149,7 @@ public class Pet {
     /**
      * Determines the development stage of the pet.
      * 1 = baby, 2 = youngling, 3 = adult.
+     * Stage is determined by pet's age.
      * Age is expressed in days.
      */
     public void setDevelopmentStage() {

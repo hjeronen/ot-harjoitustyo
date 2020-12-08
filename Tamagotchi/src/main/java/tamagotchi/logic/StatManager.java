@@ -27,6 +27,9 @@ public class StatManager {
     
     /**
      * Sets the decay rate based on the development stage of the pet.
+     * At base rate, the value of a stat drops 1/108 per second.
+     * Base rate is affected by pet's development stage (1, 2 or 3).
+     * As pet gets older, the decay rate becomes smaller.
      */
     public void setDecayRate() {
         this.decayRate = this.decayRate / this.pet.getDevelopmentStage();
@@ -34,7 +37,7 @@ public class StatManager {
     
     /**
      * Updates energy-stat.
-     * At base rate, energy drops by 1/108 per second
+     * Energy drops at base rate times the time in seconds that has elapsed since last update.
      * @param modifier  the time elapsed since last update
      */
     public void updateEnergy(double modifier) {
@@ -43,7 +46,7 @@ public class StatManager {
     
     /**
      * Updates happiness-stat.
-     * Happiness drops twice as fast as energy.
+     * Happiness drops twice the base rate times the time in seconds that has elapsed since last update.
      * @param modifier  the time elapsed since last update
      */
     public void updateHappiness(double modifier) {
@@ -52,8 +55,8 @@ public class StatManager {
     
     /**
      * Updates health-stat.
-     * Health only drops when pet is sick, when energy is at 0, and/or when
-     * hygiene drops below 50.
+     * Health only drops fast when pet is sick, when energy is at 0, and/or when
+     * hygiene drops below 50. 
      * 
      * @param modifier  the time elapsed since last update
      */
@@ -85,7 +88,7 @@ public class StatManager {
     
     /**
      * Updates all stats.
-     * This method is called when gameloop is running.
+     * This method is called when the gameloop is running.
      * 
      * @param time  the time elapsed since last update
      */

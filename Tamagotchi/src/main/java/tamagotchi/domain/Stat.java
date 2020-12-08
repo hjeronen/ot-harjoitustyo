@@ -1,7 +1,7 @@
 
 package tamagotchi.domain;
 /**
-* Represents a stat of a pet, for example the amount of energy it has.
+* Stat-class represents a stat of a pet, for example the amount of energy it has.
 */
 /**
  *

@@ -28,7 +28,7 @@ public class MiniGame {
     
     /**
      * Generates a random number for baseline.
-     * If generated number is zero, a new value will be generated until
+     * If generated number is zero, a new one will be generated until
      * it is other than zero. Generated number will be placed on the
      * variable this.number and returned.
      * 
@@ -60,7 +60,7 @@ public class MiniGame {
     }
     
     /**
-     * Compares if user guessed correctly higher or lower.
+     * Checks if user guessed correctly higher or lower.
      * Method compares if it is true or false that the answer is higher 
      * than the baseline number, and returns the result of the comparison.
      * 
