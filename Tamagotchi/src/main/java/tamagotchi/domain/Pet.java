@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tamagotchi.domain;
 
 import java.time.LocalDate;
@@ -10,7 +6,9 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-
+/**
+ * Holds all the information about the pet, the main focus of the game.
+ */
 /**
  *
  * @author Heli
@@ -45,7 +43,7 @@ public class Pet {
         Date time = new Date();
         this.lastLogin = TimeUnit.MILLISECONDS.toSeconds(time.getTime());
         
-        this.developmentStage = 1; // 1 = baby, 2 = youngling, 3 = adult
+        this.developmentStage = 1;
     }
     
     
@@ -83,7 +81,12 @@ public class Pet {
         return days;
     }
     
-    //Use form yyyy-mm-dd
+    /**
+    * New date is given as a string using form yyyy-mm-dd
+    * 
+    * @param yyyymmdd new date for birthday
+    * 
+    */
     public void setBirthday(String yyyymmdd) {
         LocalDate newBirthday = LocalDate.parse(yyyymmdd);
         this.birthday = newBirthday;
@@ -142,6 +145,11 @@ public class Pet {
         this.needsWash = value;
     }
     
+    /**
+     * Determines the development stage of the pet.
+     * 1 = baby, 2 = youngling, 3 = adult.
+     * Age is expressed in days.
+     */
     public void setDevelopmentStage() {
         if (this.getAge() <= 3) {
             this.developmentStage = 1;

@@ -1,4 +1,4 @@
-package tamagotchi.domain;
+package tamagotchi.logic;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -62,11 +62,28 @@ public class PetCareTest {
     }
     
     @Test
+    public void playIncreasesHappinessCorrectly() {
+        double originalValue = this.petCare.getPet().getHappiness().getValue();
+        this.petCare.play(3);
+        double newValue = this.petCare.getPet().getHappiness().getValue();
+        assertTrue(newValue - originalValue == 30);
+    }
+    
+    @Test
     public void healPetIncreasesHealthRight() {
         double originalValue = this.petCare.getPet().getHealth().getValue();
         this.petCare.healPet();
         double newValue = this.petCare.getPet().getHealth().getValue();
         assertTrue(newValue - originalValue == 10.0);
+    }
+    
+    @Test
+    public void ifPetIsHealedToMaxPetIsNoLongerSick() {
+        this.petCare.getPet().setIsSick(true);
+        while (this.petCare.getPet().getHealth().getValue() < 100) {
+            this.petCare.healPet();
+        }
+        assertTrue(this.petCare.getPet().getIsSick() == false);
     }
     
     @Test
@@ -101,46 +118,6 @@ public class PetCareTest {
         assertTrue(this.petCare.petIsAlive());
     }
     
-    // MOVE TO STATMANAGER-TESTS!!!
-    @Test
-    public void updateEnergyDecreasesEnergyRight() {
-        this.petCare.getStatManager().updateEnergy(10000);
-        assertTrue(this.petCare.getPet().getEnergy().getValue() == 41.0);
-    }
-    
-    @Test
-    public void updateHealthDoesNotDecreaseHealthIfPetIsNotSick() {
-        this.petCare.getPet().setHygiene(100.0);
-        this.petCare.getStatManager().updateHealth(10000);
-        assertTrue(this.petCare.getPet().getHealth().getValue() == 50.0);
-    }
-    
-    @Test
-    public void updateHealthDoesDecreaseHealthFastIfPetIsSick() {
-        this.petCare.getPet().setIsSick(true);
-        this.petCare.getPet().setHygiene(100.0);
-        this.petCare.getStatManager().updateHealth(10000);
-        assertTrue(this.petCare.getPet().getHealth().getValue() == 14);
-    }
-    
-    @Test
-    public void updateHealthDecreasesHealthIfEnergyIsAtZero() {
-        this.petCare.getPet().setEnergy(0);
-        this.petCare.getPet().setHygiene(100.0);
-        this.petCare.updateHealth(10000);
-        assertTrue(this.petCare.getPet().getHealth().getValue() == 32.0);
-    }
-    
-    @Test
-    public void updateHealthDecreasesHealthIfHygieneIsAtFifty() {
-        this.petCare.updateHealth(10000);
-        assertTrue(this.petCare.getPet().getHealth().getValue() == 32.0);
-    }
-    
-    // MOVE EVERYTHING ABOVE TO STATMANAGER-TESTS!!!
-    
-    
-    
     @Test
     public void petDoesNotGetSickIfHealthIsMaxed() {
         this.petCare.getPet().getHealth().setValue(100.0);
@@ -153,5 +130,19 @@ public class PetCareTest {
         this.petCare.getPet().getHealth().setValue(0.0);
         this.petCare.checkIfPetGetsSick();
         assertTrue(this.petCare.getPet().getIsSick());
+    }
+    
+    @Test
+    public void petDoesNotNeedCleaningIfHygieneIsMaxed() {
+        this.petCare.getPet().getHygiene().setValue(100);
+        this.petCare.checkIfPetNeedsCleaning();
+        assertTrue(this.petCare.getPet().getNeedsWash() == false);
+    }
+    
+    @Test
+    public void petDoesNeedCleaningIfHygieneIsAtZero() {
+        this.petCare.getPet().getHygiene().setValue(0);
+        this.petCare.checkIfPetNeedsCleaning();
+        assertTrue(this.petCare.getPet().getNeedsWash() == true);
     }
 }

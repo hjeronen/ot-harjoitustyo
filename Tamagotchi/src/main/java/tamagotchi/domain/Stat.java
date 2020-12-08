@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package tamagotchi.domain;
 
+package tamagotchi.domain;
+/**
+* Represents a stat of a pet, for example the amount of energy it has.
+*/
 /**
  *
  * @author Heli
@@ -32,6 +30,12 @@ public class Stat {
         return this.value;
     }
     
+    /**
+     * Increases this.value by a given amount
+     * but not over this.max value.
+     * 
+     * @param amount    given amount to increase
+     */
     public void increase(double amount) {
         if (this.value + amount >= this.max) {
             this.value = this.max;
@@ -40,10 +44,19 @@ public class Stat {
         }     
     }
     
+    /**
+     * Increases this.value by 1.0.
+     */
     public void increase() {
         this.increase(1.0);
     }
     
+    /**
+     * Decreases this.value by a given amount
+     * but not under this.min value.
+     * 
+     * @param amount    given amount to decrease.
+     */
     public void decrease(double amount) {
         if (this.value - amount <= this.min) {
             this.value = this.min;
@@ -52,6 +65,9 @@ public class Stat {
         }    
     }
     
+    /**
+     * Decreases this.value by 1.0.
+     */
     public void decrease() {
         this.decrease(1.0);
     }

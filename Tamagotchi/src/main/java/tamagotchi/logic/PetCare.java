@@ -1,20 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tamagotchi.logic;
 
 import java.util.Random;
 import tamagotchi.dao.PetDao;
 import tamagotchi.domain.Pet;
 
-/** Primary holder and caretaker for the pet
+/**
+ * PetCare -class is the primary holder and caretaker for the pet.
+ * Contains methods for caring for pet and creating a new save
+ * (saving happens in FilePetDao-class).
+ */
+/** 
  *
  * @author Heli
  */
-
-// Game logic
 
 public class PetCare {
     private Pet pet;
@@ -27,6 +26,12 @@ public class PetCare {
         this.statManager = new StatManager(this.pet);
     }
     
+    /**
+     * Sets PetDao for PetCare and gets the pet from a saved file
+     * giving it to PetCare and to StatManager.
+     * 
+     * @param petDao    Saved pet
+     */
     public void setUpPetDao(PetDao petDao) {
         this.petDao = petDao;
         this.pet = this.petDao.getPet();
@@ -37,6 +42,13 @@ public class PetCare {
         return this.petDao;
     }
     
+    /**
+     * Creates a new pet and saves it.
+     * 
+     * @throws Exception 
+     * 
+     * @see dao.FilePetDao#createSave(Pet pet)
+     */
     public void createNewPetSave() throws Exception {
         this.pet = new Pet();
         this.petDao.createSave(this.pet);
@@ -50,14 +62,27 @@ public class PetCare {
         return this.statManager;
     }
     
+    /**
+     * Feeds pet, increasing it's energy-level by 10.0.
+     */
     public void feedPet() {
         this.pet.getEnergy().increase(10.0);
     }
     
+    /**
+     * Increases the pet's happiness-level by 10.0 times the score
+     * gained from the MiniGame.
+     * 
+     * @param score points gained in the minigame.
+     */
     public void play(int score) {
         this.pet.getHappiness().increase(score * 10);
     }
     
+    /**
+     * Increases pet's health by 10.0.
+     * If pet is healed to max, it cannot be sick.
+     */
     public void healPet() {
         this.pet.getHealth().increase(10.0);
         if (this.pet.getHealth().getValue() == 100.0) {
@@ -65,16 +90,30 @@ public class PetCare {
         }
     }
     
+    /**
+     * Increases pet's hygiene to max.
+     * When pet is clean, it does not need a wash.
+     */
     public void cleanPet() {
         this.pet.setHygiene(100.0);
         this.pet.setNeedsWash(false);
     }
     
-    
+    /**
+     * Checks if pet is alive.
+     * Pet is dead if both energy and health are at 0.
+     * @return  true if pet is alive, false if it is not
+     */
     public boolean petIsAlive() {
         return (!(this.pet.getEnergy().getValue() == 0.0 && this.pet.getHealth().getValue() == 0.0));
     }
-
+    
+    /**
+     * Checks if pet gets sick.
+     * If it is not already sick, when pet's health is under 50,
+     * it has a chance to get sick. The likelihood of getting sick
+     * increases as health gets lower.
+     */
     public void checkIfPetGetsSick() {
         if (!this.pet.getIsSick()) {
             if (this.pet.getHealth().getValue() < 50.0) {
@@ -86,7 +125,11 @@ public class PetCare {
             }
         }
     }
-    
+     /**
+      * Checks if Pet needs cleaning.
+      * If pet needs a wash, waste appears in the game view.
+      * Likelihood for this is greater as hygiene gets lower.
+      */
     public void checkIfPetNeedsCleaning() {
         if (!this.pet.getNeedsWash()) {
             Random generator = new Random();

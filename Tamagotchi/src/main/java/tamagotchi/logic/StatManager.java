@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tamagotchi.logic;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import tamagotchi.domain.Pet;
-
-/** StatManager calculates the decay of pet's stats
+/**
+ * StatManager calculates the decay of pet's stats
+ */
+/** 
  *
  * @author Heli
  */
@@ -27,36 +25,56 @@ public class StatManager {
         this.pet = newPet;
     }
     
+    /**
+     * Sets the decay rate based on the development stage of the pet.
+     */
     public void setDecayRate() {
         this.decayRate = this.decayRate / this.pet.getDevelopmentStage();
     }
     
-    //Energy drops by 1/108 per second
+    /**
+     * Updates energy-stat.
+     * At base rate, energy drops by 1/108 per second
+     * @param modifier  the time elapsed since last update
+     */
     public void updateEnergy(double modifier) {
         this.pet.getEnergy().decrease(modifier * this.decayRate);
     }
     
-    // Happiness drops faster than energy
+    /**
+     * Updates happiness-stat.
+     * Happiness drops twice as fast as energy.
+     * @param modifier  the time elapsed since last update
+     */
     public void updateHappiness(double modifier) {
         this.pet.getHappiness().decrease(modifier * (this.decayRate * 2));
     }
     
-    // Health only drops under certain conditions
+    /**
+     * Updates health-stat.
+     * Health only drops when pet is sick, when energy is at 0, and/or when
+     * hygiene drops below 50.
+     * 
+     * @param modifier  the time elapsed since last update
+     */
     public void updateHealth(double modifier) {
         if (this.pet.getIsSick()) {
             this.pet.getHealth().decrease(modifier * (this.decayRate * 4));
         }
-        // When energy drops too low, health starts to drop fast
         if (this.pet.getEnergy().getValue() == 0.0) {
             this.pet.getHealth().decrease(modifier * (this.decayRate * 2));
         }
-        // When hygiene drops below half, health starts to drop fast
         if (this.pet.getHygiene().getValue() <= 50.0) {
             this.pet.getHealth().decrease(modifier * (this.decayRate * 2));
         }
     }
     
-    // Hygiene drops half the rate of energy, unless pet needs cleaning
+    /**
+     * Updates hygiene-stat.
+     * Hygiene drops slowly, unless pet needs a wash.
+     * 
+     * @param modifier  the time elapsed since last update
+     */
     public void updateHygiene(double modifier) {
         if (this.pet.getNeedsWash()) {
             this.pet.getHygiene().decrease(modifier * (this.decayRate * 4));
@@ -65,7 +83,12 @@ public class StatManager {
         }
     }
     
-    //Updates stats during game
+    /**
+     * Updates all stats.
+     * This method is called when gameloop is running.
+     * 
+     * @param time  the time elapsed since last update
+     */
     public void updateStats(double time) {
         updateEnergy(time);
         updateHappiness(time);
@@ -73,11 +96,15 @@ public class StatManager {
         updateHealth(time);
     }
     
-    // Updates stats between logins
+    /**
+     * Calculates the decay of stats between logins.
+     * This method is called when game is started. First it sets development stage
+     * for the pet, sets the right decay rate, and then updates all stats.
+     */
     public void calculatePetStats() {
         Date today = new Date();
         long timeNow = TimeUnit.MILLISECONDS.toSeconds(today.getTime());
-        long differenceInSeconds = timeNow - pet.getLastLogin();
+        long differenceInSeconds = timeNow - this.pet.getLastLogin();
         double seconds = (double) differenceInSeconds;
         this.pet.setDevelopmentStage();
         setDecayRate();

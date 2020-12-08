@@ -7,7 +7,6 @@ package tamagotchi.dao;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;

@@ -72,22 +72,26 @@ public class MiniGameSceneController implements Initializable {
     
     @FXML
     private void handleButtonActionGuessHigher() throws Exception {
-        if (this.minigame.handleGuess(true)) {
+        if (!this.minigame.getAnswerGiven()) {
+            if (this.minigame.handleGuess(true)) {
             handleGuessCorrect();
         } else {
             handleGuessWrong();
         }
         setUpTextFieldAnswer(this.minigame.getAnswer());
+        }
     }
     
     @FXML
     private void handleButtonActionGuessLower() throws Exception {
-        if (this.minigame.handleGuess(false)) {
+        if (!this.minigame.getAnswerGiven()) {
+            if (this.minigame.handleGuess(false)) {
             handleGuessCorrect();
         } else {
             handleGuessWrong();
         }
         setUpTextFieldAnswer(this.minigame.getAnswer());
+        }
     }
     
     private void handleGuessCorrect() {
@@ -108,7 +112,6 @@ public class MiniGameSceneController implements Initializable {
             this.minigame.resetGame();
             this.renderer.renderSprite();
         } else {
-            this.minigame.setNewRound();
             this.minigame.play();
             this.renderer.renderSprite();
             setUpTextFieldNumber(this.minigame.getNumber());
