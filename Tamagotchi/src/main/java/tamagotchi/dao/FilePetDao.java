@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tamagotchi.dao;
 
 import java.io.File;
@@ -15,7 +11,7 @@ import java.util.logging.Logger;
 import tamagotchi.domain.Pet;
 
 /**
- *
+ * Responsible for creating a gamesave.
  * @author Heli
  */
 public class FilePetDao implements PetDao {
@@ -31,7 +27,12 @@ public class FilePetDao implements PetDao {
         load();
         
     }
-
+    
+    /**
+     * Saves the current pet status.
+     * 
+     * @param pet   Pet who's information will be saved.
+     */
     @Override
     public void createSave(Pet pet) {
         this.pet = pet;
@@ -41,7 +42,12 @@ public class FilePetDao implements PetDao {
             Logger.getLogger(FilePetDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    /**
+     * Returns the saved pet.
+     * If unable to load a saved pet, returns a new pet.
+     * @return this.pet The default pet created in the constructor.
+     */
     @Override
     public Pet getPet() {
         try {
@@ -53,6 +59,12 @@ public class FilePetDao implements PetDao {
         return this.pet;
     }
     
+    /**
+     * Loads a saved game.
+     * Reads saved information from save file and gives it to the created new pet.
+     * @throws Exception    If a save file is not found (no previous saved game), 
+     * changes the value of this.saveExists to false.
+     */
     public void load() throws Exception {
         try {
             Scanner reader = new Scanner(new File(this.saveFile));
@@ -69,12 +81,24 @@ public class FilePetDao implements PetDao {
             this.saveExists = false;
         }
     }
-    
+    /**
+     * Returns the value of this.saveExists.
+     * Informs if there is a gamesave or not.
+     * @return this.saveExists true/false
+     */
     @Override
     public boolean saveExists() {
         return this.saveExists;
     }
     
+     /**
+      * Saves this.pet.
+      * Attempts to create a save file and writes in it the pet's name, birthday, 
+      * time of creating the save as last login, energy-value, happiness-value, 
+      * health-value and hygiene-value. Also changes the value of 
+      * this.saveExists to true, informing that there is a save for current game.
+      * @throws Exception 
+      */
     public void save() throws Exception {
         try {
             FileWriter writer = new FileWriter(new File(this.saveFile));

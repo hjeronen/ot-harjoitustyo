@@ -1,10 +1,5 @@
 package tamagotchi.ui;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 
 import java.io.IOException;
@@ -18,7 +13,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 
 /**
- * FXML Controller class
+ * MainGameScene FXML Controller class.
  *
  * @author Heli
  */
@@ -26,9 +21,15 @@ public class MainGameSceneController implements Initializable {
     
     private GUI userinterface;
     
+    /**
+     * Canvas for drawing sprite image.
+     */
     @FXML
     public Canvas gameCanvas;
     
+    /**
+     * Anchor Pane holding all other ui-elements.
+     */
     @FXML
     public AnchorPane gameAnchor;
     
@@ -48,30 +49,50 @@ public class MainGameSceneController implements Initializable {
         this.userinterface = ui;
     }
     
+    /**
+     * Pressing Feed-button increases Pet's energy-stat.
+     */
     @FXML
     private void handleButtonActionFeed() {
         this.userinterface.getPetCare().feedPet();
         energyProgressBar.setProgress(this.userinterface.getPetCare().getPet().getEnergy().getValue() / 100);
     }
     
+    /**
+     * Pressing Play-button starts the minigame and changes game view 
+     * to MiniGameSene.
+     * 
+     * @throws IOException 
+     */
     @FXML
     private void handleButtonActionPlay() throws IOException {
         this.userinterface.setMiniGameScene();
     }
     
+    /**
+     * Pressing Heal-button increases Pet's health-stat.
+     */
     @FXML
     private void handleButtonActionHeal() {
         this.userinterface.getPetCare().healPet();
         healthProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHealth().getValue() / 100);
     }
     
+    /**
+     * Pressing Clean-button sets Pet's hygiene-stat to max and clears waste 
+     * from game view.
+     */
     @FXML
     private void handleButtonActionClean() {
         this.userinterface.getPetCare().cleanPet();
         hygieneProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHygiene().getValue() / 100);
     }
     
-    
+    /**
+     * Updates the progress bars to show current progress.
+     * Gets the value of Pet's energy, happiness, health and hygiene stats and 
+     * sets the value for proper progress bar for user to see.
+     */
     public void setUpBars() {
         energyProgressBar.setProgress(this.userinterface.getPetCare().getPet().getEnergy().getValue() / 100);
         happinessProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHappiness().getValue() / 100);
@@ -79,6 +100,9 @@ public class MainGameSceneController implements Initializable {
         hygieneProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHygiene().getValue() / 100);
     }
     
+    /**
+     * Sets Pet's name in the label.
+     */
     public void setUpLabel() {
         this.petName.setText(this.userinterface.getPetCare().getPet().getName());
     }

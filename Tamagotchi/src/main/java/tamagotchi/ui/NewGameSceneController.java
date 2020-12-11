@@ -1,10 +1,5 @@
 package tamagotchi.ui;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
 /**
- * FXML Controller class
+ * NewGameScene FXML Controller class.
  *
  * @author Heli
  */
@@ -32,6 +27,10 @@ public class NewGameSceneController implements Initializable {
         this.userinterface = ui;
     }
     
+    /**
+     * Gets the text from Text Field inputPetName and sets it for this.petName.
+     * @param event 
+     */
     @FXML
     public void setPetName(ActionEvent event) {
         this.petName = inputPetName.getText();
@@ -41,16 +40,26 @@ public class NewGameSceneController implements Initializable {
         return this.petName;
     }
     
-    //Button 'Start game' runs this method
+    /**
+     * Start the game.
+     * Pressing button 'Start Game' switches the game view to MainGameScene.
+     * 
+     * @throws Exception 
+     */
     public void startGame() throws Exception {
         this.userinterface.getPetCare().getPet().setName(this.petName);
         this.userinterface.setGameScene();
     }
 
-
+    /**
+     * Initializes the NewGameSceneController-class.
+     * 
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
 
 

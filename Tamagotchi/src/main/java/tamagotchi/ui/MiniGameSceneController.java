@@ -1,10 +1,5 @@
 package tamagotchi.ui;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,24 +12,25 @@ import javafx.scene.layout.AnchorPane;
 import tamagotchi.logic.MiniGame;
 
 /**
- * FXML Controller class
+ * MiniGameScene FXML Controller class.
  *
  * @author Heli
  */
 public class MiniGameSceneController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
     
     private GUI userinterface;
     private GameRenderer renderer;
     private MiniGame minigame;
     
-    
+    /**
+     * Anchor Pane holding all other ui-elements.
+     */
     @FXML
     public AnchorPane gameAnchor;
     
+    /**
+     * Canvas for drawing sprite image.
+     */
     @FXML
     public Canvas gameCanvas;
     
@@ -55,21 +51,53 @@ public class MiniGameSceneController implements Initializable {
         this.userinterface = ui;
     }
     
+    /**
+     * Creates a renderer for minigame to draw sprite images.
+     */
+    public void setUpRenderer() {
+        this.renderer = new GameRenderer(this.gameCanvas);
+        this.renderer.setSpriteImage(this.userinterface.getPetCare().getPet().getDevelopmentStage());
+        this.renderer.renderSprite();
+    }
+    
+    /**
+     * Sets minigame's number in text field.
+     * 
+     * @param number    the baseline number from minigame
+     */
     @FXML
     public void setUpTextFieldNumber(int number) {
         this.number.setText("" + number);
     }
     
+    /**
+     * Sets minigame's answer in text field.
+     * 
+     * @param answer    the correct answer from minigame
+     */
     @FXML
     public void setUpTextFieldAnswer(int answer) {
         this.answer.setText("" + answer);
     }
     
+    /**
+     * Sets the result of user's guess in text field.
+     * 
+     * @param result    "correct"/"wrong"
+     */
     @FXML
     public void setUpTextFieldGuessResult(String result) {
         this.guessResult.setText(result);
     }
     
+    /**
+     * Handles player's guess for higher.
+     * Checks with MiniGame if a guess has already been given this round, 
+     * then checks if player's guess was correct and shows the answer.
+     * 
+     * @throws Exception
+     * @see tamagotchi.logic.MiniGame#handleGuess(boolean)
+     */
     @FXML
     private void handleButtonActionGuessHigher() throws Exception {
         if (!this.minigame.getAnswerGiven()) {
@@ -82,6 +110,14 @@ public class MiniGameSceneController implements Initializable {
         }
     }
     
+    /**
+     * Handles player's guess for lower.
+     * Checks with MiniGame if a guess has already been given this round, 
+     * then checks if player's guess was correct and shows the answer.
+     * 
+     * @throws Exception
+     * @see tamagotchi.logic.MiniGame#handleGuess(boolean)
+     */
     @FXML
     private void handleButtonActionGuessLower() throws Exception {
         if (!this.minigame.getAnswerGiven()) {
@@ -94,16 +130,36 @@ public class MiniGameSceneController implements Initializable {
         }
     }
     
+    /**
+     * Handle correct guess.
+     * When player's guess was correct, sets the text "Correct!" in text field 
+     * this.guessResult and uses renderer to draw a happy sprite.
+     */
     private void handleGuessCorrect() {
         this.guessResult.setText("Correct!");
         this.renderer.renderHappy();
     }
     
+    /**
+     * Handle wrong guess.
+     * When player's guess was wrong, sets the text "Wrong!" in text field 
+     * this.guessResult and uses renderer to draw an angry sprite.
+     */
     private void handleGuessWrong() {
         this.guessResult.setText("Wrong!");
         this.renderer.renderAngry();
     }
     
+    /**
+     * Handle the pressing of button 'Next'.
+     * If the minigame has been played for five rounds shows the player their 
+     * score, updates Pet's happiness according to the gained points and resets 
+     * the minigame. Otherwise plays a new round and resets the text fields.
+     * 
+     * @throws Exception 
+     * @see tamagotchi.logic.MiniGame#play()
+     * @see tamagotchi.logic.MiniGame#resetGame()
+     */
     @FXML
     private void handleButtonActionNext() throws Exception {
         if (this.minigame.getRound() == 5) {
@@ -121,6 +177,12 @@ public class MiniGameSceneController implements Initializable {
         }
     }
     
+    /**
+     * Switch back to MainGameScene.
+     * Pressing button 'Back to Game' resets the minigame and switches 
+     * the game view back to MainGameScene.
+     * @throws Exception 
+     */
     @FXML
     private void handleButtonActionBack() throws Exception {
         this.minigame.resetGame();
@@ -131,10 +193,16 @@ public class MiniGameSceneController implements Initializable {
         return this.gameCanvas;
     }
     
+    /**
+     * Initializes the scene controller.
+     * Creates a new instance of MiniGame and sets up the first round, setting 
+     * the number on text field this.number.
+     * 
+     * @param url
+     * @param rb 
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.renderer = new GameRenderer(this.gameCanvas);
-        this.renderer.renderSprite();
         this.minigame = new MiniGame();
         this.minigame.play();
         setUpTextFieldNumber(this.minigame.getNumber());

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tamagotchi.dao;
 
 import java.io.File;
@@ -13,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import tamagotchi.domain.Pet;
 
 /**
- *
+ * Used as a fake gamesave for testing the PetCare-class.
  * @author Heli
  */
 public class FakePetDao implements PetDao {

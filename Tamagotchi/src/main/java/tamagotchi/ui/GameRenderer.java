@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tamagotchi.ui;
 
 import javafx.geometry.Point2D;
@@ -13,7 +9,8 @@ import javafx.scene.paint.Color;
 
 
 /**
- *
+ * The renderer used for the game.
+ * Renders images for game canvas.
  * @author Heli
  */
 public class GameRenderer {
@@ -32,12 +29,6 @@ public class GameRenderer {
     private boolean needCleaning;
     private boolean showVirus;
     
-    private Image spriteImageLeft;
-    private Image spriteImageRight;
-    
-    private Image spriteAngry;
-    private Image spriteHappy;
-    
     private Image skull;
     private Image waste;
     
@@ -53,28 +44,38 @@ public class GameRenderer {
         this.yDirection = 1;
         this.needCleaning = false;
         this.showVirus = false;
-        this.spriteImageLeft = new Image("/images/spriteLeft.jpg");
-        this.spriteImageRight = new Image("/images/spriteRight.jpg");
-        this.spriteAngry = new Image("/images/angrySprite.jpg");
-        this.spriteHappy = new Image("/images/happySprite.jpg");
         this.skull = new Image("/images/skull.jpg");
         this.waste = new Image("/images/alienWaste.jpg");
     }
     
+    /**
+     * Prepares the canvas.
+     * Fills the canvas with color f0f2f5, painting over the previous image.
+     */
     public void prepare() {
         context.setFill(Color.web("#f0f2f5", 1.0));
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
     
+    public GraphicsContext getContext() {
+        return this.context;
+    }
+    
+    /**
+     * Renders the game view.
+     * Repaints the canvas and calculates the correct position and orientation 
+     * for sprite. Uses Sprite's own methods to draw picture. Checks if skull 
+     * or waste images need to be shown and draws them.
+     */
     public void render() {
         prepare();
         
         spriteIdleMovement();
         
         if (this.spriteOrientation.equals("right")) {
-            context.drawImage(spriteImageRight, sprite.getX(), sprite.getY(), sprite.getHeight(), sprite.getWidth());
+            this.sprite.drawSpriteRight(context);
         } else {
-            context.drawImage(spriteImageLeft, sprite.getX(), sprite.getY(), sprite.getHeight(), sprite.getWidth());
+            this.sprite.drawSpriteLeft(context);
         }
         
         if (this.showVirus) {
@@ -86,6 +87,15 @@ public class GameRenderer {
         }
     }
     
+    /**
+     * Calculates the right position for sprite.
+     * If sprite is drawn for the first time it is placed on the center of 
+     * the canvas. Otherwise if sprite is less than two 'steps' from the center, 
+     * it will continue on that direction. If it's far enough from the center, 
+     * it will change direction. Sprite steps both to left/right and up/down. If 
+     * this.yDirection is 1, it will go up, if it is -1 it will go down. 
+     * The yDirection changes after every step.
+     */
     public void spriteIdleMovement() {
         if (this.firstRotation) {
             spritePlaceCenter();
@@ -116,59 +126,109 @@ public class GameRenderer {
         }
     }
     
+    /**
+     * Places sprite at the center of the canvas.
+     * Sets Sprite's x and y coordinates accordingly.
+     */
     public void spritePlaceCenter() {
         this.sprite.setX(centerX);
         this.sprite.setY(centerY);
     }
     
+    /**
+     * Changes sprite's x-coordinate half of its width to the left.
+     */
     public void spriteStepLeft() {
         this.sprite.setX(this.sprite.getX() - (this.sprite.getWidth() / 2));
     }
     
+    /**
+     * Changes sprite's x-coordinate half of it's width to the right.
+     */
     public void spriteStepRight() {
         this.sprite.setX(this.sprite.getX() + (this.sprite.getWidth() / 2));
     }
     
+    /**
+     * Changes sprite's y-coordinate half of it's height upwards.
+     */
     public void spriteStepUp() {
         this.sprite.setY(this.sprite.getY() + (this.sprite.getHeight() / 2));
     }
     
+    /**
+     * Changes sprite's y coordinate half of it's height downwards.
+     */
     public void spriteStepDown() {
         this.sprite.setY(this.sprite.getY() - (this.sprite.getHeight() / 2));
     }
     
+    /**
+     * Tells if skull needs to be drawn.
+     * If Pet is sick, a skull icon will show.
+     * 
+     * @param value value of Pet's isSick variable.
+     */
     public void setShowVirus(boolean value) {
         this.showVirus = value;
     }
     
+    /**
+     * Tells if waste needs to be drawn.
+     * If Pet needs cleaning, a picture of waste will be drawn.
+     * 
+     * @param value value of Pet's needsWash.
+     */
     public void setNeedCleaning(boolean value) {
         this.needCleaning = value;
     }
     
+    /**
+     * Tells the sprite which image to draw.
+     * Pet has three development stages, each having it's own sprite. This tells 
+     * Sprite which one to draw.
+     * 
+     * @param petDevelopmentStage   1 = baby, 2 = youngling, 3 = adult
+     * @see Sprite#setSpriteImages(int)
+     */
     public void setSpriteImage(int petDevelopmentStage) {
-        if (petDevelopmentStage == 1) {
-            this.spriteImageLeft = new Image("/images/spriteLeft.jpg");
-            this.spriteImageRight = new Image("/images/spriteRight.jpg");
-        } else if (petDevelopmentStage == 2) {
-            this.spriteImageLeft = new Image("/images/spriteLeft.jpg");
-            this.spriteImageRight = new Image("/images/spriteRight.jpg");
-        } else {
-            this.spriteImageLeft = new Image("/images/spriteLeft.jpg");
-            this.spriteImageRight = new Image("/images/spriteRight.jpg");
-        }
+        sprite.setSpriteImages(petDevelopmentStage);
     }
     
+    /**
+     * Draws sprite.
+     * Used in MiniGameSceneController to draw sprite.
+     * 
+     * @see MiniGameSceneController#setUpRenderer()
+     * @see Sprite#drawSpriteLeft(javafx.scene.canvas.GraphicsContext) 
+     */
     public void renderSprite() {
         prepare();
-        context.drawImage(this.spriteImageLeft, this.centerX, this.centerY);
-    }
-    public void renderAngry() {
-        prepare();
-        context.drawImage(this.spriteAngry, this.centerX, this.centerY);
+        spritePlaceCenter();
+        this.sprite.drawSpriteLeft(this.context);
     }
     
+    /**
+     * Draws angry sprite.
+     * Calls Sprite to draw an angry picture.
+     * 
+     * @see MiniGameSceneController#handleGuessWrong()
+     * @see Sprite#drawSpriteAngry(javafx.scene.canvas.GraphicsContext)
+     */
+    public void renderAngry() {
+        prepare();
+        this.sprite.drawSpriteAngry(context);
+    }
+    
+    /**
+     * Draws happy sprite.
+     * Calls Sprite to draw a happy picture.
+     * 
+     * @see MiniGameSceneController#handleGuessCorrect()
+     * @see Sprite#drawSpriteHappy(javafx.scene.canvas.GraphicsContext)
+     */
     public void renderHappy() {
         prepare();
-        context.drawImage(this.spriteHappy, this.centerX, this.centerY);
+        this.sprite.drawSpriteHappy(context);
     }
 }
