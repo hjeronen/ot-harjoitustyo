@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tamagotchi.logic;
 
 import org.junit.After;
@@ -13,48 +9,32 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Unit tests for MiniGame-class.
+ * 
  * @author Heli
  */
 public class MiniGameTest {
     
     MiniGame game;
     
-    public MiniGameTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
     
     @Before
     public void setUp() {
         this.game = new MiniGame();
     }
     
-    @After
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    @Test
-    public void hello() {}
     
     @Test
-    public void generateNumberChangesInitialNumberValue() {
+    public void generateNumberChangesNumberValue() {
+        this.game.setNumber(0);
         int number = this.game.getNumber();
         this.game.generateNumber();
         assertTrue(this.game.getNumber() != number);
     }
     
     @Test
-    public void generateAnswerChangesInitialAnswerValue() {
+    public void generateAnswerChangesAnswerValue() {
+        this.game.setAnswer(11);
         int answer = this.game.getAnswer();
         this.game.generateAnswer();
         assertTrue(this.game.getAnswer() != answer);
@@ -104,6 +84,7 @@ public class MiniGameTest {
     
     @Test
     public void playGeneratesNewNumber() {
+        this.game.setNumber(0);
         int old = this.game.getNumber();
         this.game.play();
         assertTrue(this.game.getNumber() != old);
@@ -111,6 +92,7 @@ public class MiniGameTest {
     
     @Test
     public void playGeneratesNewAnswer() {
+        this.game.setAnswer(11);
         int old = this.game.getAnswer();
         this.game.play();
         assertTrue(this.game.getAnswer() != old);

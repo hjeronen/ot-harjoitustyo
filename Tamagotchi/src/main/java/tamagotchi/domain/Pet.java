@@ -63,7 +63,7 @@ public class Pet {
     }
     
     public void setName(String name) {
-        if (name == null) {
+        if (name == null || name.equals("") || name.contains(";")) {
             this.name = this.defaultName;
         } else {
             this.name = name;
@@ -80,6 +80,7 @@ public class Pet {
         int days = (int) DAYS.between(this.birthday, today);
         return days;
     }
+    
     
     /**
     * Sets a new birthday for the pet.

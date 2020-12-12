@@ -6,7 +6,6 @@
 package tamagotchi.dao;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
@@ -31,18 +30,7 @@ public class FilePetDaoTest {
     public TemporaryFolder testFolder = new TemporaryFolder();
     
     FilePetDao dao;
-       
-    public FilePetDaoTest() throws Exception {
-        
-    }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
     
     @Before
     public void setUp() throws Exception {
@@ -53,12 +41,7 @@ public class FilePetDaoTest {
     @After
     public void tearDown() {
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    @Test
-    public void hello() {}
+    
     
     @Test
     public void createSaveCreatesNewSave() {

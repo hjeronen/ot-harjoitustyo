@@ -1,56 +1,53 @@
 package tamagotchi.logic;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import tamagotchi.logic.PetCare;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import tamagotchi.dao.FakePetDao;
+import tamagotchi.dao.PetDao;
+import tamagotchi.domain.Pet;
 
 /**
- *
+ * Integration tests for PetCare-class.
+ * 
  * @author Heli
  */
 public class PetCareTest {
     PetCare petCare;
     
-    public PetCareTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
     
     @Before
     public void setUp() {
         this.petCare = new PetCare(new FakePetDao());
     }
     
-    @After
-    public void tearDown() {
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
     @Test
-    public void hello() {}
+    public void setUpPetDaoSetsNewPetDao() {
+        PetDao newDao = new FakePetDao();
+        newDao.getPet().setName("Fluffy");
+        String oldPetName = this.petCare.getPetDao().getPet().getName();
+        this.petCare.setUpPetDao(newDao);
+        assertNotEquals(oldPetName, this.petCare.getPetDao().getPet().getName());
+    }
+    
+    @Test
+    public void createNewPetSaveCreatesNewSave() throws Exception {
+        this.petCare.getPetDao().getPet().setName("Fluffy");
+        String oldPetName = this.petCare.getPetDao().getPet().getName();
+        this.petCare.createNewPetSave();
+        assertNotEquals(oldPetName, this.petCare.getPetDao().getPet().getName());
+    }
      
     @Test
     public void getPetDoesNotReturnNull() {
         assertTrue(this.petCare.getPet() != null);
+    }
+    
+    @Test
+    public void getStatManagerDoesNotReturnNull() {
+        assertTrue(this.petCare.getStatManager() != null);
     }
     
     @Test
@@ -133,6 +130,13 @@ public class PetCareTest {
     }
     
     @Test
+    public void checkIfPetGetsSickDoesNotChangeValueIfPetIsAlreadySick() {
+        this.petCare.getPet().setIsSick(true);
+        this.petCare.checkIfPetGetsSick();
+        assertTrue(this.petCare.getPet().getIsSick());
+    }
+    
+    @Test
     public void petDoesNotNeedCleaningIfHygieneIsMaxed() {
         this.petCare.getPet().getHygiene().setValue(100);
         this.petCare.checkIfPetNeedsCleaning();
@@ -142,6 +146,13 @@ public class PetCareTest {
     @Test
     public void petDoesNeedCleaningIfHygieneIsAtZero() {
         this.petCare.getPet().getHygiene().setValue(0);
+        this.petCare.checkIfPetNeedsCleaning();
+        assertTrue(this.petCare.getPet().getNeedsWash() == true);
+    }
+    
+    @Test
+    public void checkIfPetNeedsCleaningDoesNotChangeIfItIsAlreadyTrue() {
+        this.petCare.getPet().setNeedsWash(true);
         this.petCare.checkIfPetNeedsCleaning();
         assertTrue(this.petCare.getPet().getNeedsWash() == true);
     }

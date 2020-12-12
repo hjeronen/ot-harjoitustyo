@@ -25,6 +25,10 @@ public class StatManager {
         this.pet = newPet;
     }
     
+    public Pet getPet() {
+        return this.pet;
+    }
+    
     /**
      * Sets the decay rate based on the development stage of the pet.
      * At base rate, the value of a stat drops 1/108 per second.
