@@ -9,9 +9,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Rule;
@@ -29,18 +27,17 @@ public class FilePetDaoTest {
     @Rule
     public TemporaryFolder testFolder = new TemporaryFolder();
     
+    File testFile;
     FilePetDao dao;
     
     
     @Before
     public void setUp() throws Exception {
-        File file = testFolder.newFile("test_save.txt");
-        this.dao = new FilePetDao(file.getName());
+        this.testFile = testFolder.newFile("test_save.txt");
+        this.dao = new FilePetDao(this.testFile.getAbsolutePath());
     }
     
-    @After
-    public void tearDown() {
-    }
+    
     
     
     @Test
@@ -56,10 +53,13 @@ public class FilePetDaoTest {
     }
     
     @Test
-    public void loadReturnsCorrectPet() throws Exception {
-        Pet test = new Pet(); // Zorblax, default pet
+    public void getPetLoadsCorrectPet() throws Exception {
+        this.dao.getPet().setName("Fluffy");
+        this.dao.save();
         
-        Pet save = this.dao.getPet(); // Fluffy
+        Pet test = new Pet();
+        
+        Pet save = this.dao.getPet();
         
         assertNotEquals(test.getName(), save.getName());
     }
@@ -88,5 +88,10 @@ public class FilePetDaoTest {
         assertTrue(this.dao.getPet().getHappiness().getValue() == 100.0);
         assertTrue(this.dao.getPet().getHealth().getValue() == 100.0);
         assertTrue(this.dao.getPet().getHygiene().getValue() == 100.0);
+    }
+    
+    @After
+    public void tearDown() {
+        this.testFile.delete();
     }
 }
