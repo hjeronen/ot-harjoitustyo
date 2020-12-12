@@ -1,18 +1,20 @@
 # Testausdokumentti
 
-Luokat Stat ja MiniGame on testattu yksikkötesteillä, sillä niiden metodeissa ei käsitellä muita luokkia. Pet-luokkaa on testattu sekä yksikkö- että integraatiotesteillä, sillä sen metodeissa hyödynnetään paljon Stat-luokan metodikutsuja. Luokkia PetCare ja StatManager on testattu lähinnä integraatiotestein, sillä molempien luokkien metodit käsittelevät pääasiassa luokkia Pet ja Stat ja kutsuvat niiden metodeja. Lisäksi ohjelman toimivuutta on testattu manuaalisesti sen suorituksen aikana.
+Ohjelmassa testattuja luokkia ovat tallennukseen käytetyt luokat pakkauksessa tamagotchi.dao, Pet- ja Stat-luokat pakkauksessa tamagotchi.domain, sekä sovelluislogiikasta vastaavat luokat pakkauksessa tamagotchi.logic.
+
+Ohjelmaa on testattu sekä yksikkö- että integraatiotesteillä. Luokkaa Stat on testattu lähinnä yksikkötesteillä, sillä sen metodeissa ei tehdä mitään kovin monimutkaista eikä niissä käsitellä muita luokkia. Pet-luokkaa on testattu sekä yksikkö- että integraatiotesteillä, sillä sen metodeissa hyödynnetään paljon Stat-luokan metodikutsuja. Luokkia PetCare ja StatManager on testattu lähinnä integraatiotestein, sillä molempien luokkien metodit käsittelevät pääasiassa luokkia Pet ja Stat ja kutsuvat niiden metodeja. MiniGame luokka ei vuorovaikuta muiden luokkien kanssa mitenkään, sen metodeja ja niiden toimintaa on testattu sekä yksikkö- että integraatiotestein. Lisäksi ohjelman toimivuutta on testattu manuaalisesti sen suorituksen aikana.
 
 ## Yksikkö- ja integraatiotestaus
 
 ### Pet- ja Stat-luokat
 
-Testipakkauksissa tamagotchi.domain sisältää luokkien Pet ja Stat testiluokat. StatTest-luokassa testataan, että Stat-olioiden sisältämä arvo kasvaa tai vähenee oikein, ja ettei se kasva yli maksimiarvon tai vähene alle minimiarvon.
+Testipakkauksissa pakkaus tamagotchi.domain sisältää luokkien Pet ja Stat testiluokat. StatTest-luokassa testataan, että Stat-olioiden sisältämä arvo kasvaa tai vähenee oikein, ja ettei se kasva yli maksimiarvon tai vähene alle minimiarvon.
 
 PetTest-luokassa on yksikkötesteillä testattu mm. että nimen asetus Petille toimii oikein, että kontsruktori asettaa oletusarvoisen nimen oikein, ja että Petille voi asettaa uuden syntymäpäivän.
 
 Pet-luokassa stattien arvot asettavat metodit hyödyntävät Stat-luokan metodeja Stat-olioiden käsittelyyn. Näiden yhteistoimintaa on testattu myös PetTest-luokassa, esimerkiksi testimetodi setEnergySetsValueRight testaa että energy-nimiselle Statille voidaan asettaa oikein uusi arvo.
 
-Pet-luokka sisältää lähinnä settereitä ja gettereitä, joiden toiminta ei sinänsä ole kovin mielenkiintoista, mutta joita hyödynnetään aktiivisesti toisaalla ohjelmakoodissa.
+Pet-luokka sisältää lähinnä settereitä ja gettereitä, joiden toiminta ei sinänsä ole kovin mielenkiintoista, mutta joita hyödynnetään aktiivisesti toisaalla ohjelmakoodissa, ja siksi niidenkin toimivuutta on tarkasteltu.
 
 ### Sovelluslogiikka
 
@@ -24,7 +26,7 @@ PetCare-luokan vaatimana PetDaona käytetään luokkaa FakePetDao, joka ei talle
 
 StatManager-luokka vastaa Petin stattien alenemisen laskemisesta. StatManagerTest-luokassa testataan integraatiotestein, että StatManagerin metodit laskevat ja asettavat Petin sisältämien Stat-olioiden arvot oikein.
 
-Minipelin sovelluslogiikkaa testaavassa MiniGameTest-luokassa suoritetaan lähinnä yksikkötestejä minipelille, sillä se ei vuorovaikuta muiden luokkien kanssa - minipelistä saatavat pisteet annetaan kyllä PetCare-luokan play()-metodille parametrina, mutta play() metodia on testattu PetCareTest-luokassa ja minipelin pisteidenlaskua MiniGameTest-luokassa.
+Minipelin sovelluslogiikkaa testaavassa MiniGameTest-luokassa suoritetaan yksikkö- ja integraatiotestejä minipelin metodeille ja niiden yhteistoiminnalle. Se ei vuorovaikuta muiden luokkien kanssa, vaikkakin minipelistä saatavat pisteet annetaan kyllä PetCare-luokan play()-metodille parametrina, mutta play() metodia on testattu PetCareTest-luokassa ja minipelin pisteidenlaskua MiniGameTest-luokassa.
 
 Pisteiden laskun suhteen testeissä tarkastetaan, että oikeat vastaukset kasvattavat pistemäärää ja väärät eivät. Samoin tarkastetaan, että peli arpoo uudet numerot, että pelikierroksia kasvatetaan oikein ja ettei samalla kierroksella voi antaa enempää kuin yhden vastauksen. Testeillä tarkastetaan myös, että peli resetoituu oikein, eli pelikierroksien ja pisteiden arvoksi asetetaan nolla.
 
