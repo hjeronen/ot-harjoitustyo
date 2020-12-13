@@ -10,6 +10,7 @@ import tamagotchi.logic.PetCare;
 import javafx.fxml.FXMLLoader;
 import javafx.animation.AnimationTimer;
 import tamagotchi.dao.FilePetDao;
+import tamagotchi.dao.SQLPetCemeteryDao;
 
 
 /**
@@ -37,7 +38,8 @@ public class GUI extends Application {
     @Override
     public void init() throws Exception {
         FilePetDao petDao = new FilePetDao("saveFile.txt");
-        this.petCare = new PetCare(petDao);
+        SQLPetCemeteryDao petCemetery = new SQLPetCemeteryDao();
+        this.petCare = new PetCare(petDao, petCemetery);
     }
     
     

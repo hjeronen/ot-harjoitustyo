@@ -1,7 +1,9 @@
 
 package tamagotchi.logic;
 
+import java.sql.SQLException;
 import java.util.Random;
+import tamagotchi.dao.PetCemeteryDao;
 import tamagotchi.dao.PetDao;
 import tamagotchi.domain.Pet;
 
@@ -19,11 +21,13 @@ public class PetCare {
     private Pet pet;
     private PetDao petDao;
     private StatManager statManager;
+    private PetCemeteryDao petCemetery;
     
-    public PetCare(PetDao petDao) {
+    public PetCare(PetDao petDao, PetCemeteryDao petCemetery) {
         this.petDao = petDao;
         this.pet = this.petDao.getPet();
         this.statManager = new StatManager(this.pet);
+        this.petCemetery = petCemetery;
     }
     
     /**
@@ -102,10 +106,17 @@ public class PetCare {
     /**
      * Checks if pet is alive.
      * Pet is dead if both energy and health are at 0.
+     * Dead Pet is added to the PetCemetery.
+     * 
      * @return  true if pet is alive, false if it is not
+     * @throws java.sql.SQLException
      */
-    public boolean petIsAlive() {
-        return (!(this.pet.getEnergy().getValue() == 0.0 && this.pet.getHealth().getValue() == 0.0));
+    public boolean petIsAlive() throws SQLException {
+        boolean petIsAlive = !(this.pet.getEnergy().getValue() == 0.0 && this.pet.getHealth().getValue() == 0.0);
+        if (!petIsAlive) {
+            this.petCemetery.addPet(this.pet);
+        }
+        return petIsAlive;
     }
     
     /**

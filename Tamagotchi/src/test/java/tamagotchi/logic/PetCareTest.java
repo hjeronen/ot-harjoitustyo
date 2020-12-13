@@ -1,10 +1,12 @@
 package tamagotchi.logic;
 
 
+import java.sql.SQLException;
 import tamagotchi.logic.PetCare;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import tamagotchi.dao.FakePetCemeteryDao;
 import tamagotchi.dao.FakePetDao;
 import tamagotchi.dao.PetDao;
 import tamagotchi.domain.Pet;
@@ -20,7 +22,7 @@ public class PetCareTest {
     
     @Before
     public void setUp() {
-        this.petCare = new PetCare(new FakePetDao());
+        this.petCare = new PetCare(new FakePetDao(), new FakePetCemeteryDao());
     }
     
     @Test
@@ -97,20 +99,20 @@ public class PetCareTest {
     }
     
     @Test
-    public void petIsAliveReturnsFalseWhenEnergyAndHealthAreAtZero() {
+    public void petIsAliveReturnsFalseWhenEnergyAndHealthAreAtZero() throws SQLException {
         this.petCare.getPet().setEnergy(0);
         this.petCare.getPet().setHealth(0);
         assertTrue(!this.petCare.petIsAlive());
     }
     
     @Test
-    public void petIsAliveReturnsTrueWhenOnlyEnergyIsAtZero() {
+    public void petIsAliveReturnsTrueWhenOnlyEnergyIsAtZero() throws SQLException {
         this.petCare.getPet().setEnergy(0);
         assertTrue(this.petCare.petIsAlive());
     }
     
     @Test
-    public void petIsAliveReturnsTrueWhenOnlyHealthIsAtZero() {
+    public void petIsAliveReturnsTrueWhenOnlyHealthIsAtZero() throws SQLException {
         this.petCare.getPet().setHealth(0);
         assertTrue(this.petCare.petIsAlive());
     }
