@@ -33,6 +33,13 @@ public class GameOverSceneController implements Initializable {
         this.userinterface = ui;
     }
     
+    /**
+     * Start new game.
+     * Calls the GUI to set up new PetCare and to switch 
+     * to NewGameScene.
+     * 
+     * @throws Exception 
+     */
     @FXML
     private void handleButtonActionRestart() throws Exception {
         this.userinterface.setUpNewPetCare();
@@ -42,7 +49,7 @@ public class GameOverSceneController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
 }

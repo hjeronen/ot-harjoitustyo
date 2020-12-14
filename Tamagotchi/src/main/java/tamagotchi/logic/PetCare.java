@@ -46,6 +46,10 @@ public class PetCare {
         return this.petDao;
     }
     
+    public PetCemeteryDao getPetCemetery() {
+        return this.petCemetery;
+    }
+    
     /**
      * Creates a new pet and saves it.
      * 
@@ -55,6 +59,11 @@ public class PetCare {
      */
     public void createNewPetSave() throws Exception {
         this.pet = new Pet();
+        this.petDao.createSave(this.pet);
+    }
+    
+    public void saveGame() {
+        this.pet.calculateAge();
         this.petDao.createSave(this.pet);
     }
     

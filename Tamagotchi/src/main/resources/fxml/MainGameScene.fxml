@@ -21,7 +21,8 @@
       <Label layoutX="55.0" layoutY="177.0" text="Energy" />
       <Label layoutX="46.0" layoutY="202.0" text="Happiness" />
       <Label layoutX="56.0" layoutY="227.0" text="Health" />
-      <Label layoutX="52.0" layoutY="251.0" text="Hygiene" />    
+      <Label layoutX="52.0" layoutY="251.0" text="Hygiene" />
+      <Button layoutX="27.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleButtonViewCemetery" prefHeight="25.0" prefWidth="130.0" text="View Cemetery" />    
     </children>
     
 </AnchorPane>

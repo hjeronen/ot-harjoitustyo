@@ -77,7 +77,7 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
         ArrayList<String> pets = new ArrayList<>();
         try {
             ResultSet r = sm.executeQuery("SELECT * FROM Pets");
-
+            
             while (r.next()) {
                 String petInfo = "";
                 petInfo = petInfo + r.getInt("id") + ";" + r.getString("name") + ";" + r.getString("age");

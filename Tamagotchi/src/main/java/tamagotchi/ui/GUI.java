@@ -61,6 +61,7 @@ public class GUI extends Application {
         } else {
             this.petCare.getStatManager().calculatePetStats();
             if (this.petCare.petIsAlive()) {
+                this.petCare.getPet().calculateAge();
                 setGameScene(); 
             } else {
                 setGameOverScene();
@@ -206,6 +207,23 @@ public class GUI extends Application {
         this.stage.show();
     }
     
+    public void setPetCemeteryScene() throws IOException {
+        this.isPaused = true;
+        
+        FXMLLoader petCemeteryLoader = new FXMLLoader(getClass().getResource("/fxml/PetCemeteryScene.fxml"));
+        Parent cemetery = petCemeteryLoader.load();
+        PetCemeterySceneController petCemeteryController = petCemeteryLoader.getController();
+        
+        petCemeteryController.setApplication(this);
+        petCemeteryController.setUpTable();
+        
+        Scene cemeteryScene = new Scene(cemetery);
+        
+        this.stage.setTitle("Tamagotchi");
+        this.stage.setScene(cemeteryScene);
+        this.stage.show();
+    }
+    
     /**
      * Calls PetCare to update Pet's stats during game.
      * Also instructs the MainGameSceneController to update the progress bars 
@@ -246,7 +264,7 @@ public class GUI extends Application {
      */
     @Override
     public void stop() {
-      this.petCare.getPetDao().createSave(this.petCare.getPet());
+      this.petCare.saveGame();
     } 
     
     /**

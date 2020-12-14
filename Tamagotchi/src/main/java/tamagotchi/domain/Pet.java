@@ -25,6 +25,7 @@ public class Pet {
     private boolean needsWash;
     private long lastLogin;
     private int developmentStage;
+    private int age;
     
     public Pet() {
         this.defaultName = "Zorblax";
@@ -74,11 +75,23 @@ public class Pet {
         return this.name;
     }
     
+    public void setAge(int days) {
+        this.age = days;
+    }
+    
     public int getAge() {
+        return this.age;
+    }
+    
+    /**
+     * Calculates Pet's age.
+     * Checks the amount of days between Pet's birthday and the current time.
+     */
+    public void calculateAge() {
         LocalDate today = LocalDate.now();
         
         int days = (int) DAYS.between(this.birthday, today);
-        return days;
+        this.age = days;
     }
     
     

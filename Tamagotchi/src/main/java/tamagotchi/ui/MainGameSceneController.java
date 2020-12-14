@@ -88,6 +88,11 @@ public class MainGameSceneController implements Initializable {
         hygieneProgressBar.setProgress(this.userinterface.getPetCare().getPet().getHygiene().getValue() / 100);
     }
     
+    @FXML
+    private void handleButtonViewCemetery() throws IOException {
+        this.userinterface.setPetCemeteryScene();
+    }
+    
     /**
      * Updates the progress bars to show current progress.
      * Gets the value of Pet's energy, happiness, health and hygiene stats and 
