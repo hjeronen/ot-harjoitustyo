@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import tamagotchi.domain.Pet;
 
 /**
- * Responsible for creating a gamesave.
+ * Responsible for creating a game save.
  * @author Heli
  */
 public class FilePetDao implements PetDao {
@@ -54,9 +54,9 @@ public class FilePetDao implements PetDao {
             load();
             return this.pet;
         } catch (Exception ex) {
-            Logger.getLogger(FilePetDao.class.getName()).log(Level.SEVERE, null, ex);
+            return this.pet;
         }
-        return this.pet;
+        
     }
     
     /**

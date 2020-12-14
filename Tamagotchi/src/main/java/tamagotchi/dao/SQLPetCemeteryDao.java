@@ -17,10 +17,12 @@ import tamagotchi.domain.Pet;
 public class SQLPetCemeteryDao implements PetCemeteryDao {
     private Connection db;
     private Statement sm;
+    private String address;
     private boolean saveExists;
     
-    public SQLPetCemeteryDao() throws SQLException, IOException {
-        this.db = DriverManager.getConnection("jdbc:sqlite:petCemetery.db");
+    public SQLPetCemeteryDao(String connectionAddress) throws SQLException, IOException {
+        this.address = connectionAddress;
+        this.db = DriverManager.getConnection(this.address);
         this.sm = this.db.createStatement();
         this.saveExists = false;
     }
@@ -34,9 +36,9 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
     * Returns true if table was created, false if an error occurred.
     * 
     * @return boolean true/false
-    * @throws SQLException
     */
-    public boolean createSQL() throws SQLException {
+    @Override
+    public boolean createSQL() {
         try {
             this.sm.execute("CREATE TABLE Pets (id INTEGER PRIMARY KEY, name TEXT, age TEXT);");
             this.saveExists = true;
@@ -56,10 +58,11 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
      * @param pet   the Pet that is being added to the table
      * @throws SQLException 
      */
+    @Override
     public void addPet(Pet pet) throws SQLException {
         try {
             this.sm.execute("INSERT INTO Pets (name, age) VALUES (\'" + pet.getName() + "\', " + pet.getAge() + " );");
-        } catch (SQLException SQLException) {
+        } catch (SQLException NullPointerException) {
             createSQL();
             this.sm.execute("INSERT INTO Pets (name, age) VALUES (\'" + pet.getName() + "\', " + pet.getAge() + " );");
         }
@@ -71,9 +74,8 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
      * Pet's information is added to an ArrayList. Returns the list.
      * If the table does not exist or is not found, returns an empty list.
      * @return ArrayList    ArrayList of the Pets in the table
-     * @throws SQLException 
      */
-    public ArrayList getAll() throws SQLException {
+    public ArrayList getAll() {
         ArrayList<String> pets = new ArrayList<>();
         try {
             ResultSet r = sm.executeQuery("SELECT * FROM Pets");

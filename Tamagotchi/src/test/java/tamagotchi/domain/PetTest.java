@@ -73,6 +73,12 @@ public class PetTest {
     }
     
     @Test
+    public void calculateAgeSetsTheAgeRight() {
+        this.pet.calculateAge();
+        assertTrue(this.pet.getAge() == 0);
+    }
+    
+    @Test
     public void setEnergySetsValueRight() {
         this.pet.setEnergy(100.0);
         assertTrue(this.pet.getEnergy().getValue() == 100.0);
@@ -126,18 +132,14 @@ public class PetTest {
     
     @Test
     public void setDevelopmentStageSetsSecondStageCorrectly() {
-        LocalDate date = this.pet.getBirthday().minusDays(4);
-        String newBirthday = "" + date;
-        this.pet.setBirthday(newBirthday);
+        this.pet.setAge(4);
         this.pet.setDevelopmentStage();
         assertTrue(this.pet.getDevelopmentStage() == 2);
     }
     
     @Test
     public void setDevelopmentStageSetsThirdStageCorrectly() {
-        LocalDate date = this.pet.getBirthday().minusDays(8);
-        String newBirthday = "" + date;
-        this.pet.setBirthday(newBirthday);
+        this.pet.setAge(8);
         this.pet.setDevelopmentStage();
         assertTrue(this.pet.getDevelopmentStage() == 3);
     }

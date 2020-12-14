@@ -41,7 +41,21 @@ public class PetCareTest {
         this.petCare.createNewPetSave();
         assertNotEquals(oldPetName, this.petCare.getPetDao().getPet().getName());
     }
-     
+    
+    @Test
+    public void saveGameSetsPetsAgeProperly() {
+        this.petCare.saveGame();
+        assertTrue(this.petCare.getPet().getAge() == 0);
+    }
+    
+    @Test
+    public void saveGameSavesPetInfo() {
+        String oldPetName = this.petCare.getPetDao().getPet().getName();
+        this.petCare.getPet().setName("Gogo");
+        this.petCare.saveGame();
+        assertNotEquals(oldPetName, this.petCare.getPetDao().getPet().getName());
+    }
+    
     @Test
     public void getPetDoesNotReturnNull() {
         assertTrue(this.petCare.getPet() != null);

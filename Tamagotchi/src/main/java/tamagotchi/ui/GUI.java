@@ -38,7 +38,7 @@ public class GUI extends Application {
     @Override
     public void init() throws Exception {
         FilePetDao petDao = new FilePetDao("saveFile.txt");
-        SQLPetCemeteryDao petCemetery = new SQLPetCemeteryDao();
+        SQLPetCemeteryDao petCemetery = new SQLPetCemeteryDao("jdbc:sqlite:petCemetery.db");
         this.petCare = new PetCare(petDao, petCemetery);
     }
     

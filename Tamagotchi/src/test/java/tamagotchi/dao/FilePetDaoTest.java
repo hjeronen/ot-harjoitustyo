@@ -38,8 +38,6 @@ public class FilePetDaoTest {
     }
     
     
-    
-    
     @Test
     public void createSaveCreatesNewSave() {
         Pet test = this.dao.getPet();
@@ -62,6 +60,13 @@ public class FilePetDaoTest {
         Pet save = this.dao.getPet();
         
         assertNotEquals(test.getName(), save.getName());
+    }
+    
+    @Test
+    public void getPetReturnsDefaultPetIfThereIsNoSave() {
+        Pet defaultPet = new Pet();
+        Pet defaultSavePet = this.dao.getPet();
+        assertEquals(defaultPet.getName(), defaultSavePet.getName());
     }
     
     @Test
@@ -89,6 +94,7 @@ public class FilePetDaoTest {
         assertTrue(this.dao.getPet().getHealth().getValue() == 100.0);
         assertTrue(this.dao.getPet().getHygiene().getValue() == 100.0);
     }
+    
     
     @After
     public void tearDown() {
