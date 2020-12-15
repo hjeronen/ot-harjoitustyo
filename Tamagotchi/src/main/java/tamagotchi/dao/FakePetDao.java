@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import tamagotchi.domain.Pet;
 
 /**
- * Used as a fake gamesave for testing the PetCare-class.
+ * Used as a fake game save for testing the PetCare-class.
  * @author Heli
  */
 public class FakePetDao implements PetDao {

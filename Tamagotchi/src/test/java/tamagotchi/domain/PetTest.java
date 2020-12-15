@@ -75,13 +75,16 @@ public class PetTest {
                         + "\nEnergy: 50.00"
                         + "\nHappiness: 50.00"
                         + "\nHealth: 50.00"
-                        + "\nHygiene: 50.00");
+                        + "\nHygiene: 50.00"
+                        + "\nDevelopment Stage: 1");
     }
     
     @Test
-    public void calculateAgeSetsTheAgeRight() {
-        this.pet.calculateAge();
-        assertTrue(this.pet.getAge() == 0);
+    public void calculateAgeReturnsTheAgeRight() {
+        LocalDate newBirthday = this.pet.getBirthday().minusDays(8);
+        String birthday = newBirthday.toString();
+        this.pet.setBirthday(birthday);
+        assertTrue(this.pet.calculateAge() == 8);
     }
     
     @Test

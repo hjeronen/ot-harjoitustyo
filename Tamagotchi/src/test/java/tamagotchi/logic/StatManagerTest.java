@@ -3,12 +3,7 @@ package tamagotchi.logic;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import tamagotchi.domain.Pet;
@@ -38,15 +33,49 @@ public class StatManagerTest {
     }
     
     @Test
-    public void updateEnergyDecreasesEnergyRight() {
+    public void getHappinessModifierReturnsOneWhenHappinessIsMaxed() {
+        this.pet.getHappiness().setValue(100.0);
+        assertTrue(this.manager.getHappinessModifier() == 1);
+    }
+    
+    @Test
+    public void getHappinessModifierReturnsTwoWhenHappinessIsUnderSeventyFive() {
+        this.pet.getHappiness().setValue(74.0);
+        assertTrue(this.manager.getHappinessModifier() == 2);
+    }
+    
+    @Test
+    public void getHappinessModifierReturnsThreeWhenHappinessIsUnderFifty() {
+        this.pet.getHappiness().setValue(49.0);
+        assertTrue(this.manager.getHappinessModifier() == 3);
+    }
+    
+    
+    @Test
+    public void updateEnergyDecreasesEnergyRightWhenHappinessIsMaxed() {
+        this.pet.getHappiness().setValue(100.0);
+        this.manager.updateEnergy(10000);
+        assertTrue(this.pet.getEnergy().getValue() == 45.5);
+    }
+    
+    @Test
+    public void updateEnergyDecreasesEnergyRightWhenHappinessModifierIsTwo() {
+        this.pet.getHappiness().setValue(74.0);
         this.manager.updateEnergy(10000);
         assertTrue(this.pet.getEnergy().getValue() == 41.0);
     }
     
     @Test
+    public void updateEnergyDecreasesEnergyRightWhenHappinessModifierIsThree() {
+        this.pet.getHappiness().setValue(49.0);
+        this.manager.updateEnergy(10000);
+        assertTrue(this.pet.getEnergy().getValue() == 36.5);
+    }
+    
+    @Test
     public void updateHappinessDecreasesHappinessRight() {
         this.manager.updateHappiness(10000);
-        assertTrue(this.pet.getHappiness().getValue() == 32.0);
+        assertTrue(this.pet.getHappiness().getValue() == 41.0);
     }
     
     @Test
@@ -96,52 +125,93 @@ public class StatManagerTest {
     public void updateStatsUpdatesAllStatsCorrectly() {
         this.manager.updateStats(10000);
         
-        assertTrue(this.pet.getEnergy().getValue() == 41.0);
-        assertTrue(this.pet.getHappiness().getValue() == 32.0);
+        assertTrue(this.pet.getEnergy().getValue() == 36.5);
+        assertTrue(this.pet.getHappiness().getValue() == 41.0);
         assertTrue(this.pet.getHygiene().getValue() == 45.5);
         assertTrue(this.pet.getHealth().getValue() == 32.0);
     }
     
     @Test
-    public void calculatePetStatsDecreasesAllStatsFromFiftyToZeroInOneDayInStageOne() {
-        LocalDate date = this.pet.getBirthday().minusDays(1);
+    public void calculatePetStatsDecreasesHealthAndEnergyFromMaxToZeroInOneDayInStageOne() {
+        this.pet.getEnergy().setValue(100.0);
+        this.pet.getHappiness().setValue(100.0);
+        this.pet.getHealth().setValue(100.0);
+        this.pet.getHygiene().setValue(100.0);
+        
+        LocalDate date = LocalDate.now().minusDays(1);
         ZoneId zoneId = ZoneId.systemDefault();
         long epoch = date.atStartOfDay(zoneId).toEpochSecond();
         this.pet.setLastLogin(epoch);
         this.manager.calculatePetStats();
         
         assertTrue(this.pet.getEnergy().getValue() == 0.0);
-        assertTrue(this.pet.getHappiness().getValue() == 0.0);
-        assertTrue(this.pet.getHygiene().getValue() == 0.0);
         assertTrue(this.pet.getHealth().getValue() == 0.0);
     }
     
     @Test
-    public void calculatePetStatsDecreasesAllStatsFromFiftyToZeroInTwoDaysInStageTwo() {
-        LocalDate date = this.pet.getBirthday().minusDays(2);
+    public void calculatePetStatsDecreasesHealthAndEnergyFromMaxToZeroInOneDayInStageTwo() {
+        this.pet.getEnergy().setValue(100.0);
+        this.pet.getHappiness().setValue(100.0);
+        this.pet.getHealth().setValue(100.0);
+        this.pet.getHygiene().setValue(100.0);
+        
+        LocalDate date = LocalDate.now().minusDays(1);
         ZoneId zoneId = ZoneId.systemDefault();
         long epoch = date.atStartOfDay(zoneId).toEpochSecond();
         this.pet.setLastLogin(epoch);
+        
+        LocalDate newBirthday = LocalDate.now().minusDays(4);
+        String birthday = newBirthday.toString();
+        this.pet.setBirthday(birthday);
+        
         this.manager.calculatePetStats();
         
         assertTrue(this.pet.getEnergy().getValue() == 0.0);
-        assertTrue(this.pet.getHappiness().getValue() == 0.0);
-        assertTrue(this.pet.getHygiene().getValue() == 0.0);
+        assertTrue(this.pet.getHealth().getValue() == 0.0);
+    }
+     
+    @Test
+    public void calculatePetStatsDecreasesHealthAndEnergyFromMaxToZeroInTwoDaysInStageThree() {
+        this.pet.getEnergy().setValue(100.0);
+        this.pet.getHappiness().setValue(100.0);
+        this.pet.getHealth().setValue(100.0);
+        this.pet.getHygiene().setValue(100.0);
+        
+        LocalDate date = LocalDate.now().minusDays(2);
+        ZoneId zoneId = ZoneId.systemDefault();
+        long epoch = date.atStartOfDay(zoneId).toEpochSecond();
+        this.pet.setLastLogin(epoch);
+        
+        LocalDate newBirthday = this.pet.getBirthday().minusDays(8);
+        String birthday = newBirthday.toString();
+        this.pet.setBirthday(birthday);
+        
+        this.manager.calculatePetStats();
+        
+        assertTrue(this.pet.getEnergy().getValue() == 0.0);
         assertTrue(this.pet.getHealth().getValue() == 0.0);
     }
     
     @Test
-    public void calculatePetStatsDecreasesAllStatsFromFiftyToZeroInTwoDaysInStageThree() {
-        LocalDate date = this.pet.getBirthday().minusDays(2);
+    public void calculatePetStatsDoesNotDecreaseEnergyAndHealthFromMaxToZeroInOneDayInStageThree() {
+        this.pet.getEnergy().setValue(100.0);
+        this.pet.getHappiness().setValue(100.0);
+        this.pet.getHealth().setValue(100.0);
+        this.pet.getHygiene().setValue(100.0);
+        
+        LocalDate date = LocalDate.now().minusDays(1);
         ZoneId zoneId = ZoneId.systemDefault();
         long epoch = date.atStartOfDay(zoneId).toEpochSecond();
         this.pet.setLastLogin(epoch);
+        
+        LocalDate newBirthday = this.pet.getBirthday().minusDays(8);
+        String birthday = newBirthday.toString();
+        this.pet.setBirthday(birthday);
+        
         this.manager.calculatePetStats();
         
-        assertTrue(this.pet.getEnergy().getValue() == 0.0);
-        assertTrue(this.pet.getHappiness().getValue() == 0.0);
-        assertTrue(this.pet.getHygiene().getValue() == 0.0);
-        assertTrue(this.pet.getHealth().getValue() == 0.0);
+        assertFalse(this.pet.getEnergy().getValue() == 0.0);
+        assertFalse(this.pet.getHealth().getValue() == 0.0);
     }
     
 }

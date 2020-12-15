@@ -27,6 +27,7 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
         this.saveExists = false;
     }
     
+    @Override
     public boolean getSaveExists() {
         return this.saveExists;
     }
@@ -38,7 +39,7 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
     * @return boolean true/false
     */
     @Override
-    public boolean createSQL() {
+    public boolean createSave() {
         try {
             this.sm.execute("CREATE TABLE Pets (id INTEGER PRIMARY KEY, name TEXT, age TEXT);");
             this.saveExists = true;
@@ -51,20 +52,19 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
     }
     
     /**
-     * Adds a Pet to the 'Pets'-table.
-     * Pet is given as a parameter. If table is not found, creates a new table 
-     * 'Pets' and adds the Pet there.
+     * Adds a Pet to the 'Pets'-table.Pet is given as a parameter.
+     * If table is not found, creates a new table 'Pets' and adds the Pet there.
      * 
      * @param pet   the Pet that is being added to the table
-     * @throws SQLException 
+     * @return boolean
      */
     @Override
-    public void addPet(Pet pet) throws SQLException {
+    public boolean addPet(Pet pet) {
         try {
             this.sm.execute("INSERT INTO Pets (name, age) VALUES (\'" + pet.getName() + "\', " + pet.getAge() + " );");
-        } catch (SQLException NullPointerException) {
-            createSQL();
-            this.sm.execute("INSERT INTO Pets (name, age) VALUES (\'" + pet.getName() + "\', " + pet.getAge() + " );");
+            return true;
+        } catch (SQLException SQLException) {
+            return false;
         }
         
     }
@@ -75,6 +75,7 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
      * If the table does not exist or is not found, returns an empty list.
      * @return ArrayList    ArrayList of the Pets in the table
      */
+    @Override
     public ArrayList getAll() {
         ArrayList<String> pets = new ArrayList<>();
         try {

@@ -17,15 +17,15 @@
         <Button layoutX="205.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionPlay" prefHeight="25.0" prefWidth="65.0" text="Play" />
         <Button layoutX="293.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionHeal" prefHeight="25.0" prefWidth="65.0" text="Heal" />
       <Button layoutX="378.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionClean" prefHeight="25.0" prefWidth="65.0" text="Clean" />
-        <ProgressBar id="energyProgressBar" fx:id="energyProgressBar" layoutX="11.0" layoutY="177.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
-        <ProgressBar id="happinessProgressBar" fx:id="happinessProgressBar" layoutX="11.0" layoutY="202.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
-        <ProgressBar id="healthProgressBar" fx:id="healthProgressBar" layoutX="11.0" layoutY="227.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
-      <ProgressBar id="hygieneProgressBar" fx:id="hygieneProgressBar" layoutX="11.0" layoutY="251.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
-      <Canvas id="gameCanvas" fx:id="gameCanvas" height="283.0" layoutX="102.0" layoutY="54.0" width="405.0" />
-      <Label layoutX="34.0" layoutY="178.0" text="Energy" />
-      <Label layoutX="29.0" layoutY="203.0" text="Happiness" />
-      <Label layoutX="35.0" layoutY="228.0" text="Health" />
-      <Label layoutX="35.0" layoutY="252.0" text="Hygiene" />
+        <ProgressBar id="energyProgressBar" fx:id="energyProgressBar" layoutX="25.0" layoutY="178.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
+        <ProgressBar id="happinessProgressBar" fx:id="happinessProgressBar" layoutX="25.0" layoutY="203.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
+        <ProgressBar id="healthProgressBar" fx:id="healthProgressBar" layoutX="25.0" layoutY="228.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
+      <ProgressBar id="hygieneProgressBar" fx:id="hygieneProgressBar" layoutX="25.0" layoutY="252.0" prefHeight="18.0" prefWidth="91.0" progress="0.0" />
+      <Canvas id="gameCanvas" fx:id="gameCanvas" height="283.0" layoutX="116.0" layoutY="54.0" width="378.0" />
+      <Label layoutX="52.0" layoutY="179.0" text="Energy" />
+      <Label layoutX="43.0" layoutY="204.0" text="Happiness" />
+      <Label layoutX="53.0" layoutY="229.0" text="Health" />
+      <Label layoutX="49.0" layoutY="253.0" text="Hygiene" />
       <Button layoutX="27.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleButtonViewCemetery" prefHeight="25.0" prefWidth="130.0" text="View Cemetery" />    
     </children>
     

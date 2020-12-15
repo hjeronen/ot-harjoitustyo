@@ -40,21 +40,46 @@ public class StatManager {
     }
     
     /**
+     * Calculates happiness modifier.
+     * Calculates a modifier based on Pet's happiness value which affects the
+     * rate energy-stat is decreased.
+     * 
+     * @return int  the modifier
+     */
+    public int getHappinessModifier() {
+        int modifier = 1;
+        double value = this.pet.getHappiness().getValue();
+        if (value < 50.0) {
+            modifier = 3;
+        } else if (value < 75) {
+            modifier = 2;
+        }
+        return modifier;
+    }
+    
+    /**
      * Updates energy-stat.
-     * Energy drops at base rate times the time in seconds that has elapsed since last update.
+     * Energy drops at half the base rate times the time in seconds that 
+     * has elapsed since last update. Base rate is multiplied with 
+     * happinessModifier which is calculated in method getHappinessModifier().
+     * 
      * @param modifier  the time elapsed since last update
+     * @see StatManager#getHappinessModifier()
      */
     public void updateEnergy(double modifier) {
-        this.pet.getEnergy().decrease(modifier * this.decayRate);
+        int happinessModifier = getHappinessModifier();
+        this.pet.getEnergy().decrease(modifier * (this.decayRate / 2) * happinessModifier);
     }
     
     /**
      * Updates happiness-stat.
-     * Happiness drops twice the base rate times the time in seconds that has elapsed since last update.
+     * Happiness drops at the base rate times the time in seconds 
+     * that has passed since last update.
+     * 
      * @param modifier  the time elapsed since last update
      */
     public void updateHappiness(double modifier) {
-        this.pet.getHappiness().decrease(modifier * (this.decayRate * 2));
+        this.pet.getHappiness().decrease(modifier * this.decayRate);
     }
     
     /**
@@ -92,13 +117,13 @@ public class StatManager {
     
     /**
      * Updates all stats.
-     * This method is called when the gameloop is running.
+     * This method is called when the game loop is running.
      * 
      * @param time  the time elapsed since last update
      */
     public void updateStats(double time) {
-        updateEnergy(time);
         updateHappiness(time);
+        updateEnergy(time);
         updateHygiene(time);
         updateHealth(time);
     }
@@ -113,6 +138,7 @@ public class StatManager {
         long timeNow = TimeUnit.MILLISECONDS.toSeconds(today.getTime());
         long differenceInSeconds = timeNow - this.pet.getLastLogin();
         double seconds = (double) differenceInSeconds;
+        this.pet.setAge(this.pet.calculateAge());
         this.pet.setDevelopmentStage();
         setDecayRate();
         updateStats(seconds);

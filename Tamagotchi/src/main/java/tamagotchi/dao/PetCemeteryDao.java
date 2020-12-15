@@ -10,7 +10,8 @@ import tamagotchi.domain.Pet;
  * @author Heli
  */
 public interface PetCemeteryDao {
-    boolean createSQL() throws SQLException;
-    void addPet(Pet pet) throws SQLException;
-    ArrayList getAll() throws SQLException;
+    boolean getSaveExists();
+    boolean createSave();
+    boolean addPet(Pet pet);
+    ArrayList getAll();
 }

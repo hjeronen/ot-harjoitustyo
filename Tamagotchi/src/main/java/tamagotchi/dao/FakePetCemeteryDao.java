@@ -1,39 +1,47 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tamagotchi.dao;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import tamagotchi.domain.Pet;
 
 /**
- *
+ * Fake version of PetCemeteryDao.
+ * This class is used for testing PetCare-class.
  * @author Heli
  */
 public class FakePetCemeteryDao implements PetCemeteryDao {
     private ArrayList<String> pets;
+    private boolean saveExists;
     
     public FakePetCemeteryDao() {
         this.pets = new ArrayList<>();
+        this.saveExists = false;
+    }
+    
+    public boolean getSaveExists() {
+        return this.saveExists;
     }
 
     @Override
-    public boolean createSQL() throws SQLException {
+    public boolean createSave() {
         this.pets = new ArrayList<>();
+        this.saveExists = true;
         return true;
     }
 
     @Override
-    public void addPet(Pet pet) throws SQLException {
-        String petInfo = pet.getName() + ";" + pet.getAge();
+    public boolean addPet(Pet pet) {
+        int id = this.pets.size();
+        if (id == 0) {
+            id++;
+        }
+        String petInfo = id + ";" + pet.getName() + ";" + pet.getAge();
         this.pets.add(petInfo);
+        return true;
     }
 
     @Override
-    public ArrayList getAll() throws SQLException {
+    public ArrayList getAll() {
         return this.pets;
     }
 }

@@ -59,9 +59,8 @@ public class GUI extends Application {
         if (!this.petCare.getPetDao().saveExists()) {
             setNewGameScene();
         } else {
-            this.petCare.getStatManager().calculatePetStats();
+            this.petCare.calculatePetStatus();
             if (this.petCare.petIsAlive()) {
-                this.petCare.getPet().calculateAge();
                 setGameScene(); 
             } else {
                 setGameOverScene();
@@ -90,9 +89,11 @@ public class GUI extends Application {
                     if (now - occurrenceCheck >= 10000) {
                         petCare.checkIfPetGetsSick();
                         petCare.checkIfPetNeedsCleaning();
+                        
                         occurrenceCheck = now;
                     }
                     long time = now - lastCheck;
+                    
                     if (time >= 1500) {
                         renderer.setShowVirus(petCare.getPet().getIsSick());
                         renderer.setNeedCleaning(petCare.getPet().getNeedsWash());
@@ -100,7 +101,15 @@ public class GUI extends Application {
                         renderer.render();
                         
                         update((double) time/1000);
-                    
+                        
+                        if (!petCare.petIsAlive()) {
+                            try {
+                                setGameOverScene();
+                            } catch (IOException ex) {
+                                isPaused = false;
+                            }
+                        }
+                        
                         lastCheck = now;
                     }
                 }
@@ -225,7 +234,7 @@ public class GUI extends Application {
     }
     
     /**
-     * Calls PetCare to update Pet's stats during game.
+     * Calls PetCare's StatManager to update Pet's stats during game.
      * Also instructs the MainGameSceneController to update the progress bars 
      * to show the values of Pet's stats properly.
      * 
@@ -234,7 +243,7 @@ public class GUI extends Application {
      * @see MainGameSceneController#setUpBars()
      */
     public void update(double time) {
-        this.petCare.getStatManager().updateStats(time);
+        this.petCare.updatePetStatus(time);
         this.gameController.setUpBars();
     }
     

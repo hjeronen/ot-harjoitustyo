@@ -65,7 +65,8 @@ public class Pet {
                 + "\nEnergy: " + this.energy 
                 + "\nHappiness: " + this.happiness 
                 + "\nHealth: " + this.health 
-                + "\nHygiene: " + this.hygiene;
+                + "\nHygiene: " + this.hygiene
+                + "\nDevelopment Stage: " + this.developmentStage;
     }
     
     public void setName(String name) {
@@ -91,12 +92,14 @@ public class Pet {
     /**
      * Calculates Pet's age.
      * Checks the amount of days between Pet's birthday and the current time.
+     * 
+     * @return int  Pet's age in days
      */
-    public void calculateAge() {
+    public int calculateAge() {
         LocalDate today = LocalDate.now();
         
         int days = (int) DAYS.between(this.birthday, today);
-        this.age = days;
+        return days;
     }
     
     

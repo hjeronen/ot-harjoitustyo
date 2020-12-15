@@ -1,7 +1,6 @@
 
 package tamagotchi.ui;
 
-import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -103,14 +102,14 @@ public class GameRenderer {
         } else {
             double distanceFromCenter = Math.abs(this.sprite.getX() - this.centerX);
             if (this.spriteOrientation.equals("left")) {
-                if (distanceFromCenter < this.sprite.getWidth() * 1.5) {
+                if (distanceFromCenter < this.sprite.getWidth()) {
                     spriteStepLeft();
                 } else {
                     this.spriteOrientation = "right";
                     spriteStepRight();
                 }
             } else {
-                if (distanceFromCenter < this.sprite.getWidth() * 1.5) {
+                if (distanceFromCenter < this.sprite.getWidth()) {
                     spriteStepRight();
                 } else {
                     this.spriteOrientation = "left";

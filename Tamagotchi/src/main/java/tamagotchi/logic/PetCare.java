@@ -1,7 +1,6 @@
 
 package tamagotchi.logic;
 
-import java.sql.SQLException;
 import java.util.Random;
 import tamagotchi.dao.PetCemeteryDao;
 import tamagotchi.dao.PetDao;
@@ -28,13 +27,15 @@ public class PetCare {
         this.pet = this.petDao.getPet();
         this.statManager = new StatManager(this.pet);
         this.petCemetery = petCemetery;
+        this.petCemetery.createSave();
     }
     
     /**
-     * Sets PetDao for PetCare and gets the pet from a saved file
-     * giving it to PetCare and to StatManager.
+     * Prepare PetDao.
+     * Sets PetDao for PetCare and gets the Pet from a saved file
+     * giving it to the PetCare and to it's StatManager.
      * 
-     * @param petDao    Saved pet
+     * @param petDao    Saved Pet
      */
     public void setUpPetDao(PetDao petDao) {
         this.petDao = petDao;
@@ -51,19 +52,23 @@ public class PetCare {
     }
     
     /**
-     * Creates a new pet and saves it.
+     * Creates a new Pet and saves it.
      * 
      * @throws Exception 
      * 
-     * @see dao.FilePetDao#createSave(Pet pet)
+     * @see tamagotchi.dao.FilePetDao#createSave(Pet pet)
      */
     public void createNewPetSave() throws Exception {
         this.pet = new Pet();
         this.petDao.createSave(this.pet);
     }
     
+    /**
+     * Saves the current Pet.
+     * Calculates Pet's age before saving.
+     */
     public void saveGame() {
-        this.pet.calculateAge();
+        this.pet.setAge(this.pet.calculateAge());
         this.petDao.createSave(this.pet);
     }
     
@@ -76,14 +81,15 @@ public class PetCare {
     }
     
     /**
-     * Feeds pet, increasing it's energy-level by 10.0.
+     * Increases Pet's energy by 10.0.
      */
     public void feedPet() {
         this.pet.getEnergy().increase(10.0);
     }
     
     /**
-     * Increases the pet's happiness-level by 10.0 times the score
+     * Increases Pet's happiness.
+     * Happiness is increased by 10.0 times the score
      * gained from the MiniGame.
      * 
      * @param score points gained in the minigame.
@@ -93,7 +99,7 @@ public class PetCare {
     }
     
     /**
-     * Increases pet's health by 10.0.
+     * Increases Pet's health by 10.0.
      * If pet is healed to max, it cannot be sick.
      */
     public void healPet() {
@@ -104,8 +110,8 @@ public class PetCare {
     }
     
     /**
-     * Increases pet's hygiene to max.
-     * When pet is clean, it does not need a wash.
+     * Increases Pet's hygiene to max.
+     * Also sets Pet's needsWash to false.
      */
     public void cleanPet() {
         this.pet.getHygiene().setValue(100.0);
@@ -113,24 +119,19 @@ public class PetCare {
     }
     
     /**
-     * Checks if pet is alive.
+     * Checks if Pet is alive.
      * Pet is dead if both energy and health are at 0.
      * Dead Pet is added to the PetCemetery.
      * 
      * @return  true if pet is alive, false if it is not
-     * @throws java.sql.SQLException
      */
-    public boolean petIsAlive() throws SQLException {
-        boolean petIsAlive = !(this.pet.getEnergy().getValue() == 0.0 && this.pet.getHealth().getValue() == 0.0);
-        if (!petIsAlive) {
-            this.petCemetery.addPet(this.pet);
-        }
-        return petIsAlive;
+    public boolean petIsAlive() {
+        return !(this.pet.getEnergy().getValue() == 0.0 && this.pet.getHealth().getValue() == 0.0);
     }
     
     /**
-     * Checks if pet gets sick.
-     * If it is not already sick, when pet's health is under 50,
+     * Checks if Pet gets sick.
+     * If it is not already sick, when Pet's health is under 50,
      * it has a chance to get sick. The likelihood of getting sick
      * increases as health gets lower.
      */
@@ -145,9 +146,10 @@ public class PetCare {
             }
         }
     }
+    
      /**
       * Checks if Pet needs cleaning.
-      * If pet needs a wash, waste appears in the game view.
+      * If Pet needs a wash, waste appears in the game view.
       * Likelihood for this is greater as hygiene gets lower.
       */
     public void checkIfPetNeedsCleaning() {
@@ -157,6 +159,35 @@ public class PetCare {
             if (randomInt >= this.pet.getHygiene().getValue()) {
                 this.pet.setNeedsWash(true);
             }
+        }
+    }
+    
+    /**
+     * Updates Pet's stats during game.
+     * Calls StatManager to update Pet's stats. Also checks if Pet is alive - 
+     * if it's not, Pet is added to the PetCemetery.
+     * @param time  time that has passed since last update
+     */
+    public void updatePetStatus(double time) {
+        this.pet.setAge(this.pet.calculateAge());
+        this.statManager.updateStats(time);
+        if (!petIsAlive()) {
+            this.petCemetery.addPet(this.pet);
+        }
+    }
+    
+    /**
+     * Calculates Pet's stats between logins.
+     * Pet's age is taken up before StatManager recalculates it, so that 
+     * Pet does not age if it has died between logins, but instead old age is 
+     * set for the pet before adding it to the PetCemetery.
+     */
+    public void calculatePetStatus() {
+        int petAge = this.pet.getAge();
+        this.statManager.calculatePetStats();
+        if (!petIsAlive()) {
+            this.pet.setAge(petAge);
+            this.petCemetery.addPet(this.pet);
         }
     }
 

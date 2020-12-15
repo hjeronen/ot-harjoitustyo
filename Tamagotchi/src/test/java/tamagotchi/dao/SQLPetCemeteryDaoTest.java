@@ -49,22 +49,26 @@ public class SQLPetCemeteryDaoTest {
 
     @Test
     public void createSQLCreatesTheTablePets() throws SQLException {
-        assertTrue(this.dao.createSQL());
+        assertTrue(this.dao.createSave());
+    }
+    
+    @Test
+    public void addPetReturnsTrueWhenPetIsAdded() {
+        this.dao.createSave();
+        assertTrue(this.dao.addPet(new Pet()));
     }
     
     @Test
     public void addPetAddsInformationToTheTable() throws SQLException, FileNotFoundException {
-        this.dao.createSQL();
+        this.dao.createSave();
         this.dao.addPet(new Pet());
         ArrayList<String> pets = this.dao.getAll();
         assertTrue(pets.contains("1;Zorblax;0"));
     }
     
     @Test
-    public void addPetCreatesATableIfTableIsNotFound() throws SQLException {
-        this.dao.addPet(new Pet());
-        ArrayList<String> pets = this.dao.getAll();
-        assertTrue(pets.contains("1;Zorblax;0"));
+    public void addPetReturnsFalseIfATableIsNotFound() throws SQLException {
+        assertFalse(this.dao.addPet(new Pet()));
     }
     
     @Test
@@ -74,7 +78,7 @@ public class SQLPetCemeteryDaoTest {
     
     @Test
     public void getAllReturnsAnEmptyArrayListIfTableContainsNothing() throws SQLException {
-        this.dao.createSQL();
+        this.dao.createSave();
         assertTrue(this.dao.getAll().isEmpty());
     }
     
@@ -89,7 +93,7 @@ public class SQLPetCemeteryDaoTest {
         three.setName("Gogo");
         three.setAge(3);
         
-        this.dao.createSQL();
+        this.dao.createSave();
         this.dao.addPet(one);
         this.dao.addPet(two);
         this.dao.addPet(three);

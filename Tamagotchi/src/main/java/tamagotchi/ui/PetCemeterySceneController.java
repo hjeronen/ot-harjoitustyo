@@ -59,6 +59,7 @@ public class PetCemeterySceneController implements Initializable {
     private void handleButtonActionBack() throws Exception {
         this.userinterface.setGameScene();
     }
+    
     /**
      * Prepares TableView-element.
      * Fetches user's previous Pets from SQL-database and shows them in TableView.
@@ -102,19 +103,13 @@ public class PetCemeterySceneController implements Initializable {
             }
         });
         
-        try {
-            ArrayList<String> pets = this.userinterface.getPetCare().getPetCemetery().getAll();
-            for (String pet : pets) {
-                String[] parts = pet.split(";");
-                String[][] data = {parts};
+        ArrayList<String> pets = this.userinterface.getPetCare().getPetCemetery().getAll();
+        for (String pet : pets) {
+            String[] parts = pet.split(";");
+            String[][] data = {parts};
 
-                this.table.getItems().addAll(data);
-            }
-            
-        } catch (SQLException SQLException) {
-
+            this.table.getItems().addAll(data);
         }
-
     }
     
     @Override

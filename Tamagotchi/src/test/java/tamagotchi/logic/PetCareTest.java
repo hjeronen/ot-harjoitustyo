@@ -2,6 +2,10 @@ package tamagotchi.logic;
 
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import tamagotchi.logic.PetCare;
 import org.junit.Before;
 import org.junit.Test;
@@ -171,5 +175,49 @@ public class PetCareTest {
         this.petCare.getPet().setNeedsWash(true);
         this.petCare.checkIfPetNeedsCleaning();
         assertTrue(this.petCare.getPet().getNeedsWash() == true);
+    }
+    
+    @Test
+    public void updatePetStatusUpdatesPetStatsRight() {
+        this.petCare.updatePetStatus(10000);
+        
+        assertTrue(this.petCare.getPet().getEnergy().getValue() == 36.5);
+        assertTrue(this.petCare.getPet().getHappiness().getValue() == 41.0);
+        assertTrue(this.petCare.getPet().getHygiene().getValue() == 45.5);
+        assertTrue(this.petCare.getPet().getHealth().getValue() == 32.0);
+    }
+    
+    @Test
+    public void updatePetStatusAddsDeadPetToCemetery() {
+        this.petCare.updatePetStatus(56000);
+        
+        assertTrue(this.petCare.getPetCemetery().getAll().contains("1;Zorblax;0"));
+    }
+    
+    @Test
+    public void calculatePetStatusCalculatesPetStatsRight() {
+        LocalDateTime date = LocalDateTime.now().minusHours(2);
+        long epoch = date.toEpochSecond(ZoneOffset.UTC);
+        this.petCare.getPet().setLastLogin(epoch);
+        
+        this.petCare.calculatePetStatus();
+        
+        assertTrue(this.petCare.getPet().getEnergy().getValue() == 45.14);
+        assertTrue(this.petCare.getPet().getHappiness().getValue() == 46.76);
+        assertTrue(this.petCare.getPet().getHygiene().getValue() == 48.38);
+        assertTrue(this.petCare.getPet().getHealth().getValue() == 43.52);
+    }
+    
+    @Test
+    public void calculatePetStatusAddsDeadPetToCemetery() {
+        LocalDate date = LocalDate.now().minusDays(1);
+        ZoneId zoneId = ZoneId.systemDefault();
+        long epoch = date.atStartOfDay(zoneId).toEpochSecond();
+        
+        this.petCare.getPet().setLastLogin(epoch);
+        
+        this.petCare.calculatePetStatus();
+        
+        assertTrue(this.petCare.getPetCemetery().getAll().contains("1;Zorblax;0"));
     }
 }
