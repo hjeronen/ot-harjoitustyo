@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -22,6 +23,9 @@ public class NewGameSceneController implements Initializable {
     @FXML
     private TextField inputPetName;
     
+    @FXML
+    private Label errorLabel;
+    
     
     public void setApplication(GUI ui) {
         this.userinterface = ui;
@@ -36,9 +40,6 @@ public class NewGameSceneController implements Initializable {
         this.petName = inputPetName.getText();
     }
     
-    public String getPetName() {
-        return this.petName;
-    }
     
     /**
      * Start the game.
@@ -47,8 +48,46 @@ public class NewGameSceneController implements Initializable {
      * @throws Exception 
      */
     public void startGame() throws Exception {
-        this.userinterface.getPetCare().getPet().setName(this.petName);
-        this.userinterface.setGameScene();
+        if (checkName()) {
+            this.userinterface.getPetCare().getPet().setName(this.petName);
+            this.userinterface.setGameScene();
+        }
+        
+    }
+    
+    /**
+     * Shows correct error message in the errorLabel.
+     * @param number    determines which message is shown
+     */
+    public void showErrorLabel(int number) {
+        if (number == 1) {
+            this.errorLabel.setText("Remember to save your name!");
+        } else if (number == 2) {
+            this.errorLabel.setText("Name cannot contain ';'!");
+        } else if (number == 3) {
+            this.errorLabel.setText("Name has to be 1 to 10 characters.");
+        }
+        
+    }
+    
+    /**
+     * Checks if input name is valid.
+     * Also calls showErrorLabel() to put in correct error message.
+     * @return boolean  true if name is valid, false if it's invalid
+     */
+    public boolean checkName() {
+        if (this.petName == null) {
+            showErrorLabel(1);
+            return false;
+        } else if (this.petName.contains(";")) {
+            showErrorLabel(2);
+            return false;
+        } else if (this.petName.length() > 10 || this.petName.length() <= 0) {
+            showErrorLabel(3);
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**

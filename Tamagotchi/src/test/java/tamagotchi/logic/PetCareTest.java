@@ -114,20 +114,20 @@ public class PetCareTest {
     
     @Test
     public void petIsAliveReturnsFalseWhenEnergyAndHealthAreAtZero() throws SQLException {
-        this.petCare.getPet().setEnergy(0);
-        this.petCare.getPet().setHealth(0);
+        this.petCare.getPet().getEnergy().setValue(0);
+        this.petCare.getPet().getHealth().setValue(0);
         assertTrue(!this.petCare.petIsAlive());
     }
     
     @Test
     public void petIsAliveReturnsTrueWhenOnlyEnergyIsAtZero() throws SQLException {
-        this.petCare.getPet().setEnergy(0);
+        this.petCare.getPet().getEnergy().setValue(0);
         assertTrue(this.petCare.petIsAlive());
     }
     
     @Test
     public void petIsAliveReturnsTrueWhenOnlyHealthIsAtZero() throws SQLException {
-        this.petCare.getPet().setHealth(0);
+        this.petCare.getPet().getHealth().setValue(0);
         assertTrue(this.petCare.petIsAlive());
     }
     

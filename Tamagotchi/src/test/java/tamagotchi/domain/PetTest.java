@@ -79,30 +79,6 @@ public class PetTest {
     }
     
     @Test
-    public void setEnergySetsValueRight() {
-        this.pet.setEnergy(100.0);
-        assertTrue(this.pet.getEnergy().getValue() == 100.0);
-    }
-    
-    @Test
-    public void setHappinessSetsValueRight() {
-        this.pet.setHappiness(100.0);
-        assertTrue(this.pet.getHappiness().getValue() == 100.0);
-    }
-    
-    @Test
-    public void setHealthSetsValueRight() {
-        this.pet.setHealth(100.0);
-        assertTrue(this.pet.getHealth().getValue() == 100.0);
-    }
-    
-    @Test
-    public void setHygieneSetsValueRight() {
-        this.pet.setHygiene(100.0);
-        assertTrue(this.pet.getHygiene().getValue() == 100.0);
-    }
-    
-    @Test
     public void getIsSickReturnsRightValue() {
         assertTrue(this.pet.getIsSick() == false);
     }

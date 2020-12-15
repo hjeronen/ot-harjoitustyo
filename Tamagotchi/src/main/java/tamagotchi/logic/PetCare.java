@@ -108,7 +108,7 @@ public class PetCare {
      * When pet is clean, it does not need a wash.
      */
     public void cleanPet() {
-        this.pet.setHygiene(100.0);
+        this.pet.getHygiene().setValue(100.0);
         this.pet.setNeedsWash(false);
     }
     

@@ -11,5 +11,6 @@
       <TextField id="inputPetName" fx:id="inputPetName" layoutX="226.0" layoutY="175.0" onAction="#setPetName" onInputMethodTextChanged="#setPetName" text="Zorblax" />
       <Button fx:id="Start" layoutX="250.0" layoutY="259.0" mnemonicParsing="false" onAction="#startGame" prefHeight="25.0" prefWidth="101.0" text="Start game" />
       <Button fx:id="Test" layoutX="240.0" layoutY="214.0" mnemonicParsing="false" onAction="#setPetName" prefHeight="25.0" prefWidth="121.0" text="Save name!" />
+      <Label fx:id="errorLabel" layoutX="378.0" layoutY="179.0" prefHeight="17.0" prefWidth="220.0" />
    </children>
 </AnchorPane>

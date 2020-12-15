@@ -1,5 +1,8 @@
 
 package tamagotchi.domain;
+
+import java.text.DecimalFormat;
+
 /**
 * Stat-class represents a stat of a pet, for example the amount of energy it has.
 */
@@ -52,6 +55,7 @@ public class Stat {
     }
     
     /**
+     * Decreases Stat's value.
      * Decreases this.value by a given amount
      * but not under this.min value.
      * 
@@ -66,17 +70,24 @@ public class Stat {
     }
     
     /**
-     * Decreases this.value by 1.0.
+     * Decreases Stat's value by 1.0.
      */
     public void decrease() {
         this.decrease(1.0);
     }
     
+    /**
+     * Sets new value for the Stat.
+     * @param newValue  new value for the Stat
+     */
     public void setValue(double newValue) {
         this.value = newValue;
     }
     
+    @Override
     public String toString() {
-        return "" + this.value;
+        DecimalFormat formatter = new DecimalFormat("#.00");
+        String formatValue = formatter.format(this.value);
+        return formatValue;
     }
 }

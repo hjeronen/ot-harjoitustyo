@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -35,6 +36,9 @@ public class MainGameSceneController implements Initializable {
     
     @FXML
     private Label petName;
+    
+    @FXML
+    private Tooltip petInfo;
     
     @FXML
     private ProgressBar energyProgressBar;
@@ -110,6 +114,11 @@ public class MainGameSceneController implements Initializable {
      */
     public void setUpLabel() {
         this.petName.setText(this.userinterface.getPetCare().getPet().getName());
+    }
+    
+    @FXML
+    public void showTooltip() {
+        this.petInfo.setText(this.userinterface.getPetCare().getPet().toString());
     }
     
     public Canvas getCanvas() {

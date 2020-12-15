@@ -51,7 +51,7 @@ public class StatManagerTest {
     
     @Test
     public void updateHealthDoesNotDecreaseHealthIfPetIsNotSick() {
-        this.pet.setHygiene(100.0);
+        this.pet.getHygiene().setValue(100.0);
         this.manager.updateHealth(10000);
         assertTrue(this.pet.getHealth().getValue() == 50.0);
     }
@@ -59,15 +59,15 @@ public class StatManagerTest {
     @Test
     public void updateHealthDoesDecreaseHealthFastIfPetIsSick() {
         this.pet.setIsSick(true);
-        this.pet.setHygiene(100.0);
+        this.pet.getHygiene().setValue(100.0);
         this.manager.updateHealth(10000);
         assertTrue(this.pet.getHealth().getValue() == 14);
     }
     
     @Test
     public void updateHealthDecreasesHealthIfEnergyIsAtZero() {
-        this.pet.setEnergy(0);
-        this.pet.setHygiene(100.0);
+        this.pet.getEnergy().setValue(0);
+        this.pet.getHygiene().setValue(100.0);
         this.manager.updateHealth(10000);
         assertTrue(this.pet.getHealth().getValue() == 32.0);
     }

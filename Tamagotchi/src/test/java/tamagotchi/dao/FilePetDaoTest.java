@@ -79,10 +79,10 @@ public class FilePetDaoTest {
         long lastLogin = TimeUnit.MILLISECONDS.toSeconds(time.getTime());
         
         save.setLastLogin(lastLogin);
-        save.setEnergy(100);
-        save.setHappiness(100);
-        save.setHealth(100);
-        save.setHygiene(100);
+        save.getEnergy().setValue(100);
+        save.getHappiness().setValue(100);
+        save.getHealth().setValue(100);
+        save.getHygiene().setValue(100);
         
         this.dao.createSave(save);
         

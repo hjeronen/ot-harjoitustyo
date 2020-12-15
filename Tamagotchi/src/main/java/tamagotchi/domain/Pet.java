@@ -57,10 +57,15 @@ public class Pet {
         this.lastLogin = time;
     }
     
+    @Override
     public String toString() {
-        return "Name: " + this.name + ", Birthday: " + this.getBirthday() + ", Age: " + this.getAge() + " days, Energy: " 
-                + this.energy + ", Happiness: " + this.happiness 
-                + ", Health: " + this.health + ", Hygiene: " + this.hygiene;
+        return "Name: " + this.name 
+                + "\nBirthday: " + this.getBirthday() 
+                + "\nAge: " + this.getAge() + " days"
+                + "\nEnergy: " + this.energy 
+                + "\nHappiness: " + this.happiness 
+                + "\nHealth: " + this.health 
+                + "\nHygiene: " + this.hygiene;
     }
     
     public void setName(String name) {
@@ -115,33 +120,16 @@ public class Pet {
         return this.energy;
     }
     
-    public void setEnergy(double value) {
-        this.energy.setValue(value);
-    }
-    
-    
     public Stat getHappiness() {
         return this.happiness;
-    }
-    
-    public void setHappiness(double value) {
-        this.happiness.setValue(value);
     }
     
     public Stat getHealth() {
         return this.health;
     }
     
-    public void setHealth(double value) {
-        this.health.setValue(value);
-    }
-    
     public Stat getHygiene() {
         return this.hygiene;
-    }
-    
-    public void setHygiene(double value) {
-        this.hygiene.setValue(value);
     }
     
     public boolean getIsSick() {
