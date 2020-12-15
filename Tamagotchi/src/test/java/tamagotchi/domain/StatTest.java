@@ -72,7 +72,7 @@ public class StatTest {
     
     @Test
     public void toStringWorksProperly() {
-        assertEquals(stat.toString(), "10.0");
+        assertEquals(stat.toString(), "10.00");
     }
     
     @Test

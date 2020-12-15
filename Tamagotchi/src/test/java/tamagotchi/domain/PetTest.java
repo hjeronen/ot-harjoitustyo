@@ -69,7 +69,13 @@ public class PetTest {
     @Test
     public void toStringReturnsCorrectInformation() {
         LocalDate testDate = LocalDate.now();
-        assertEquals(this.pet.toString(), "Name: Zorblax, Birthday: " + testDate + ", Age: 0 days, Energy: 50.0, Happiness: 50.0, Health: 50.0, Hygiene: 50.0");
+        assertEquals(this.pet.toString(), "Name: Zorblax"
+                        + "\nBirthday: " + testDate 
+                        + "\nAge: 0 days"
+                        + "\nEnergy: 50.00"
+                        + "\nHappiness: 50.00"
+                        + "\nHealth: 50.00"
+                        + "\nHygiene: 50.00");
     }
     
     @Test

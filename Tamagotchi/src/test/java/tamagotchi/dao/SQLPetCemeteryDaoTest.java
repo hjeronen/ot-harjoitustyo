@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tamagotchi.dao;
 
 import java.io.File;
@@ -21,7 +17,7 @@ import org.junit.rules.TemporaryFolder;
 import tamagotchi.domain.Pet;
 
 /**
- *
+ * Unit and integration tests for SQLPetCemetery-class.
  * @author Heli
  */
 public class SQLPetCemeteryDaoTest {
