@@ -40,11 +40,17 @@ Molempien tallennusluokkien testeissä käytetään TemporaryFolder-luokkaa, jon
 
 ## Testauskattavuus
 
-Käyttöliittymä poisluettuna testien rivikattavuus on 96%, ja haarautumakattavuus 98%.
+Käyttöliittymä poisluettuna testien rivikattavuus on 97%, ja haarautumakattavuus 98%.
 
-![Testikattavuusraportti](https://user-images.githubusercontent.com/73843204/101990733-792b8680-3ca8-11eb-8cc1-435aa2b756fe.png)
+![Testikattavuusraportti](https://user-images.githubusercontent.com/73843204/102391479-1141ac80-3fd6-11eb-961b-f85bdd5db002.png)
 
-Sovelluslogiikan puolella tilanteissa, joissa on käytetty satunnaislukugeneraattoria, on testattu ainoastaan ääritapaukset. Tallennustiedostojen suhteen ei ole testattu tilanteita, joissa yritys lukea tai kirjoittaa tiedostoon päätyy virheeseen. Tilanteita, joissa tallennustiedosto puuttuu tai sen sisältö on virheellinen, on tosin testattu manuaalisesti.
+Sovelluslogiikan puolella tilanteissa, joissa on käytetty satunnaislukugeneraattoria, on testattu ainoastaan ääritapaukset.
+
+FilePetDao-luokan suhteen ei ole testattu tilannetta, joissa yritys kirjoittaa tiedostoon päätyy virheeseen. Tilanteita, joissa tallennustiedosto puuttuu tai sen sisältö on virheellinen, on tosin testattu manuaalisesti.
+
+SQLPetCemetery-luokan testeissä on sen sijaan otettu huomioon tilanne, jossa tallennukseen käytettävää SQL-taulukkoa ei löydy, jolloin tallennusmetodi palauttaa 'false' - sen sijaan ei ole testattu tilannetta, jossa taulukon luonti päättyy virheeseen.
+
+Virhetilanteet on pyritty käsittelemään koodissa try-catch rakenteiden avulla.
 
 ## Järjestelmätestaus
 
@@ -78,8 +84,8 @@ Painamalla napista 'View Cemetery' käyttäjä pääsee näkemään aiemmat Peti
 
 #### GameOver
 
-Pelin päättymistä on testattu muuttamalla tallennustiedostossa Petin energy- ja health-stattien arvoksi nolla. Ohjelman käynnistyessä latautuu oikein GameOverScene, jonka napista pääsee takaisin aloitusnäkymään.
+Pelin päättymistä on testattu muuttamalla tallennustiedostossa Petin energy- ja health-stattien arvoksi nolla. Ohjelman käynnistyessä latautuu oikein GameOverScene, jonka napista pääsee takaisin aloitusnäkymään. On myös manuaalisesti testattu, että jos Pet kuolee ohjelman ollessa käynnissä (pääpelinäkymässä) ohjelma vaihtaa oikein näkymään GameOverScene.
 
 ## Sovellukseen jääneet laatuongelmat
 
-Tallennustiedoston muokkaus ei ole kovin suotava tapa testata pelin toimintaa tai manipuloida Petin tietoja, sillä se on altis virhesyötteille, mutta ainakin tässä tilanteessa se oli yksinkertaisin keino. Siksi pääpelin tallennus suoritetaankin edelleen yksinkertaisella tekstitiedostolla. Periaatteessa olisi ollut parempi rakentaa pelin sisälle vastaava toiminnallisuus ja käyttää tallennukseen ennemmin tietokantaa.
+Tallennustiedoston muokkaus ei ole kovin suotava tapa testata pelin toimintaa tai manipuloida Petin tietoja, sillä se on altis virhesyötteille, mutta ainakin tässä tilanteessa se oli yksinkertaisin keino. Siksi pääpelin tallennus suoritetaankin edelleen yksinkertaisella tekstitiedostolla. Periaatteessa olisi ollut parempi rakentaa pelin sisälle vastaava toiminnallisuus ja käyttää tallennukseen ennemmin tietokantaa, mutta käytettävissä ollut aika kului lähinnä muiden ongelmien ratkomiseen.
