@@ -147,11 +147,10 @@ public class PetCare {
         }
     }
     
-     /**
-      * Checks if Pet needs cleaning.
-      * If Pet needs a wash, waste appears in the game view.
-      * Likelihood for this is greater as hygiene gets lower.
-      */
+    /**
+     * Checks if Pet needs cleaning. If Pet needs a wash, waste appears in the
+     * game view. Likelihood for this is greater as hygiene gets lower.
+     */
     public void checkIfPetNeedsCleaning() {
         if (!this.pet.getNeedsWash()) {
             Random generator = new Random();
@@ -170,6 +169,7 @@ public class PetCare {
      */
     public void updatePetStatus(double time) {
         this.pet.setAge(this.pet.calculateAge());
+        this.pet.setDevelopmentStage();
         this.statManager.updateStats(time);
         if (!petIsAlive()) {
             this.petCemetery.addPet(this.pet);

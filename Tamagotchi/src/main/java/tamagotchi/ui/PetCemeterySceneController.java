@@ -57,7 +57,7 @@ public class PetCemeterySceneController implements Initializable {
      */
     @FXML
     private void handleButtonActionBack() throws Exception {
-        this.userinterface.setGameScene();
+        this.userinterface.setMainGameScene();
     }
     
     /**

@@ -186,7 +186,7 @@ public class MiniGameSceneController implements Initializable {
     @FXML
     private void handleButtonActionBack() throws Exception {
         this.minigame.resetGame();
-        this.userinterface.setGameScene();
+        this.userinterface.setMainGameScene();
     }
     
     public Canvas getCanvas() {

@@ -61,7 +61,7 @@ public class GUI extends Application {
         } else {
             this.petCare.calculatePetStatus();
             if (this.petCare.petIsAlive()) {
-                setGameScene(); 
+                setMainGameScene();
             } else {
                 setGameOverScene();
             }
@@ -73,6 +73,7 @@ public class GUI extends Application {
         new AnimationTimer() {
             long lastCheck = java.lang.System.currentTimeMillis();
             long occurrenceCheck = java.lang.System.currentTimeMillis();
+            long petDevelopmentStageCheck = java.lang.System.currentTimeMillis();
             
             /**
              * Updates game view.
@@ -86,12 +87,19 @@ public class GUI extends Application {
             public void handle(long currentNanoTime) {
                 long now = java.lang.System.currentTimeMillis();
                 if (!isPaused) {
+                    
+                    if (now - petDevelopmentStageCheck > 100000) {
+                        renderer.setSpriteImage(petCare.getPet().getDevelopmentStage());
+                        petDevelopmentStageCheck = now;
+                    }
+                    
                     if (now - occurrenceCheck >= 10000) {
                         petCare.checkIfPetGetsSick();
                         petCare.checkIfPetNeedsCleaning();
                         
                         occurrenceCheck = now;
                     }
+                    
                     long time = now - lastCheck;
                     
                     if (time >= 1500) {
@@ -113,7 +121,7 @@ public class GUI extends Application {
                         lastCheck = now;
                     }
                 }
-        }
+            }
         }.start();
     }
     
@@ -147,7 +155,7 @@ public class GUI extends Application {
      * and additional images.
      * @throws IOException 
      */
-    public void setGameScene() throws IOException {
+    public void setMainGameScene() throws IOException {
         this.isPaused = false;
         
         FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("/fxml/MainGameScene.fxml"));
