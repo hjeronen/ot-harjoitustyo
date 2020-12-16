@@ -64,7 +64,7 @@ Painikkeesta 'Back to Game' pääsee milloin tahansa takaisin pääpelinäkymä�
 
 Pelin jujuna on siis pitää lemmikki elossa ja tyytyväisenä. Huonosti hoidettu lemmikki kuolee, ja peli loppuu:
 
-![GameOverScene](https://user-images.githubusercontent.com/73843204/101355540-fdd86800-3896-11eb-9c19-305f4958d17e.png)
+![GameOverScene](https://user-images.githubusercontent.com/73843204/102385705-77c2cc80-3fce-11eb-95c6-cc669403d182.png)
 
 'Restart' painikkeesta siirrytään aloitusnäkymään, jossa pelin voi aloittaa uudestaan. Kuolleet lemmikit siirtyvät lemmikkien hautausmaalle, jota pääsee katsomaan pääpelinäkymän painikkeesta 'View Cemetery'. Tässä näkymässä listataan järjestyksessä kaikki käyttäjän aiemmat lemmikit:
 
