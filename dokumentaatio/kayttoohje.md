@@ -26,15 +26,15 @@ Käyttäjä voi antaa lemmikille haluamansa nimen ja tallentaa sen painamalla na
 
 ![MainGameScene](https://user-images.githubusercontent.com/73843204/102375304-a9359b00-3fc2-11eb-8d5b-d039d08dfd5a.png)
 
-Ikkunassa pomppii pelin tähti, eli pelaajan ikioma virtuaalinen lemmikki (ulkomuodosta päätellen se ei ole kotoisin tältä planeetalta). Otuksella on kolme eri kehitysvaihetta, ja ensimmäisen kolmen päivän ajan se on ns. pentu-vaiheessa. Tällöin se tarvitsee enemmän huolehtimista kuin vanhempana. Neljän päivän ikäisenä siitä tulee nuori, ja kahdeksantena päivänä aikuinen, jolloin se tarvitsee enää hyvin vähän huomiota.
+Ikkunassa pomppii pelin tähti, eli pelaajan ikioma virtuaalinen lemmikki (ulkomuodosta päätellen se ei ole kotoisin tältä planeetalta). Otuksella on kolme eri kehitysvaihetta, ja ensimmäisen kolmen päivän ajan se on ns. pentu-vaiheessa. Tällöin se tarvitsee enemmän huolehtimista kuin vanhempana. Neljän päivän ikäisenä siitä tulee nuori, ja kahdeksantena päivänä aikuinen, jolloin se tarvitsee vähemmän huomiota.
 
 ### Mittarit
 
 Ikkunan vasemmassa reunassa näkyvät mittarit ilmaisevat lemmikin tilaa. Niistä näkee sen energian, onnellisuuden, terveyden ja hygienian tason. Mittarit tippuvat melko hitaasti, mutta hupenevat silti jatkuvasti, myös siltä ajalta kun ohjelma ei ole päällä.
 
-Eri tekijät vaikuttavat nopeuteen, jolla mittarit tippuvat. Energia tippuu jatkuvasti tasaisella vauhdilla. Onnellisuus laskee nopeammin kuin energia, hygienia puolestaan hitaammin. Terveys alkaa heiketä vain, jos energia tippuu nollaan, jos lemmikki sairastuu tai jos sen hygienia tippuu alle puoleen.
+Eri tekijät vaikuttavat nopeuteen, jolla mittarit tippuvat. Energia tippuu hitaasti silloin, kun onnellisuus on korkealla - jos onnellisuus tippuu alle 75:n, energia alkaa kulua nopeammin, ja vielä nopeammin jos onnellisuus putoaa alle puolivälin. Onnellisuus laskee tasaisella vauhdilla, hygienia puolestaan hitaammin. Terveys alkaa heiketä vain, jos energia tippuu nollaan, jos lemmikki sairastuu tai jos sen hygienia tippuu alle puoleen.
 
-Lemmikin kehitysaste vaikuttaa siihen, kuinka nopeasti mittarit hupenevat. Ensimmäisessä vaiheessa energiamittarin pitäisi huveta nollaan noin kolmessa tunnissa. Aikuisena se hupenee huomattavasti hitaammin, ja otus selviää pidempään ilman huolenpitoa.
+Lemmikin kehitysaste vaikuttaa siihen, kuinka nopeasti mittarit hupenevat. Ensimmäisessä kehitysvaiheessa lemmikki kuolee alle vuorokaudessa ilman hoitoa. Toisessa vaiheessa mittarit hupenevat nollaan alle kahdessa vuorokaudessa, aikuisena kolmessa.
 
 Jos sekä energia että terveys tippuvat nollaan, lemmikki kuolee, ja peli loppuu.
 
@@ -54,7 +54,7 @@ Painamalla nappia 'Play' käynnistyy lemmikin kanssa pelattava minipeli, jossa t
 
 Napeista painamalla voi arvata joko suurempi tai pienempi. Painikkeesta 'Next' siirrytään seuraavaan kierrokseen, ja peli arpoo uuden luvun. Pelissä pelataan viisi kierrosta, ja pelaaja saa oikein arvatessaan yhden pisteen. Lopussa pelistä saadut pisteet määrittävät sen, kuinka paljon onnellisuusmittari nousee - nolla pistettä ei siis nosta onnellisuutta ollenkaan!
 
-Painikkeesta 'Back to Game' pääsee milloin tahansa takaisin pääpelinäkymään, mutta ansaitut pisteet eivät tällöin kasvata onnellisuutta.
+Painikkeesta 'Back to Game' pääsee milloin tahansa takaisin pääpelinäkymään, mutta jos peli on kesken, siihen mennessä ansaitut pisteet eivät tällöin kasvata onnellisuutta.
 
 ## Game Over
 
@@ -62,7 +62,11 @@ Pelin jujuna on siis pitää lemmikki elossa ja tyytyväisenä. Huonosti hoidett
 
 ![GameOverScene](https://user-images.githubusercontent.com/73843204/101355540-fdd86800-3896-11eb-9c19-305f4958d17e.png)
 
-'Restart' painikkeesta siirrytään aloitusnäkymään, jossa pelin voi aloittaa uudestaan.
+'Restart' painikkeesta siirrytään aloitusnäkymään, jossa pelin voi aloittaa uudestaan. Kuolleet lemmikit siirtyvät lemmikkien hautausmaalle, jota pääsee katsomaan pääpelinäkymän painikkeesta 'View Cemetery'. Tässä näkymässä listataan järjestyksessä kaikki käyttäjän aiemmat lemmikit:
+
+![PetCemetery](https://user-images.githubusercontent.com/73843204/102378533-36c6ba00-3fc6-11eb-8bf7-7ddeec42fb63.png)
+
+Taulukosta näkee lemmikin nimen ja iän. Kuolleen lemmikin ikä määrittyy sen perusteella, kuinka vanha se oli ohjelman ollessa viimeksi päällä, eli se ei laske aikaa jonka lemmikki on ollut unohdettuna.
 
 Ehkä pelaaja voi haastaa itsensä pitämään lemmikin hengissä mahdollisimman pitkään.
 
@@ -71,7 +75,9 @@ Ehkä pelaaja voi haastaa itsensä pitämään lemmikin hengissä mahdollisimman
 Peli ei ole kovin aktiivinen, eikä ajan kulkua tällä hetkellä pysty nopeuttamaan, mutta pelissä voi "huijata" hieman muokkaamalla tallennustiedostoa 'saveFile.txt'. Lemmikin tiedot tallennetaan muodossa
 
 ```
-LemmikinNimi;yyyy-mm-dd;unixAika;50.0;50.0;50.0;50.0
+LemmikinNimi;yyyy-mm-dd;unixAika;50.00;50.00;50.00;50.00;true;false
 ```
 
-Tiedostoa muokkaamalla voi esimerkiksi vaihtaa lemmikin nimen tai sen syntymäpäivän, kunhan sen esitysmuoto on oikea. Tallennettuna on myös sovelluksen edellisen sulkeutumisen ajankohta unix-ajassa ilmaistuna. Sitä seuraavat luvut ilmaisevat järjestyksessä lemmikin energiaa, onnellisuutta, terveyttä ja hygieniaa.
+Tiedostoa muokkaamalla voi esimerkiksi vaihtaa lemmikin nimen tai sen syntymäpäivän, kunhan sen esitysmuoto on oikea (kts. aiempana myös nimeämiseen liittyvät säännöt). Tallennettuna on myös sovelluksen edellisen sulkeutumisen ajankohta unix-ajassa ilmaistuna. Sitä seuraavat luvut ilmaisevat järjestyksessä lemmikin energiaa, onnellisuutta, terveyttä ja hygieniaa. Viimeiset kaksi totuusarvoa kertovat tarvitseeko lemmikki pesua ja onko se sairas.
+
+HUOM. Jos tiedot tallennetaan virheellisessä muodossa, ohjelma luo kokonaan uuden tallenteen ja aloittaa pelin alusta!
