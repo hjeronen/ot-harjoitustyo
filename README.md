@@ -2,7 +2,7 @@
 
 # Harjoitustyö: Tamagotchi
 
-Tamagotchi on lemmikinkasvatuspeli, jossa käyttäjä huolehtii virtuaalisesta lemmikistä. Lemmikkiä tulee ruokkia säännöllisesti, sen kanssa täytyy leikkiä ja sen jäljet siivota, ja sen sairastuessa se tulee hoitaa terveeksi. Huonosti hoidettu lemmikki kuolee tai karkaa pois (game over).
+Tamagotchi on lemmikinkasvatuspeli, jossa käyttäjä huolehtii virtuaalisesta lemmikistä. Lemmikkiä tulee ruokkia säännöllisesti, sen kanssa täytyy leikkiä ja sen jäljet siivota, ja sen sairastuessa se tulee hoitaa terveeksi. Huonosti hoidettu lemmikki kuolee ja peli päättyy.
 
 ## Dokumentaatio
 
