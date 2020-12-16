@@ -82,4 +82,4 @@ Pelin päättymistä on testattu muuttamalla tallennustiedostossa Petin energy- 
 
 ## Sovellukseen jääneet laatuongelmat
 
-Tallennustiedoston muokkaus ei ole kovin suotava tapa testata pelin toimintaa tai manipuloida Petin tietoja, sillä se on altis virhesyötteille, mutta ainakin tässä tilanteessa se oli yksinkertaisin keino. Siksi pääpelin tallennus suoritetaankin edelleen yksinkertaisella tekstitiedostolla. Periaatteessa olisi ollut parempi rakentaa pelin sisälle vastaava toiminnallisuus ja käyttää tallennukseen ennemmin tietokantaa.
+Tallennustiedoston muokkaus ei ole kovin suotava tapa testata pelin toimintaa tai manipuloida Petin tietoja, sillä se on altis virhesyötteille, mutta ainakin tässä tilanteessa se oli yksinkertaisin keino. Siksi pääpelin tallennus suoritetaankin edelleen yksinkertaisella tekstitiedostolla. Periaatteessa olisi ollut parempi rakentaa pelin sisälle vastaava toiminnallisuus ja käyttää tallennukseen ennemmin tietokantaa, mutta käytettävissä ollut aika kului lähinnä muiden ongelmien ratkomiseen.
