@@ -48,9 +48,9 @@ Sovelluslogiikan puolella tilanteissa, joissa on käytetty satunnaislukugeneraat
 
 FilePetDao-luokan suhteen ei ole testattu tilannetta, joissa yritys kirjoittaa tiedostoon päätyy virheeseen. Tilanteita, joissa tallennustiedosto puuttuu tai sen sisältö on virheellinen, on tosin testattu manuaalisesti.
 
-SQLPetCemetery-luokan testeissä on sen sijaan otettu huomioon tilanne, jossa tallennukseen käytettävää SQL-taulukkoa ei löydy, jolloin tallennusmetodi palauttaa 'false' - sen sijaan ei ole testattu tilannetta, jossa taulukon luonti päättyy virheeseen.
+SQLPetCemetery-luokan testeissä on sen sijaan otettu huomioon tilanne, jossa tallennukseen käytettävää SQL-taulukkoa ei löydy, jolloin tallennusmetodi palauttaa 'false' - sen sijaan ei ole testattu tilannetta, jossa taulukon luonti päätyy virheeseen.
 
-Virhetilanteet on pyritty käsittelemään koodissa try-catch rakenteiden avulla.
+Ainakin tallennustiedostojen suhteen virhetilanteet on pyritty käsittelemään koodissa try-catch rakenteiden avulla.
 
 ## Järjestelmätestaus
 
