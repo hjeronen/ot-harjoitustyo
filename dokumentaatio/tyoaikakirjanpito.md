@@ -45,7 +45,7 @@ Ti 8.12. | 2h | JavaDoc dokumentaatiot kirjoitettu luokille Pet, Stat, PetCare, 
 &nbsp; | 3h | Yritetty ymmärtää miksei JavaDocin muodostaminen onnistu (ei toimi omassa koneessa, virtuaalityöasemassa onnistuu).
 &nbsp; | 2h | Kirjoitettu lisää testejä, hiottu JavaDoc-kuvauksia, valmisteltu release GitHubiin.
 To 10.12. | 4h | Lisää kuvitusta, GameRenderer ja Sprite -luokkien refaktorointia.
-Pe 11.12. | 3h | Javadoc tehty loppuun.
+Pe 11.12. | 3h | JavaDoc tehty loppuun.
 La 12.12. | 6h | Lisätty testejä ja kirjoitettu testausdokumentti.
 Su 13.12. | 5h | Lisätty PetCemeteryDao ja SQL, lisätty myös PetCemeteryScene FXML ja kontrolleri.
 Ma 14.12. | 3h | PetCemeteryScenen TableView saatu toimimaan.
