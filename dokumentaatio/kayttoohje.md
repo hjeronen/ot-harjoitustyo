@@ -74,7 +74,11 @@ Taulukosta näkee lemmikin nimen ja iän. Kuolleen lemmikin ikä määrittyy sen
 
 Ehkä pelaaja voi haastaa itsensä pitämään lemmikin hengissä mahdollisimman pitkään.
 
-## VINKKI!
+## Pelin tallennus
+
+Peliä ei tarvitse erikseen tallentaa, vaan ohjelma tekee tallennuksen itse pelaajan sulkiessa sen ikkunan x-painikkeesta.
+
+### VINKKI!
 
 Peli ei ole kovin aktiivinen, eikä ajan kulkua tällä hetkellä pysty nopeuttamaan, mutta pelissä voi "huijata" hieman muokkaamalla tallennustiedostoa 'saveFile.txt'. Lemmikin tiedot tallennetaan muodossa
 
