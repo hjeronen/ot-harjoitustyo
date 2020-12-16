@@ -1,7 +1,9 @@
 
 package tamagotchi.logic;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +11,7 @@ import static org.junit.Assert.*;
 import tamagotchi.domain.Pet;
 
 /**
- * Integration tests for StatManager-class.
+ * Unit and integration tests for StatManager-class.
  * 
  * @author Heli
  */
@@ -138,9 +140,9 @@ public class StatManagerTest {
         this.pet.getHealth().setValue(100.0);
         this.pet.getHygiene().setValue(100.0);
         
-        LocalDate date = LocalDate.now().minusDays(1);
-        ZoneId zoneId = ZoneId.systemDefault();
-        long epoch = date.atStartOfDay(zoneId).toEpochSecond();
+        LocalDateTime date = LocalDateTime.now().minusHours(24);
+        Instant instant = date.atZone(ZoneId.systemDefault()).toInstant();	
+	long epoch = instant.toEpochMilli() / 1000;
         this.pet.setLastLogin(epoch);
         this.manager.calculatePetStats();
         
@@ -155,9 +157,9 @@ public class StatManagerTest {
         this.pet.getHealth().setValue(100.0);
         this.pet.getHygiene().setValue(100.0);
         
-        LocalDate date = LocalDate.now().minusDays(2);
-        ZoneId zoneId = ZoneId.systemDefault();
-        long epoch = date.atStartOfDay(zoneId).toEpochSecond();
+        LocalDateTime date = LocalDateTime.now().minusHours(48);
+        Instant instant = date.atZone(ZoneId.systemDefault()).toInstant();	
+	long epoch = instant.toEpochMilli() / 1000;
         this.pet.setLastLogin(epoch);
         
         LocalDate newBirthday = LocalDate.now().minusDays(4);
@@ -177,9 +179,9 @@ public class StatManagerTest {
         this.pet.getHealth().setValue(100.0);
         this.pet.getHygiene().setValue(100.0);
         
-        LocalDate date = LocalDate.now().minusDays(1);
-        ZoneId zoneId = ZoneId.systemDefault();
-        long epoch = date.atStartOfDay(zoneId).toEpochSecond();
+        LocalDateTime date = LocalDateTime.now().minusHours(24);
+        Instant instant = date.atZone(ZoneId.systemDefault()).toInstant();	
+	long epoch = instant.toEpochMilli() / 1000;
         this.pet.setLastLogin(epoch);
         
         LocalDate newBirthday = this.pet.getBirthday().minusDays(4);
@@ -199,9 +201,9 @@ public class StatManagerTest {
         this.pet.getHealth().setValue(100.0);
         this.pet.getHygiene().setValue(100.0);
         
-        LocalDate date = LocalDate.now().minusDays(3);
-        ZoneId zoneId = ZoneId.systemDefault();
-        long epoch = date.atStartOfDay(zoneId).toEpochSecond();
+        LocalDateTime date = LocalDateTime.now().minusHours(72);
+        Instant instant = date.atZone(ZoneId.systemDefault()).toInstant();	
+	long epoch = instant.toEpochMilli() / 1000;
         this.pet.setLastLogin(epoch);
         
         LocalDate newBirthday = this.pet.getBirthday().minusDays(8);
@@ -221,9 +223,9 @@ public class StatManagerTest {
         this.pet.getHealth().setValue(100.0);
         this.pet.getHygiene().setValue(100.0);
         
-        LocalDate date = LocalDate.now().minusDays(2);
-        ZoneId zoneId = ZoneId.systemDefault();
-        long epoch = date.atStartOfDay(zoneId).toEpochSecond();
+        LocalDateTime date = LocalDateTime.now().minusHours(48);
+        Instant instant = date.atZone(ZoneId.systemDefault()).toInstant();	
+	long epoch = instant.toEpochMilli() / 1000;
         this.pet.setLastLogin(epoch);
         
         LocalDate newBirthday = this.pet.getBirthday().minusDays(8);

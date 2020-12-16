@@ -6,8 +6,6 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
-import tamagotchi.logic.PetCare;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -17,7 +15,7 @@ import tamagotchi.dao.PetDao;
 import tamagotchi.domain.Pet;
 
 /**
- * Integration tests for PetCare-class.
+ * Unit and integration tests for PetCare-class.
  * 
  * @author Heli
  */
@@ -155,6 +153,7 @@ public class PetCareTest {
     @Test
     public void checkIfPetGetsSickDoesNotChangeValueIfPetIsAlreadySick() {
         this.petCare.getPet().setIsSick(true);
+        this.petCare.getPet().getHealth().setValue(100);
         this.petCare.checkIfPetGetsSick();
         assertTrue(this.petCare.getPet().getIsSick());
     }
@@ -215,7 +214,7 @@ public class PetCareTest {
     
     @Test
     public void calculatePetStatusAddsDeadPetToCemetery() {
-        LocalDate date = LocalDate.now().minusDays(1);
+        LocalDate date = LocalDate.now().minusDays(2);
         ZoneId zoneId = ZoneId.systemDefault();
         long epoch = date.atStartOfDay(zoneId).toEpochSecond();
         
