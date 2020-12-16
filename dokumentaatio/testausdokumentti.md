@@ -2,7 +2,9 @@
 
 Ohjelmassa testattuja luokkia ovat tallennukseen käytetyt luokat pakkauksessa tamagotchi.dao, Pet- ja Stat-luokat pakkauksessa tamagotchi.domain, sekä sovelluslogiikasta vastaavat luokat pakkauksessa tamagotchi.logic.
 
-Ohjelmaa on testattu sekä yksikkö- että integraatiotesteillä. Luokkaa Stat on testattu lähinnä yksikkötesteillä, sillä sen metodeissa ei tehdä mitään kovin monimutkaista eikä niissä käsitellä muita luokkia. Pet-luokkaa on testattu sekä yksikkö- että integraatiotesteillä, sillä sen metodeissa hyödynnetään paljon Stat-luokan metodikutsuja. Luokkia PetCare ja StatManager on testattu lähinnä integraatiotestein, sillä molempien luokkien metodit käsittelevät pääasiassa luokkia Pet ja Stat ja kutsuvat niiden metodeja. MiniGame luokka ei vuorovaikuta muiden luokkien kanssa mitenkään, sen metodeja ja niiden toimintaa on testattu sekä yksikkö- että integraatiotestein. Lisäksi ohjelman toimivuutta on testattu manuaalisesti sen suorituksen aikana.
+Ohjelmaa on testattu sekä yksikkö- että integraatiotesteillä. Luokkaa Stat on testattu lähinnä yksikkötesteillä, sillä sen metodeissa ei tehdä mitään kovin monimutkaista eikä niissä käsitellä muita luokkia. Pet-luokkaa on testattu sekä yksikkö- että integraatiotesteillä, sillä sen metodeissa hyödynnetään paljon Stat-luokan metodikutsuja. Luokkia PetCare ja StatManager on testattu lähinnä integraatiotestein, sillä molempien luokkien metodit käsittelevät pääasiassa luokkia Pet ja Stat ja kutsuvat niiden metodeja. MiniGame luokka ei vuorovaikuta muiden luokkien kanssa mitenkään, sen metodeja ja niiden toimintaa on testattu sekä yksikkö- että integraatiotestein.
+
+Lisäksi ohjelman toimivuutta ja käyttöliittymää on testattu manuaalisesti sen suorituksen aikana.
 
 ## Yksikkö- ja integraatiotestaus
 
