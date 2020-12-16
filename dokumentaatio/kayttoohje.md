@@ -1,5 +1,9 @@
 # Käyttöohje
 
+## Ohjelman asentaminen
+
+Ohjelman pitäisi osata luoda itse tarvitsemansa tallennustiedostot, joten se ei edellytä käyttäjältä mitään toimenpiteitä. Mikäli näin ei ole, ohjelma vaatii tallennusta varten juurikansioon tiedostot "saveFile.txt" ja "petCemetery.db".
+
 ## Ohjelman käynnistäminen
 
 Ohjelman voi käynnistää jar-tiedostosta komennolla
