@@ -44,4 +44,12 @@ Ma 7.12. | 2h | Käyttöohjeen kirjoitus, pieniä muokkauksia ohjelmaan.
 Ti 8.12. | 2h | JavaDoc dokumentaatiot kirjoitettu luokille Pet, Stat, PetCare, StatManager ja MiniGame.
 &nbsp; | 3h | Yritetty ymmärtää miksei JavaDocin muodostaminen onnistu (ei toimi omassa koneessa, virtuaalityöasemassa onnistuu).
 &nbsp; | 2h | Kirjoitettu lisää testejä, hiottu JavaDoc-kuvauksia, valmisteltu release GitHubiin.
-Yht. | 103h | &nbsp;
+To 10.12. | 4h | Lisää kuvitusta, GameRenderer ja Sprite -luokkien refaktorointia.
+Pe 11.12. | 3h | Javadoc tehty loppuun.
+La 12.12. | 6h | Lisätty testejä ja kirjoitettu testausdokumentti.
+Su 13.12. | 5h | Lisätty PetCemeteryDao ja SQL, lisätty myös PetCemeteryScene FXML ja kontrolleri.
+Ma 14.12. | 3h | PetCemeteryScenen TableView saatu toimimaan.
+&nbsp; | 3h | Refaktorointia, testit kirjoitettu SQLPetCemeteryDaolle.
+Ti 15.12. | 10h | Refaktorointia, testien korjailua ja lisäystä.
+Ke 16.12. | 6h | Refaktorointia, kuvien piirtelyä, testien korjailua ja lisäystä. Viimeistelty käyttöohje ja testausdokumentti.
+Yht. | 143h | &nbsp;
