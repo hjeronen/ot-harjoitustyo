@@ -78,7 +78,7 @@ Painamalla napista 'View Cemetery' käyttäjä pääsee näkemään aiemmat Peti
 
 #### GameOver
 
-Pelin päättymistä on testattu muuttamalla tallennustiedostossa Petin energy- ja health-stattien arvoksi nolla. Ohjelman käynnistyessä latautuu oikein GameOverScene, jonka napista pääsee takaisin aloitusnäkymään.
+Pelin päättymistä on testattu muuttamalla tallennustiedostossa Petin energy- ja health-stattien arvoksi nolla. Ohjelman käynnistyessä latautuu oikein GameOverScene, jonka napista pääsee takaisin aloitusnäkymään. On myös manuaalisesti testattu, että jos Pet kuolee ohjelman ollessa käynnissä (pääpelinäkymässä) ohjelma vaihtaa oikein näkymään GameOverScene.
 
 ## Sovellukseen jääneet laatuongelmat
 
