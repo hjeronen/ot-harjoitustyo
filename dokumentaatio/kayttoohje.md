@@ -20,11 +20,11 @@ Jos peli käynnistyy ensimmäisen kerran, tai aiemmin luotua tallennustiedostoa 
 
 ![Aloitusruutu](https://user-images.githubusercontent.com/73843204/101353556-1430f480-3894-11eb-9485-cad2737127cb.png)
 
-Käyttäjä voi antaa lemmikille haluamansa nimen ja tallentaa sen painamalla napista 'Save name!'. Jos nimeä ei tallenna tai tallennettu syöte on tyhjä (eli null), ohjelma antaa lemmikille oletusnimen "Zorblax". Itse peli käynnistetään painamalla napista 'Start game'.
+Käyttäjä voi antaa lemmikille haluamansa nimen ja tallentaa sen painamalla napista 'Save name!'. Nimen täytyy olla 1-10 merkkiä pitkä, se ei saa sisältää merkkiä ';' ja se täytyy muistaa tallentaa, muuten peli antaa käyttäjälle huomautuksen eikä päästä siirtymään eteenpäin. Onnistuneen nimentallennuksen jälkeen itse peli käynnistetään painamalla napista 'Start game'.
 
 ## Pelinäkymä
 
-![MainGameScene](https://user-images.githubusercontent.com/73843204/101354030-c963ac80-3894-11eb-9abd-071920bad61d.png)
+![MainGameScene](https://user-images.githubusercontent.com/73843204/102375304-a9359b00-3fc2-11eb-8d5b-d039d08dfd5a.png)
 
 Ikkunassa pomppii pelin tähti, eli pelaajan ikioma virtuaalinen lemmikki (ulkomuodosta päätellen se ei ole kotoisin tältä planeetalta). Otuksella on kolme eri kehitysvaihetta, ja ensimmäisen kolmen päivän ajan se on ns. pentu-vaiheessa. Tällöin se tarvitsee enemmän huolehtimista kuin vanhempana. Neljän päivän ikäisenä siitä tulee nuori, ja kahdeksantena päivänä aikuinen, jolloin se tarvitsee enää hyvin vähän huomiota.
 
