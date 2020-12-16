@@ -2,6 +2,7 @@
 package tamagotchi.dao;
 
 import java.util.ArrayList;
+import tamagotchi.dao.PetCemeteryDao;
 import tamagotchi.domain.Pet;
 
 /**

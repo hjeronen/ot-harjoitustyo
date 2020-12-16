@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+import tamagotchi.dao.PetDao;
 import tamagotchi.domain.Pet;
 
 /**
