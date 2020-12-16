@@ -40,9 +40,9 @@ Molempien tallennusluokkien testeissä käytetään TemporaryFolder-luokkaa, jon
 
 ## Testauskattavuus
 
-Käyttöliittymä poisluettuna testien rivikattavuus on 96%, ja haarautumakattavuus 98%.
+Käyttöliittymä poisluettuna testien rivikattavuus on 97%, ja haarautumakattavuus 98%.
 
-![Testikattavuusraportti](https://user-images.githubusercontent.com/73843204/101990733-792b8680-3ca8-11eb-8cc1-435aa2b756fe.png)
+![Testikattavuusraportti](https://user-images.githubusercontent.com/73843204/102391479-1141ac80-3fd6-11eb-961b-f85bdd5db002.png)
 
 Sovelluslogiikan puolella tilanteissa, joissa on käytetty satunnaislukugeneraattoria, on testattu ainoastaan ääritapaukset. Tallennustiedostojen suhteen ei ole testattu tilanteita, joissa yritys lukea tai kirjoittaa tiedostoon päätyy virheeseen. Tilanteita, joissa tallennustiedosto puuttuu tai sen sisältö on virheellinen, on tosin testattu manuaalisesti.
 
