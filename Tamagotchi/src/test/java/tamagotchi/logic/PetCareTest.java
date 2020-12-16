@@ -2,6 +2,7 @@ package tamagotchi.logic;
 
 
 import java.sql.SQLException;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -31,11 +32,11 @@ public class PetCareTest {
     
     @Test
     public void setUpPetDaoSetsNewPetDao() {
+        Pet oldPet = this.petCare.getPetDao().getPet();
         PetDao newDao = new FakePetDao();
-        newDao.getPet().setName("Fluffy");
-        String oldPetName = this.petCare.getPetDao().getPet().getName();
         this.petCare.setUpPetDao(newDao);
-        assertNotEquals(oldPetName, this.petCare.getPetDao().getPet().getName());
+        Pet newPet = this.petCare.getPetDao().getPet();
+        assertFalse(oldPet == newPet);
     }
     
     @Test
@@ -48,8 +49,10 @@ public class PetCareTest {
     
     @Test
     public void saveGameSetsPetsAgeProperly() {
+        String newBirthday = LocalDate.now().minusDays(5).toString();
+        this.petCare.getPet().setBirthday(newBirthday);
         this.petCare.saveGame();
-        assertTrue(this.petCare.getPet().getAge() == 0);
+        assertTrue(this.petCare.getPet().getAge() == 5);
     }
     
     @Test
@@ -173,6 +176,7 @@ public class PetCareTest {
     @Test
     public void checkIfPetNeedsCleaningDoesNotChangeIfItIsAlreadyTrue() {
         this.petCare.getPet().setNeedsWash(true);
+        this.petCare.getPet().getHygiene().setValue(100.0);
         this.petCare.checkIfPetNeedsCleaning();
         assertTrue(this.petCare.getPet().getNeedsWash() == true);
     }
@@ -196,8 +200,9 @@ public class PetCareTest {
     
     @Test
     public void calculatePetStatusCalculatesPetStatsRight() {
-        LocalDateTime date = LocalDateTime.now().minusHours(2);
-        long epoch = date.toEpochSecond(ZoneOffset.UTC);
+        LocalDateTime date = LocalDateTime.now().minusHours(1);
+        Instant instant = date.atZone(ZoneId.systemDefault()).toInstant();	
+	long epoch = instant.toEpochMilli() / 1000;
         this.petCare.getPet().setLastLogin(epoch);
         
         this.petCare.calculatePetStatus();

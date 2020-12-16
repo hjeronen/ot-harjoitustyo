@@ -187,6 +187,7 @@ public class GUI extends Application {
         GameOverSceneController gameOverController = gameOverLoader.getController();
         
         gameOverController.setApplication(this);
+        gameOverController.setUpRenderer();
         Scene gameOverScene = new Scene(gameOver);
         
         this.stage.setTitle("Tamagotchi");
@@ -216,6 +217,13 @@ public class GUI extends Application {
         this.stage.show();
     }
     
+    /**
+     * Sets the scene 'PetCemeteryScene'.
+     * Loads PetCemeteryScene from a FXML-file, creates a scene and sets it in 
+     * the stage.
+     * 
+     * @throws IOException 
+     */
     public void setPetCemeteryScene() throws IOException {
         this.isPaused = true;
         

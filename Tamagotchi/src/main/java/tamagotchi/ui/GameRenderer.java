@@ -30,6 +30,7 @@ public class GameRenderer {
     
     private Image skull;
     private Image waste;
+    private Image ghost;
     
     
     public GameRenderer(Canvas canvas) {
@@ -45,6 +46,7 @@ public class GameRenderer {
         this.showVirus = false;
         this.skull = new Image("/images/skull.jpg");
         this.waste = new Image("/images/alienWaste.jpg");
+        this.ghost = new Image("/images/ghost.jpg");
     }
     
     /**
@@ -216,7 +218,7 @@ public class GameRenderer {
      */
     public void renderAngry() {
         prepare();
-        this.sprite.drawSpriteAngry(context);
+        this.sprite.drawSpriteAngry(this.context);
     }
     
     /**
@@ -228,6 +230,17 @@ public class GameRenderer {
      */
     public void renderHappy() {
         prepare();
-        this.sprite.drawSpriteHappy(context);
+        this.sprite.drawSpriteHappy(this.context);
+    }
+    
+    /**
+     * Draws ghost sprite.
+     * GameOverScene uses this method to draw a picture of a ghost.
+     * 
+     * @see GameOverSceneController#setUpRenderer()
+     */
+    public void renderGhost() {
+        prepare();
+        this.context.drawImage(this.ghost, this.centerX - (this.ghost.getWidth() * 0.25), this.centerY);
     }
 }

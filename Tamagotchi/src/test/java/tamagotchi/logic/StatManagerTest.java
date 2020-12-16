@@ -27,9 +27,9 @@ public class StatManagerTest {
     @Test
     public void setPetSetsNewPet() {
         Pet newPet = new Pet();
-        newPet.setName("Fluffy");
         Pet oldPet = this.manager.getPet();
-        assertEquals(this.manager.getPet().getName(), oldPet.getName());
+        this.manager.setPet(newPet);
+        assertNotEquals(this.manager.getPet(), oldPet);
     }
     
     @Test
@@ -86,7 +86,7 @@ public class StatManagerTest {
     }
     
     @Test
-    public void updateHealthDoesDecreaseHealthFastIfPetIsSick() {
+    public void updateHealthDecreasesHealthFastIfPetIsSick() {
         this.pet.setIsSick(true);
         this.pet.getHygiene().setValue(100.0);
         this.manager.updateHealth(10000);
@@ -149,13 +149,13 @@ public class StatManagerTest {
     }
     
     @Test
-    public void calculatePetStatsDecreasesHealthAndEnergyFromMaxToZeroInOneDayInStageTwo() {
+    public void calculatePetStatsDecreasesHealthAndEnergyFromMaxToZeroInTwoDaysInStageTwo() {
         this.pet.getEnergy().setValue(100.0);
         this.pet.getHappiness().setValue(100.0);
         this.pet.getHealth().setValue(100.0);
         this.pet.getHygiene().setValue(100.0);
         
-        LocalDate date = LocalDate.now().minusDays(1);
+        LocalDate date = LocalDate.now().minusDays(2);
         ZoneId zoneId = ZoneId.systemDefault();
         long epoch = date.atStartOfDay(zoneId).toEpochSecond();
         this.pet.setLastLogin(epoch);
@@ -169,15 +169,37 @@ public class StatManagerTest {
         assertTrue(this.pet.getEnergy().getValue() == 0.0);
         assertTrue(this.pet.getHealth().getValue() == 0.0);
     }
-     
+    
     @Test
-    public void calculatePetStatsDecreasesHealthAndEnergyFromMaxToZeroInTwoDaysInStageThree() {
+    public void calculatePetStatsDoesNotDecreaseEnergyAndHealthFromMaxToZeroInOneDayInStageTwo() {
         this.pet.getEnergy().setValue(100.0);
         this.pet.getHappiness().setValue(100.0);
         this.pet.getHealth().setValue(100.0);
         this.pet.getHygiene().setValue(100.0);
         
-        LocalDate date = LocalDate.now().minusDays(2);
+        LocalDate date = LocalDate.now().minusDays(1);
+        ZoneId zoneId = ZoneId.systemDefault();
+        long epoch = date.atStartOfDay(zoneId).toEpochSecond();
+        this.pet.setLastLogin(epoch);
+        
+        LocalDate newBirthday = this.pet.getBirthday().minusDays(4);
+        String birthday = newBirthday.toString();
+        this.pet.setBirthday(birthday);
+        
+        this.manager.calculatePetStats();
+        
+        assertFalse(this.pet.getEnergy().getValue() == 0.0);
+        assertFalse(this.pet.getHealth().getValue() == 0.0);
+    }
+    
+    @Test
+    public void calculatePetStatsDecreasesHealthAndEnergyFromMaxToZeroInThreeDaysInStageThree() {
+        this.pet.getEnergy().setValue(100.0);
+        this.pet.getHappiness().setValue(100.0);
+        this.pet.getHealth().setValue(100.0);
+        this.pet.getHygiene().setValue(100.0);
+        
+        LocalDate date = LocalDate.now().minusDays(3);
         ZoneId zoneId = ZoneId.systemDefault();
         long epoch = date.atStartOfDay(zoneId).toEpochSecond();
         this.pet.setLastLogin(epoch);
@@ -193,13 +215,13 @@ public class StatManagerTest {
     }
     
     @Test
-    public void calculatePetStatsDoesNotDecreaseEnergyAndHealthFromMaxToZeroInOneDayInStageThree() {
+    public void calculatePetStatsDoesNotDecreaseEnergyAndHealthFromMaxToZeroInTwoDaysInStageThree() {
         this.pet.getEnergy().setValue(100.0);
         this.pet.getHappiness().setValue(100.0);
         this.pet.getHealth().setValue(100.0);
         this.pet.getHygiene().setValue(100.0);
         
-        LocalDate date = LocalDate.now().minusDays(1);
+        LocalDate date = LocalDate.now().minusDays(2);
         ZoneId zoneId = ZoneId.systemDefault();
         long epoch = date.atStartOfDay(zoneId).toEpochSecond();
         this.pet.setLastLogin(epoch);

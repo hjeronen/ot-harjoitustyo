@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 public class GameOverSceneController implements Initializable {
 
     private GUI userinterface;
+    private GameRenderer renderer;
     
     /**
      * Anchor pane holding other ui-elements.
@@ -44,6 +45,15 @@ public class GameOverSceneController implements Initializable {
     private void handleButtonActionRestart() throws Exception {
         this.userinterface.setUpNewPetCare();
         this.userinterface.setNewGameScene();
+    }
+    
+    /**
+     * Set up renderer.
+     * Creates a GameRenderer and uses it to draw a picture on the canvas.
+     */
+    public void setUpRenderer() {
+        this.renderer = new GameRenderer(this.gameCanvas);
+        this.renderer.renderGhost();
     }
     
     

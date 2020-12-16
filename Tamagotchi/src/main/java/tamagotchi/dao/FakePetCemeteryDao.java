@@ -18,6 +18,7 @@ public class FakePetCemeteryDao implements PetCemeteryDao {
         this.saveExists = false;
     }
     
+    @Override
     public boolean getSaveExists() {
         return this.saveExists;
     }

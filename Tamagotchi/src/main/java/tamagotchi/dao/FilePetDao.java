@@ -6,8 +6,6 @@ import java.io.FileWriter;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import tamagotchi.domain.Pet;
 
 /**
@@ -39,7 +37,7 @@ public class FilePetDao implements PetDao {
         try {
             save();
         } catch (Exception ex) {
-            Logger.getLogger(FilePetDao.class.getName()).log(Level.SEVERE, null, ex);
+            this.saveExists = false;
         }
     }
     
@@ -76,6 +74,16 @@ public class FilePetDao implements PetDao {
             this.pet.getHappiness().setValue(Double.parseDouble(parts[4]));
             this.pet.getHealth().setValue(Double.parseDouble(parts[5]));
             this.pet.getHygiene().setValue(Double.parseDouble(parts[6]));
+            if (parts[7].equals("true")) {
+                this.pet.setNeedsWash(true);
+            } else {
+                this.pet.setNeedsWash(false);
+            }
+            if (parts[8].equals("true")) {
+                this.pet.setIsSick(true);
+            } else {
+                this.pet.setIsSick(false);
+            }
             this.saveExists = true;
         } catch (Exception noSuchElementException) {
             this.saveExists = false;
@@ -83,7 +91,7 @@ public class FilePetDao implements PetDao {
     }
     /**
      * Returns the value of this.saveExists.
-     * Informs if there is a gamesave or not.
+     * Informs if there is a game save or not.
      * @return this.saveExists true/false
      */
     @Override
@@ -97,24 +105,25 @@ public class FilePetDao implements PetDao {
       * time of creating the save as last login, energy-value, happiness-value, 
       * health-value and hygiene-value. Also changes the value of 
       * this.saveExists to true, informing that there is a save for current game.
-      * @throws Exception 
       */
-    public void save() throws Exception {
+    public void save() {
         try {
             FileWriter writer = new FileWriter(new File(this.saveFile));
             Date time = new Date();
             this.pet.setLastLogin(TimeUnit.MILLISECONDS.toSeconds(time.getTime()));
-            writer.write(this.pet.getName() + ";" 
-                    + this.pet.getBirthday().toString() + ";" 
-                    + this.pet.getLastLogin() + ";" 
-                    + this.pet.getEnergy() + ";" 
-                    + this.pet.getHappiness() + ";" 
-                    + this.pet.getHealth() + ";" 
-                    + this.pet.getHygiene());
+            writer.write(this.pet.getName() + ";"
+                    + this.pet.getBirthday().toString() + ";"
+                    + this.pet.getLastLogin() + ";"
+                    + this.pet.getEnergy() + ";"
+                    + this.pet.getHappiness() + ";"
+                    + this.pet.getHealth() + ";"
+                    + this.pet.getHygiene() + ";"
+                    + this.pet.getNeedsWash() + ";"
+                    + this.pet.getIsSick());
             writer.close();
             this.saveExists = true;
         } catch (Exception e) {
-            e.printStackTrace();
+            this.saveExists = false;
         }
     }
     

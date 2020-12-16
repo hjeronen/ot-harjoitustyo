@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tamagotchi.dao;
 
 import java.io.File;
@@ -17,7 +13,7 @@ import org.junit.rules.TemporaryFolder;
 import tamagotchi.domain.Pet;
 
 /**
- *
+ * Tests for the class FilePetDao.
  * @author Heli
  */
 
@@ -51,7 +47,7 @@ public class FilePetDaoTest {
     }
     
     @Test
-    public void getPetLoadsCorrectPet() throws Exception {
+    public void getPetLoadsCorrectPet() {
         this.dao.getPet().setName("Fluffy");
         this.dao.save();
         
@@ -83,6 +79,8 @@ public class FilePetDaoTest {
         save.getHappiness().setValue(100);
         save.getHealth().setValue(100);
         save.getHygiene().setValue(100);
+        save.setNeedsWash(true);
+        save.setIsSick(true);
         
         this.dao.createSave(save);
         
@@ -93,6 +91,8 @@ public class FilePetDaoTest {
         assertTrue(this.dao.getPet().getHappiness().getValue() == 100.0);
         assertTrue(this.dao.getPet().getHealth().getValue() == 100.0);
         assertTrue(this.dao.getPet().getHygiene().getValue() == 100.0);
+        assertTrue(this.dao.getPet().getNeedsWash());
+        assertTrue(this.dao.getPet().getIsSick());
     }
     
     
