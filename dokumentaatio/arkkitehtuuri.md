@@ -10,7 +10,7 @@ Kaikki käyttöliittymän koostamiseen liittyvät luokat on sijoitettu pakkaukse
 
 ## Käyttöliittymä
 
-Käyttöliittymä on toteutettu JavaFX:llä, ja kaikki sen koostamiseen käytety luokat löytyvät pakkauksesta ui. Pääasiallinen käyttöliittymän hallinnasta vastaava luokka on GUI, joka vastaa eri pelinäkymien käytöstä ja pelilogiikan yhdistämisestä niihin. Varsinaisia pelinäkymiä on neljä, NewGameScene, MainGameScene, MiniGameScene ja GameOverScene. Näiden lisäksi on myös näkymä PetCemeteryScene, jossa käyttäjä näkee listattuna aiemmat pelissä omistetut Petit. Jokainen näkymä on siis FXML-dokumentin määrittelemä Scene-olio, joka GUI:ssa ladataan ja asetetaan oliomuuttujaan stage käyttäjälle näytettäväksi. Jokaisella on oma controller-luokka, jossa ko. näkymän toiminta on määritelty. Nämä kontrolleriluokat on esitetty alempana luokka/pakkauskaaviossa.
+Käyttöliittymä on toteutettu JavaFX:llä, ja kaikki sen koostamiseen käytety luokat löytyvät pakkauksesta [ui](https://github.com/hjeronen/ot-harjoitustyo/tree/master/Tamagotchi/src/main/java/tamagotchi/ui). Pääasiallinen käyttöliittymän hallinnasta vastaava luokka on [GUI](https://github.com/hjeronen/ot-harjoitustyo/blob/master/Tamagotchi/src/main/java/tamagotchi/ui/GUI.java), joka vastaa eri pelinäkymien käytöstä ja pelilogiikan yhdistämisestä niihin. Varsinaisia pelinäkymiä on neljä, NewGameScene, MainGameScene, MiniGameScene ja GameOverScene. Näiden lisäksi on myös näkymä PetCemeteryScene, jossa käyttäjä näkee listattuna aiemmat pelissä omistetut Petit. Jokainen näkymä on siis FXML-dokumentin määrittelemä Scene-olio, joka GUI:ssa ladataan ja asetetaan oliomuuttujaan stage käyttäjälle näytettäväksi. Jokaisella on oma controller-luokka, jossa ko. näkymän toiminta on määritelty. Nämä kontrolleriluokat on esitetty alempana luokka/pakkauskaaviossa.
 
 Itse pelilogiikasta vastaa luokka PetCare, jonka tuntee vain luokka GUI. GUI:n kautta muissa näkymissä tapahtuvat toiminnot kutsuvat PetCaren metodeja, tai näkymille välitetään tietoja Petin tilasta. Ainoastaan näkymän MiniGameScene kontrolleriluokka tietää itse ja yksin käyttämänsä MiniGame-luokan, joka siis vastaa ohjelman sisäisen minipelin toimintalogiikasta.
 
@@ -18,7 +18,7 @@ Se, mikä pelinäkymä on kulloinkin esillä, riippuu pelitilanteesta. Aloitetta
 
 ### AnimationTimer
 
-Koska käyttöliittymä on toteutettu JavaFX:llä, on ns. GameLoop toteutettu sen ominaisuudella AnimationTimer. Se luodaan GUI:n start()-metodin sisällä, ja sen handle()-metodissa päivitetään Petin tila joka 1500 millisekunti, eli 1.5 sekunnin välein. 10 sekunnin välein tarkastetaan myös sairastuuko Pet tai jättääkö se jätöksiä. 100 sekunnin välein tarkistetaan myös Petin iän määrittelemä kehitysaste.
+Koska käyttöliittymä on toteutettu JavaFX:llä, on ns. GameLoop toteutettu sen ominaisuudella AnimationTimer. Se luodaan GUI:n [start()](https://github.com/hjeronen/ot-harjoitustyo/blob/c7ea872356720db22b586919920a625841a86970/Tamagotchi/src/main/java/tamagotchi/ui/GUI.java#L56)-metodin sisällä, ja sen [handle()](https://github.com/hjeronen/ot-harjoitustyo/blob/c7ea872356720db22b586919920a625841a86970/Tamagotchi/src/main/java/tamagotchi/ui/GUI.java#L87)-metodissa päivitetään Petin tila joka 1500 millisekunti, eli 1.5 sekunnin välein. 10 sekunnin välein tarkastetaan myös sairastuuko Pet tai jättääkö se jätöksiä. 100 sekunnin välein tarkistetaan myös Petin iän määrittelemä kehitysaste.
 
 ### GameRenderer ja Sprite
 
@@ -33,7 +33,7 @@ GameRenderer sisältää oliomuuttujina tiedot kuvista, joita se tarvitsee kaiki
 Pelin ideana on pitää hengissä virtuaalista lemmikkiä, jota edustaa luokka Pet. Pet käyttää luokan Stat ilmentymiä pitämään kirjaa omasta tilastaan, esim. Petin energian määrää ilmaisee Stat-olio, jolla on maksimi- ja minimiraja sekä arvo, jota voi kasvattaa tai vähentää. Pet ja Stat sijaitsevat pakkauksessa domain.
 
 ### PetCare
-Pakkauksessa logic pääasiallinen pelilogiikasta vastaava luokka on PetCare, joka tuntee pelin kohteena olevan Petin. PetCare on vastuussa Petin hoitoon liittyvistä toiminnoista (feed, play, heal ja clean) sekä Petin tilan valvomisesta (esim. luokan metodeissa tarkastetaan, onko Pet vielä hengissä, tarvitseeko se pesua tai sairastuuko se) ja Petin tallennuksesta PetDao-olion avulla (itse tallennus toteutetaan luokassa FilePetDao). Edesmenneet Petit siirretään PetCemeteryDao-olion tallennettavaksi.
+Pakkauksessa logic on pääasiallinen pelilogiikasta vastaava luokka, [PetCare](https://github.com/hjeronen/ot-harjoitustyo/blob/master/Tamagotchi/src/main/java/tamagotchi/logic/PetCare.java), joka tuntee pelin kohteena olevan Petin. PetCare on vastuussa Petin hoitoon liittyvistä toiminnoista (feed, play, heal ja clean) sekä Petin tilan valvomisesta (esim. luokan metodeissa tarkastetaan, onko Pet vielä hengissä, tarvitseeko se pesua tai sairastuuko se) ja Petin tallennuksesta PetDao-olion avulla (itse tallennus toteutetaan luokassa FilePetDao). Edesmenneet Petit siirretään PetCemeteryDao-olion tallennettavaksi.
 
 Esimerkiksi kun käyttöliittymässä paina nappia Feed, kutsutaan PetCaren metodia feedPet(), joka kasvattaa Petin energia-statin arvoa luvulla 10. Statin arvo ei voi kasvaa yli sen maksimiarvon tai tippua alle sen minimiarvon, mutta tämän vahtimisesta vastaa itse Stat-olio. Game loopissa ajoittain kutsutaan PetCare:n metodeja päivittämään Petin stattien tila ja tarkastamaan, onko se vielä hengissä.
 
@@ -82,7 +82,7 @@ Seuraavassa on havainnollistettu sekvenssikaaviolla ohjelman toimintaa, kun käy
 
 ![NimenantoSekvenssikaavio](https://user-images.githubusercontent.com/73843204/102498899-d6458480-407a-11eb-92ea-a563c4c99f38.png)
 
-Käyttäjä syöttää haluamansa nimen tekstikenttään ja tallentaa sen painamalla napista 'SaveName!', jolloin NewGameSceneControllerin tapahtumankuuntelijametodi setPetName() hakee nimen TextField-oliolta 'inputPetName' ja tallentaa nimen oliomuuttujaan this.petName. Tämän jälkeen käyttäjä painaa nappia 'Start Game', mikä aktivoi kontrolleriluokan metodin startGame(). Metodi tarkastaa ensin nimen kutsumalla metodia checkName(). Jos nimeä ei ole tallennettu, jos se sisältää merkin ';' tai jos se on liian lyhyt tai ei sisällä yhtään kirjainta, kutsutaan metodia showErrorLabel() oikealla parametrilla näyttämään virheilmoituksen käyttäjälle, ja palautetaan false. Jos nimi täyttää kaikki vaatimukset, checkName() palauttaa true, ja metodi startGame() hakee GUI:lta PetCare-olion ja siltä Pet-olion, jolle se asettaa nimen. Sen jälkeen metodi kutsuu GUI:n metodia setMainGameScene(), joka vaihtaa näkymään MainGameScenen.
+Käyttäjä syöttää haluamansa nimen tekstikenttään ja tallentaa sen painamalla napista 'SaveName!', jolloin NewGameSceneControllerin tapahtumankäsittelijämetodi setPetName() hakee nimen TextField-oliolta 'inputPetName' ja tallentaa nimen oliomuuttujaan this.petName. Tämän jälkeen käyttäjä painaa nappia 'Start Game', mikä aktivoi kontrolleriluokan metodin startGame(). Metodi tarkastaa ensin nimen kutsumalla metodia checkName(). Jos nimeä ei ole tallennettu, jos se sisältää merkin ';' tai jos se on liian pitkä tai ei sisällä yhtään kirjainta, kutsutaan metodia showErrorLabel() oikealla parametrilla näyttämään virheilmoituksen käyttäjälle, ja palautetaan false. Jos nimi täyttää kaikki vaatimukset, checkName() palauttaa true, ja metodi startGame() hakee GUI:lta PetCare-olion ja siltä Pet-olion, jolle se asettaa nimen. Sen jälkeen metodi kutsuu GUI:n metodia setMainGameScene(), joka vaihtaa näkymään MainGameScenen.
 
 #### Petistä huolehtiminen
 
@@ -119,6 +119,10 @@ PetCaren metodia calculatePetStatus() kutsutaan GUI:ssä ohjelman käynnistyess�
 Stattien päivityksen jälkeen palataan takaisin PetCaren metodiin, jossa tarkistetaan, onko Pet vielä hengissä. Jos sekä Energy että Health -statti ovat nollassa (petIsAlive() palauttaa 'false', eli pet ei ole elossa), Pet todetaan kuolleeksi, jolloin sille asetetaan sen alkuperäinen ikä, joka otettiin talteen metodin alussa (siltä varalta, että ohjelma on ollut suljettuna esim. sata päivää - Petille ei ole tarkoitus kertyä ikää ajalta, jonka se on ollut kuolleena). PetCare kutsuu PetCemetery-olion metodia addPet() antaen Petin sille parametrina, ja Pet lisätään PetCemetery-tietokantaan.
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
+
+### Ohjelman konfigurointi
+
+Esimerkiksi tallennustiedostojen nimet ja joidenkin muiden oliomuuttujien arvot olisi ehkä ollut parempi määritellä erillisessä konfiguraatiotiedostossa sen sijaan, että ne määritellään itse koodin sisällä.
 
 ### GUI ja AnimationTimer
 
