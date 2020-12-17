@@ -77,7 +77,7 @@ Tallennuksessa on käytetty Data Access Object -mallia, ja [pelilogiikan koodiss
 
 ## Päätoiminnallisuudet
 
-#### Petin nimeäminen
+### Petin nimeäminen
 
 Seuraavassa on havainnollistettu sekvenssikaaviolla ohjelman toimintaa, kun käyttäjä antaa uudelle Petille haluamansa nimen:
 
@@ -85,7 +85,7 @@ Seuraavassa on havainnollistettu sekvenssikaaviolla ohjelman toimintaa, kun käy
 
 Käyttäjä syöttää haluamansa nimen tekstikenttään ja tallentaa sen painamalla napista 'SaveName!', jolloin [NewGameSceneControllerin](https://github.com/hjeronen/ot-harjoitustyo/blob/7a25fe2b1953a225510427561b5b498f6d2c46ad/Tamagotchi/src/main/java/tamagotchi/ui/NewGameSceneController.java#L17) tapahtumankäsittelijämetodi setPetName() hakee nimen TextField-oliolta 'inputPetName' ja tallentaa nimen oliomuuttujaan this.petName. Tämän jälkeen käyttäjä painaa nappia 'Start Game', mikä aktivoi kontrolleriluokan metodin startGame(). Metodi tarkastaa ensin nimen kutsumalla metodia checkName(). Jos nimeä ei ole tallennettu, jos se sisältää merkin ';' tai jos se on liian pitkä tai ei sisällä yhtään kirjainta, kutsutaan metodia showErrorLabel() oikealla parametrilla näyttämään virheilmoituksen käyttäjälle, ja palautetaan false. Jos nimi täyttää kaikki vaatimukset, checkName() palauttaa true, ja metodi startGame() hakee GUI:lta PetCare-olion ja siltä Pet-olion, jolle se asettaa nimen. Sen jälkeen metodi kutsuu GUI:n metodia setMainGameScene(), joka vaihtaa näkymään MainGameScenen.
 
-#### Petistä huolehtiminen
+### Petistä huolehtiminen
 
 Alla on kuvattu sekvenssikaaviolla Petin ruokkiminen eli 'Feed'-toiminnallisuus.
 
@@ -95,7 +95,7 @@ Käyttäjä voi ruokkia lemmikkiä painamalla [MainGameScenen](https://github.co
 
 Muut MainGameScenessä mahdolliset toiminnot toimivat saman periaatteen mukaisesti, hakemalla käyttöliittymältä olion PetCare ja kutsumalla sen metodia Petin statin kasvatukseen. Jos Pet on sairas, tulee yläkulmaan näkyviin musta pääkallo, joka katoaa kun Petin Health-mittari kasvatetaan maksimiin. Samoin Pet saattaa milloin tahansa jättää pieniä vihreitä jätöksiä (tällä hetkellä vain yhden kerrallaan), jotka katoavat kun käytetään Clean-toimintoa. Painamalla napista 'View Cemetery' vaihtuu näkymään PetCemeteryScene, jossa ohjelma listaa taulukkoon käyttäjällä aiemmin olleet Petit.
 
-#### MiniGame
+### MiniGame
 
 Poikkeuksena muihin toimintoihin on Play-nappi, joka kutsuu GUI:n metodia setMiniGameScene(), joka siis vaihtaa näkymään Petin kanssa pelattavan minipelin. Minipelissä arvataan, ajatteleeko Pet korkeampaa vai matalampaa lukua kuin esillä oleva numero.
 
@@ -109,7 +109,7 @@ Metodi isHigher vertaa arvoa 'false' lauseeseen this.answer > this.number, eli s
 
 Sen jälkeen palataan takaisin metodiin handleButtonActionGuessLower(), joka kutsuu MiniGameSceneControllerin metodia setUpTextFieldAnswer. Tätä varten haetaan ensin MiniGame-oliolta sen oliomuuttujan answer arvo ja annetaan se metodikutsun parametriksi. Metodi kutsuu oliomuuttujalle answer (TextField) metodia setText antaen parametrina minipeliltä saadun vastauksen. Näin peli näyttää pelaajalle myös oikean vastauksen.
 
-#### Stattien päivitys
+### Stattien päivitys
 
 Alla on esitetty vielä hieman tiivistettynä PetCaren metodin [calculatePetStatus()](https://github.com/hjeronen/ot-harjoitustyo/blob/7a25fe2b1953a225510427561b5b498f6d2c46ad/Tamagotchi/src/main/java/tamagotchi/logic/PetCare.java#L185) toiminta sekvenssikaaviona (joka on silti jokseenkin pitkä):
 
