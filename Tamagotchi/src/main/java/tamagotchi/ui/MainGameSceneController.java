@@ -100,7 +100,7 @@ public class MainGameSceneController implements Initializable {
     /**
      * Updates the progress bars to show current progress.
      * Gets the value of Pet's energy, happiness, health and hygiene stats and 
-     * sets the value for proper progress bar for user to see.
+     * sets the value for the right progress bar for user to see.
      */
     public void setUpBars() {
         energyProgressBar.setProgress(this.userinterface.getPetCare().getPet().getEnergy().getValue() / 100);

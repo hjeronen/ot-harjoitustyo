@@ -54,8 +54,8 @@ public class GameRenderer {
      * Fills the canvas with color f0f2f5, painting over the previous image.
      */
     public void prepare() {
-        context.setFill(Color.web("#f0f2f5", 1.0));
-        context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        this.context.setFill(Color.web("#f0f2f5", 1.0));
+        this.context.fillRect(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
     }
     
     public GraphicsContext getContext() {
@@ -74,17 +74,17 @@ public class GameRenderer {
         spriteIdleMovement();
         
         if (this.spriteOrientation.equals("right")) {
-            this.sprite.drawSpriteRight(context);
+            this.sprite.drawSpriteRight(this.context);
         } else {
-            this.sprite.drawSpriteLeft(context);
+            this.sprite.drawSpriteLeft(this.context);
         }
         
         if (this.showVirus) {
-            context.drawImage(skull, this.canvas.getWidth() - 64.0, 0.0);
+            this.context.drawImage(this.skull, this.canvas.getWidth() - 64.0, 0.0);
         }
         
         if (this.needCleaning) {
-            context.drawImage(waste, this.canvas.getWidth() * 0.25, this.canvas.getHeight() - 64.0);
+            this.context.drawImage(this.waste, this.canvas.getWidth() * 0.25, this.canvas.getHeight() - 64.0);
         }
     }
     
@@ -132,8 +132,8 @@ public class GameRenderer {
      * Sets Sprite's x and y coordinates accordingly.
      */
     public void spritePlaceCenter() {
-        this.sprite.setX(centerX);
-        this.sprite.setY(centerY);
+        this.sprite.setX(this.centerX);
+        this.sprite.setY(this.centerY);
     }
     
     /**
@@ -193,7 +193,7 @@ public class GameRenderer {
      * @see Sprite#setSpriteImages(int)
      */
     public void setSpriteImage(int petDevelopmentStage) {
-        sprite.setSpriteImages(petDevelopmentStage);
+        this.sprite.setSpriteImages(petDevelopmentStage);
     }
     
     /**

@@ -8,7 +8,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -107,7 +106,7 @@ public class PetCemeterySceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    }    
+    }
     
 }
 

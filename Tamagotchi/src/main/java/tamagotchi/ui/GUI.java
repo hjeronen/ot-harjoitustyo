@@ -135,7 +135,7 @@ public class GUI extends Application {
     public void setNewGameScene() throws Exception {
         this.isPaused = true;
         
-        FXMLLoader newGameLoader = new FXMLLoader(getClass().getResource("/fxml/NewGame.fxml"));
+        FXMLLoader newGameLoader = new FXMLLoader(getClass().getResource("/fxml/NewGameScene.fxml"));
         Parent startScene = newGameLoader.load();
         NewGameSceneController startController = newGameLoader.getController();
         
@@ -250,7 +250,7 @@ public class GUI extends Application {
     }
     
     /**
-     * Calls PetCare's StatManager to update Pet's stats during game.
+     * Calls PetCare's method to update Pet's stats during game.
      * Also instructs the MainGameSceneController to update the progress bars 
      * to show the values of Pet's stats properly.
      * 
@@ -268,15 +268,13 @@ public class GUI extends Application {
     }
     
     /**
-     * Creates a new PetCare for a new game.
-     * PetCare creates a new game save for a new game. Saving method may 
-     * throw an exception.
+     * Creates a new save for a new game.
+     * PetCare creates a new game save for a new game.
      * 
-     * @throws Exception 
      * @see tamagotchi.logic.PetCare#createNewPetSave()
      * @see tamagotchi.dao.FilePetDao#createSave(tamagotchi.domain.Pet) 
      */
-    public void setUpNewPetCare() throws Exception {
+    public void setUpNewPetCare() {
         this.petCare.createNewPetSave();
     }
     

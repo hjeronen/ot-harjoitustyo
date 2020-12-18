@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 
 /**
  * NewGameScene FXML Controller class.
@@ -25,6 +26,9 @@ public class NewGameSceneController implements Initializable {
     
     @FXML
     private Label errorLabel;
+    
+    @FXML
+    private Tooltip nameRestrictions;
     
     
     public void setApplication(GUI ui) {
@@ -89,6 +93,11 @@ public class NewGameSceneController implements Initializable {
             return true;
         }
     }
+    
+    @FXML
+    public void showTooltip() {
+        this.nameRestrictions.setText("Name must be 1-10 characters long and must not contain ';'.");
+    }
 
     /**
      * Initializes the NewGameSceneController-class.
@@ -99,7 +108,7 @@ public class NewGameSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    }    
+    }
 
 
     
