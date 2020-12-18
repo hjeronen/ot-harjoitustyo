@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-Ohjelmassa testattuja luokkia ovat tallennukseen käytetyt luokat pakkauksessa tamagotchi.dao, Pet- ja Stat-luokat pakkauksessa tamagotchi.domain, sekä sovelluslogiikasta vastaavat luokat pakkauksessa tamagotchi.logic. Näitä luokkia on testattu yksikkö- ja integraatiotesteillä - luokkien yhteistoimintaa on testattu erityisesti luokan PetCare testeissä, sillä se on pääasiallisesti vastuussa muiden luokkien yhteistoiminnasta. Lisäksi ohjelman toimivuutta ja käyttöliittymää on testattu manuaalisesti sen suorituksen aikana.
+Ohjelmassa testattuja luokkia ovat tallennukseen käytetyt luokat pakkauksessa tamagotchi.dao, Pet- ja Stat-luokat pakkauksessa tamagotchi.domain, sekä sovelluslogiikasta vastaavat luokat pakkauksessa tamagotchi.logic. Näitä luokkia on testattu yksikkö- ja integraatiotesteillä - luokkien yhteistoimintaa on testattu erityisesti luokan PetCare testeissä, sillä se on pääasiallisesti vastuussa itse pelilogiikasta. Lisäksi ohjelman toimivuutta ja käyttöliittymää on testattu manuaalisesti sen suorituksen aikana.
 
 ## Yksikkö- ja integraatiotestaus
 
