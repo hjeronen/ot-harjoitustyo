@@ -2,10 +2,9 @@
 package tamagotchi.logic;
 
 import java.util.Random;
+
 /**
- * Gamelogic for the minigame that can be played with the pet.
- */
-/**
+ * Game logic for the mini game.
  *
  * @author Heli
  */
@@ -65,7 +64,7 @@ public class MiniGame {
      * than the baseline number, and returns the result of the comparison.
      * 
      * @param userGuess true for higher, false for lower
-     * @return true for correct guess, false for wrong
+     * @return boolean  true for correct guess, false for wrong
      */
     public boolean isHigher(boolean userGuess) {
         return (userGuess == (this.answer > this.number));
@@ -133,8 +132,8 @@ public class MiniGame {
      * 
      * @see MiniGame#isHigher(boolean)
      * 
-     * @return true if guess is right, false if wrong or if an answer has already
-     * been given this round.
+     * @return boolean  true if guess is right, false if wrong or if an answer 
+     * has already been given this round.
      */
     public boolean handleGuess(boolean guess) {
         if (!this.answerGiven) {

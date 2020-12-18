@@ -7,11 +7,9 @@ import tamagotchi.dao.PetDao;
 import tamagotchi.domain.Pet;
 
 /**
- * PetCare -class is the primary holder and caretaker for the pet.
- * Contains methods for caring for pet and creating a new save
+ * Responsible for game logic.
+ * Contains methods for caring for pet, checking it's status and saving the game
  * (saving happens in FilePetDao-class).
- */
-/** 
  *
  * @author Heli
  */
@@ -30,19 +28,6 @@ public class PetCare {
         this.petCemetery.createSave();
     }
     
-    /**
-     * Prepare PetDao.
-     * Sets PetDao for PetCare and gets the Pet from a saved file
-     * giving it to the PetCare and to it's StatManager.
-     * 
-     * @param petDao    Saved Pet
-     */
-    public void setUpPetDao(PetDao petDao) {
-        this.petDao = petDao;
-        this.pet = this.petDao.getPet();
-        this.statManager.setPet(this.pet);
-    }
-    
     public PetDao getPetDao() {
         return this.petDao;
     }
@@ -52,14 +37,14 @@ public class PetCare {
     }
     
     /**
-     * Creates a new Pet and saves it.
-     * 
-     * @throws Exception 
+     * Creates a new game save.
+     * Creates a new Pet, passes it to StatManager and saves it.
      * 
      * @see tamagotchi.dao.FilePetDao#createSave(Pet pet)
      */
-    public void createNewPetSave() throws Exception {
+    public void createNewPetSave() {
         this.pet = new Pet();
+        this.statManager.setPet(this.pet);
         this.petDao.createSave(this.pet);
     }
     
@@ -92,7 +77,7 @@ public class PetCare {
      * Happiness is increased by 10.0 times the score
      * gained from the MiniGame.
      * 
-     * @param score points gained in the minigame.
+     * @param score points gained from the minigame.
      */
     public void play(int score) {
         this.pet.getHappiness().increase(score * 10);
@@ -123,7 +108,7 @@ public class PetCare {
      * Pet is dead if both energy and health are at 0.
      * Dead Pet is added to the PetCemetery.
      * 
-     * @return  true if pet is alive, false if it is not
+     * @return boolean  true if pet is alive, false if it is not
      */
     public boolean petIsAlive() {
         return !(this.pet.getEnergy().getValue() == 0.0 && this.pet.getHealth().getValue() == 0.0);
@@ -148,8 +133,9 @@ public class PetCare {
     }
     
     /**
-     * Checks if Pet needs cleaning. If Pet needs a wash, waste appears in the
-     * game view. Likelihood for this is greater as hygiene gets lower.
+     * Checks if Pet needs cleaning.
+     * If Pet needs a wash, waste appears in the game view. Likelihood for 
+     * this is greater as hygiene gets lower.
      */
     public void checkIfPetNeedsCleaning() {
         if (!this.pet.getNeedsWash()) {

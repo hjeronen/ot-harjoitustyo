@@ -1,11 +1,6 @@
 
 package tamagotchi.dao;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.util.Date;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 import tamagotchi.dao.PetDao;
 import tamagotchi.domain.Pet;
 
@@ -15,10 +10,12 @@ import tamagotchi.domain.Pet;
  */
 public class FakePetDao implements PetDao {
     private Pet pet;
+    private boolean saveExists;
     
     
     public FakePetDao() {
         this.pet = new Pet();
+        this.saveExists = false;
     }
 
     @Override
@@ -33,7 +30,17 @@ public class FakePetDao implements PetDao {
     
 
     @Override
-    public boolean saveExists() {
-        return false;
+    public boolean getSaveExists() {
+        return this.saveExists;
+    }
+
+    @Override
+    public void save() {
+        this.saveExists = true;
+    }
+
+    @Override
+    public void load() {
+        this.saveExists = true;
     }
 }

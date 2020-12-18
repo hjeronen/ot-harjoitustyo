@@ -16,7 +16,7 @@ import tamagotchi.dao.SQLPetCemeteryDao;
 /**
  * Graphic User Interface.
  * Controls the graphic user interface and other classes used to create it, 
- * connects game logic to them. 
+ * and connects game logic to them.
  * @author Heli
  */
 public class GUI extends Application {
@@ -56,7 +56,7 @@ public class GUI extends Application {
     public void start(Stage stage) throws NullPointerException, Exception {    
         this.stage = stage;
         
-        if (!this.petCare.getPetDao().saveExists()) {
+        if (!this.petCare.getPetDao().getSaveExists()) {
             setNewGameScene();
         } else {
             this.petCare.calculatePetStatus();

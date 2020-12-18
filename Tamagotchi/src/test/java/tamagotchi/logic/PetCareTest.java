@@ -28,21 +28,13 @@ public class PetCareTest {
         this.petCare = new PetCare(new FakePetDao(), new FakePetCemeteryDao());
     }
     
-    @Test
-    public void setUpPetDaoSetsNewPetDao() {
-        Pet oldPet = this.petCare.getPetDao().getPet();
-        PetDao newDao = new FakePetDao();
-        this.petCare.setUpPetDao(newDao);
-        Pet newPet = this.petCare.getPetDao().getPet();
-        assertFalse(oldPet == newPet);
-    }
     
     @Test
     public void createNewPetSaveCreatesNewSave() throws Exception {
-        this.petCare.getPetDao().getPet().setName("Fluffy");
-        String oldPetName = this.petCare.getPetDao().getPet().getName();
+        Pet oldPet = this.petCare.getPetDao().getPet();
         this.petCare.createNewPetSave();
-        assertNotEquals(oldPetName, this.petCare.getPetDao().getPet().getName());
+        Pet newPet = this.petCare.getPetDao().getPet();
+        assertFalse(oldPet == newPet);
     }
     
     @Test
@@ -118,20 +110,20 @@ public class PetCareTest {
     }
     
     @Test
-    public void petIsAliveReturnsFalseWhenEnergyAndHealthAreAtZero() throws SQLException {
+    public void petIsAliveReturnsFalseWhenEnergyAndHealthAreAtZero() {
         this.petCare.getPet().getEnergy().setValue(0);
         this.petCare.getPet().getHealth().setValue(0);
         assertTrue(!this.petCare.petIsAlive());
     }
     
     @Test
-    public void petIsAliveReturnsTrueWhenOnlyEnergyIsAtZero() throws SQLException {
+    public void petIsAliveReturnsTrueWhenOnlyEnergyIsAtZero() {
         this.petCare.getPet().getEnergy().setValue(0);
         assertTrue(this.petCare.petIsAlive());
     }
     
     @Test
-    public void petIsAliveReturnsTrueWhenOnlyHealthIsAtZero() throws SQLException {
+    public void petIsAliveReturnsTrueWhenOnlyHealthIsAtZero() {
         this.petCare.getPet().getHealth().setValue(0);
         assertTrue(this.petCare.petIsAlive());
     }
@@ -151,7 +143,7 @@ public class PetCareTest {
     }
     
     @Test
-    public void checkIfPetGetsSickDoesNotChangeValueIfPetIsAlreadySick() {
+    public void checkIfPetGetsSickDoesNotChangeIsSickValueIfItIsAlreadyTrue() {
         this.petCare.getPet().setIsSick(true);
         this.petCare.getPet().getHealth().setValue(100);
         this.petCare.checkIfPetGetsSick();
@@ -173,7 +165,7 @@ public class PetCareTest {
     }
     
     @Test
-    public void checkIfPetNeedsCleaningDoesNotChangeIfItIsAlreadyTrue() {
+    public void checkIfPetNeedsCleaningDoesNotChangeNeedsWashValueIfItIsAlreadyTrue() {
         this.petCare.getPet().setNeedsWash(true);
         this.petCare.getPet().getHygiene().setValue(100.0);
         this.petCare.checkIfPetNeedsCleaning();

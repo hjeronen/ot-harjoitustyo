@@ -1,7 +1,6 @@
 
 package tamagotchi.dao;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import tamagotchi.domain.Pet;
 

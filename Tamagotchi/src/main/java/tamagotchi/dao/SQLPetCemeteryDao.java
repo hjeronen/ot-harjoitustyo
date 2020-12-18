@@ -33,7 +33,7 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
     }
     
     /**
-    * Creates a SQL-table 'Pets'.
+    * Creates a table 'Pets'.
     * Returns true if table was created, false if an error occurred.
     * 
     * @return boolean true/false
@@ -52,11 +52,12 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
     }
     
     /**
-     * Adds a Pet to the 'Pets'-table.Pet is given as a parameter.
-     * If table is not found, creates a new table 'Pets' and adds the Pet there.
+     * Adds a Pet to the 'Pets'-table.
+     * Pet is given as a parameter. If the Pet was added successfully, returns 
+     * true. If table is not found, returns false.
      * 
      * @param pet   the Pet that is being added to the table
-     * @return boolean
+     * @return boolean  true/false if pet was added
      */
     @Override
     public boolean addPet(Pet pet) {

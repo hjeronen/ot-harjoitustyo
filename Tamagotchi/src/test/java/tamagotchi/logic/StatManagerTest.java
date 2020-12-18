@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 import tamagotchi.domain.Pet;
 
 /**
- * Unit and integration tests for StatManager-class.
+ * Tests for StatManager-class.
  * 
  * @author Heli
  */
@@ -144,8 +144,9 @@ public class StatManagerTest {
         Instant instant = date.atZone(ZoneId.systemDefault()).toInstant();	
 	long epoch = instant.toEpochMilli() / 1000;
         this.pet.setLastLogin(epoch);
-        this.manager.calculatePetStats();
         
+        this.manager.calculatePetStats();
+
         assertTrue(this.pet.getEnergy().getValue() == 0.0);
         assertTrue(this.pet.getHealth().getValue() == 0.0);
     }

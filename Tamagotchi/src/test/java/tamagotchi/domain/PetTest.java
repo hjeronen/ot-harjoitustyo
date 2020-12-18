@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Unit and integration tests for Pet-class.
+ * Tests for Pet-class.
  * 
  * @author Heli
  */
@@ -80,7 +80,7 @@ public class PetTest {
     }
     
     @Test
-    public void calculateAgeReturnsTheAgeRight() {
+    public void calculateAgeReturnsTheRightAge() {
         LocalDate newBirthday = this.pet.getBirthday().minusDays(8);
         String birthday = newBirthday.toString();
         this.pet.setBirthday(birthday);

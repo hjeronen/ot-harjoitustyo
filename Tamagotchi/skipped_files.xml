@@ -10,6 +10,7 @@
     <suppress files="tamagotchi.ui.NewGameSceneController.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="tamagotchi.ui.MiniGameSceneController.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="tamagotchi.ui.GameOverSceneController.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="tamagotchi.ui.PetCemeterySceneController.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="tamagotchi.ui.Sprite.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="tamagotchi.ui.GameRenderer.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

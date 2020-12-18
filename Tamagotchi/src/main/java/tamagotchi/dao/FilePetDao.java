@@ -27,7 +27,7 @@ public class FilePetDao implements PetDao {
     }
     
     /**
-     * Saves the current pet status.
+     * Saves the Pet's current status.
      * 
      * @param pet   Pet who's information will be saved.
      */
@@ -44,7 +44,7 @@ public class FilePetDao implements PetDao {
     /**
      * Returns the saved pet.
      * If unable to load a saved pet, returns a new pet.
-     * @return this.pet The default pet created in the constructor.
+     * @return this.pet the default pet created in the constructor
      */
     @Override
     public Pet getPet() {
@@ -60,10 +60,11 @@ public class FilePetDao implements PetDao {
     /**
      * Loads a saved game.
      * Reads saved information from save file and gives it to the created new pet.
-     * @throws Exception    If a save file is not found (no previous saved game), 
+     * If a save file is not found (no previous saved game), 
      * changes the value of this.saveExists to false.
      */
-    public void load() throws Exception {
+    @Override
+    public void load() {
         try {
             Scanner reader = new Scanner(new File(this.saveFile));
             String[] parts = reader.nextLine().split(";");
@@ -89,13 +90,14 @@ public class FilePetDao implements PetDao {
             this.saveExists = false;
         }
     }
+    
     /**
      * Returns the value of this.saveExists.
      * Informs if there is a game save or not.
      * @return this.saveExists true/false
      */
     @Override
-    public boolean saveExists() {
+    public boolean getSaveExists() {
         return this.saveExists;
     }
     
@@ -103,9 +105,12 @@ public class FilePetDao implements PetDao {
       * Saves this.pet.
       * Attempts to create a save file and writes in it the pet's name, birthday, 
       * time of creating the save as last login, energy-value, happiness-value, 
-      * health-value and hygiene-value. Also changes the value of 
-      * this.saveExists to true, informing that there is a save for current game.
+      * health-value, hygiene-value, and boolean values of needsWash and isSick. 
+      * Also changes the value of this.saveExists to true, informing that there 
+      * is a save for current game. If the save file could not be created, 
+      * changes the value of this.saveExists to false.
       */
+    @Override
     public void save() {
         try {
             FileWriter writer = new FileWriter(new File(this.saveFile));

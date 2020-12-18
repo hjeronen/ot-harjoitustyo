@@ -10,7 +10,9 @@ import tamagotchi.domain.Pet;
 public interface PetDao {
     void createSave(Pet pet);
     Pet getPet();
-    boolean saveExists();
+    boolean getSaveExists();
+    void save();
+    void load();
 
 
     

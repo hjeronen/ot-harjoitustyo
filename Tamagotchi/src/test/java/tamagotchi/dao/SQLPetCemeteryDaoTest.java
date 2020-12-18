@@ -2,7 +2,6 @@
 package tamagotchi.dao;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,7 +34,7 @@ public class SQLPetCemeteryDaoTest {
     }
 
     @Test
-    public void createSQLCreatesTheTablePets() throws SQLException {
+    public void createSQLCreatesTheTablePets() {
         assertTrue(this.dao.createSave());
     }
     
@@ -46,7 +45,7 @@ public class SQLPetCemeteryDaoTest {
     }
     
     @Test
-    public void addPetAddsInformationToTheTable() throws SQLException, FileNotFoundException {
+    public void addPetAddsInformationToTheTable() {
         this.dao.createSave();
         this.dao.addPet(new Pet());
         ArrayList<String> pets = this.dao.getAll();
@@ -54,23 +53,23 @@ public class SQLPetCemeteryDaoTest {
     }
     
     @Test
-    public void addPetReturnsFalseIfATableIsNotFound() throws SQLException {
+    public void addPetReturnsFalseIfATableIsNotFound() {
         assertFalse(this.dao.addPet(new Pet()));
     }
     
     @Test
-    public void getAllReturnsAnEmptyArrayListIfThereIsNoTable() throws SQLException {
+    public void getAllReturnsAnEmptyArrayListIfThereIsNoTable() {
         assertTrue(this.dao.getAll().isEmpty());
     }
     
     @Test
-    public void getAllReturnsAnEmptyArrayListIfTableContainsNothing() throws SQLException {
+    public void getAllReturnsAnEmptyArrayListIfTableContainsNothing() {
         this.dao.createSave();
         assertTrue(this.dao.getAll().isEmpty());
     }
     
     @Test
-    public void getAllReturnsAllThePetsInTheTable() throws SQLException {
+    public void getAllReturnsAllThePetsInTheTable() {
         Pet one = new Pet();
         one.setAge(5);
         Pet two = new Pet();

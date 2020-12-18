@@ -36,26 +36,24 @@ public class FilePetDaoTest {
     
     @Test
     public void createSaveCreatesNewSave() {
-        Pet test = this.dao.getPet();
-        
         Pet fluffy = new Pet();
         fluffy.setName("Fluffy");
         
         this.dao.createSave(fluffy);
         
-        assertNotEquals(test.getName(), this.dao.getPet().getName());
+        assertEquals(this.dao.getPet().getName(), "Fluffy");
     }
     
     @Test
-    public void getPetLoadsCorrectPet() {
+    public void getPetLoadsAndReturnsSavedPet() {
         this.dao.getPet().setName("Fluffy");
         this.dao.save();
         
-        Pet test = new Pet();
+        Pet defaultPet = new Pet();
         
         Pet save = this.dao.getPet();
         
-        assertNotEquals(test.getName(), save.getName());
+        assertNotEquals(defaultPet.getName(), save.getName());
     }
     
     @Test
@@ -82,7 +80,7 @@ public class FilePetDaoTest {
         save.setNeedsWash(true);
         save.setIsSick(true);
         
-        this.dao.createSave(save);
+        this.dao.save();
         
         assertEquals(this.dao.getPet().getName(), "Gogo");
         assertEquals("" + this.dao.getPet().getBirthday(), "2020-11-30");

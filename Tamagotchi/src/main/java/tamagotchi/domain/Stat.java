@@ -4,9 +4,8 @@ package tamagotchi.domain;
 import java.text.DecimalFormat;
 
 /**
-* Stat-class represents a stat of a pet, for example the amount of energy it has.
-*/
-/**
+ * Stat-class represents a stat of a pet, for example the amount of energy it
+ * has.
  *
  * @author Heli
  */
@@ -34,8 +33,8 @@ public class Stat {
     }
     
     /**
-     * Increases this.value by a given amount
-     * but not over this.max value.
+     * Increases Stat's value.
+     * Increases this.value by a given amount by not over this.max value.
      * 
      * @param amount    given amount to increase
      */
@@ -48,18 +47,10 @@ public class Stat {
     }
     
     /**
-     * Increases this.value by 1.0.
-     */
-    public void increase() {
-        this.increase(1.0);
-    }
-    
-    /**
      * Decreases Stat's value.
-     * Decreases this.value by a given amount
-     * but not under this.min value.
+     * Decreases this.value by a given amount but not under this.min value.
      * 
-     * @param amount    given amount to decrease.
+     * @param amount    given amount to decrease
      */
     public void decrease(double amount) {
         if (this.value - amount <= this.min) {
@@ -67,13 +58,6 @@ public class Stat {
         } else {
             this.value -= amount; 
         }    
-    }
-    
-    /**
-     * Decreases Stat's value by 1.0.
-     */
-    public void decrease() {
-        this.decrease(1.0);
     }
     
     /**

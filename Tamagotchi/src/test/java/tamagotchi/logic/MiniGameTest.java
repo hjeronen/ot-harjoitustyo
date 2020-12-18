@@ -1,10 +1,7 @@
 
 package tamagotchi.logic;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -27,42 +24,40 @@ public class MiniGameTest {
     @Test
     public void generateNumberChangesNumberValue() {
         this.game.setNumber(0);
-        int number = this.game.getNumber();
         this.game.generateNumber();
-        assertTrue(this.game.getNumber() != number);
+        assertTrue(this.game.getNumber() != 0);
     }
     
     @Test
     public void generateAnswerChangesAnswerValue() {
         this.game.setAnswer(11);
-        int answer = this.game.getAnswer();
         this.game.generateAnswer();
-        assertTrue(this.game.getAnswer() != answer);
+        assertTrue(this.game.getAnswer() != 11);
     }
     
     @Test
-    public void isHigherReturnsFalseIfPlayerGuessHigherAndAnswerIsLower() {
+    public void isHigherReturnsFalseIfPlayerGuessesHigherAndAnswerIsLower() {
         this.game.setNumber(3);
         this.game.setAnswer(1);
         assertTrue(this.game.isHigher(true) == false);
     }
     
     @Test
-    public void isHigherReturnsFalseIfPlayerGuessIsLowerAndAnswerIsHigher() {
+    public void isHigherReturnsFalseIfPlayerGuessesLowerAndAnswerIsHigher() {
         this.game.setNumber(3);
         this.game.setAnswer(5);
         assertTrue(this.game.isHigher(false) == false);
     }
     
     @Test
-    public void isHigherReturnsTrueIfPlayerGuessIsHigherAndAnswerIsHigher() {
+    public void isHigherReturnsTrueIfPlayerGuessesHigherAndAnswerIsHigher() {
         this.game.setNumber(3);
         this.game.setAnswer(5);
         assertTrue(this.game.isHigher(true) == true);
     }
     
     @Test
-    public void isHigherReturnsTrueIfPlayerGuesIsLowerAndAnswerIsLower() {
+    public void isHigherReturnsTrueIfPlayerGuessesLowerAndAnswerIsLower() {
         this.game.setNumber(3);
         this.game.setAnswer(1);
         assertTrue(this.game.isHigher(false) == true);
@@ -85,17 +80,15 @@ public class MiniGameTest {
     @Test
     public void playGeneratesNewNumber() {
         this.game.setNumber(0);
-        int old = this.game.getNumber();
         this.game.play();
-        assertTrue(this.game.getNumber() != old);
+        assertTrue(this.game.getNumber() != 0);
     }
     
     @Test
     public void playGeneratesNewAnswer() {
         this.game.setAnswer(11);
-        int old = this.game.getAnswer();
         this.game.play();
-        assertTrue(this.game.getAnswer() != old);
+        assertTrue(this.game.getAnswer() != 11);
     }
     
     @Test
@@ -108,7 +101,7 @@ public class MiniGameTest {
     }
     
     @Test
-    public void handleGuessIncreasesScoreIfGuessCorrect() {
+    public void handleGuessIncreasesScoreIfGuessIsCorrect() {
         this.game.setNumber(3);
         this.game.setAnswer(5);
         int oldScore = this.game.getScore();
@@ -117,7 +110,7 @@ public class MiniGameTest {
     }
     
     @Test
-    public void handleGuessDoesNotIncreaseScoreIfGuessWrong() {
+    public void handleGuessDoesNotIncreaseScoreIfGuessIsWrong() {
         this.game.setNumber(3);
         this.game.setAnswer(5);
         int oldScore = this.game.getScore();
@@ -126,7 +119,7 @@ public class MiniGameTest {
     }
     
     @Test
-    public void handleGuessDoesNotIncreaseScoreIfGuessCorrectButAnswerGivenIsTrue() {
+    public void handleGuessDoesNotIncreaseScoreIfGuessIsCorrectButAnswerGivenIsTrue() {
         this.game.setNumber(3);
         this.game.setAnswer(5);
         int oldScore = this.game.getScore();

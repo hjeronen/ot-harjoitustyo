@@ -4,10 +4,9 @@ package tamagotchi.logic;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import tamagotchi.domain.Pet;
+
 /**
- * StatManager calculates the decay of pet's stats
- */
-/** 
+ * StatManager calculates the decay of pet's stats.
  *
  * @author Heli
  */
@@ -18,7 +17,7 @@ public class StatManager {
     
     public StatManager(Pet pet) {
         this.pet = pet;
-        this.decayRate = 0.0009; // Base rate: 1/108
+        this.decayRate = 0.0009;
     }
     
     public void setPet(Pet newPet) {
@@ -31,7 +30,7 @@ public class StatManager {
     
     /**
      * Sets the decay rate based on the development stage of the pet.
-     * At base rate, the value of a stat drops 1/108 per second.
+     * At base rate, the value of a stat drops 0.0009 per second.
      * Base rate is affected by pet's development stage (1, 2 or 3).
      * As pet gets older, the decay rate becomes smaller.
      */

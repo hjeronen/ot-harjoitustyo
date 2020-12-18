@@ -8,8 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Pet-class represents the pet, the main focus of the game.
- */
-/**
  *
  * @author Heli
  */
@@ -46,8 +44,6 @@ public class Pet {
         
         this.developmentStage = 1;
     }
-    
-    
     
     public long getLastLogin() {
         return this.lastLogin;
@@ -105,9 +101,9 @@ public class Pet {
     
     /**
     * Sets a new birthday for the pet.
-    * New date is given as a string using form yyyy-mm-dd
+    * New date is given as a string using form "yyyy-mm-dd".
     * 
-    * @param yyyymmdd new date for birthday
+    * @param yyyymmdd   new date for birthday
     * 
     */
     public void setBirthday(String yyyymmdd) {

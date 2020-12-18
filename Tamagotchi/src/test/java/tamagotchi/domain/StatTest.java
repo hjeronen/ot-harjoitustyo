@@ -1,14 +1,12 @@
 package tamagotchi.domain;
 
-
-
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 
 /**
- * Unit tests for Stat-class.
+ * Tests for Stat-class.
  * 
  * @author Heli
  */
@@ -29,12 +27,6 @@ public class StatTest {
     }
     
     @Test
-    public void defaultDecreaseDecreasesValueByOne() {
-        stat.decrease();
-        assertTrue(stat.getValue() == 9.0);
-    }
-    
-    @Test
     public void decreaseDecreasesValueByGivenAmount() {
         stat.decrease(5.0);
         assertTrue(stat.getValue() == 5.0);
@@ -44,12 +36,6 @@ public class StatTest {
     public void statValueWontGoBelowMin() {
         stat.decrease(20.0);
         assertTrue(stat.getValue() == 0.0);
-    }
-    
-    @Test
-    public void defaultIncreaseIncreasesValueByOne() {
-        stat.increase();
-        assertTrue(stat.getValue() == 11.0);
     }
     
     @Test
