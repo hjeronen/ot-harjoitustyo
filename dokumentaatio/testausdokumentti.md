@@ -1,10 +1,6 @@
 # Testausdokumentti
 
-Ohjelmassa testattuja luokkia ovat tallennukseen käytetyt luokat pakkauksessa tamagotchi.dao, Pet- ja Stat-luokat pakkauksessa tamagotchi.domain, sekä sovelluslogiikasta vastaavat luokat pakkauksessa tamagotchi.logic.
-
-Ohjelmaa on testattu sekä yksikkö- että integraatiotesteillä. Luokkaa Stat on testattu lähinnä yksikkötesteillä, sillä sen metodeissa ei tehdä mitään kovin monimutkaista eikä niissä käsitellä muita luokkia. Pet-luokkaa on testattu sekä yksikkö- että integraatiotesteillä, sillä sen metodeissa hyödynnetään paljon Stat-luokan metodikutsuja. Luokkia PetCare ja StatManager on testattu lähinnä integraatiotestein, sillä molempien luokkien metodit käsittelevät pääasiassa luokkia Pet ja Stat ja kutsuvat niiden metodeja. MiniGame luokka ei vuorovaikuta muiden luokkien kanssa mitenkään, sen metodeja ja niiden toimintaa on testattu sekä yksikkö- että integraatiotestein.
-
-Lisäksi ohjelman toimivuutta ja käyttöliittymää on testattu manuaalisesti sen suorituksen aikana.
+Ohjelmassa testattuja luokkia ovat tallennukseen käytetyt luokat pakkauksessa tamagotchi.dao, Pet- ja Stat-luokat pakkauksessa tamagotchi.domain, sekä sovelluslogiikasta vastaavat luokat pakkauksessa tamagotchi.logic. Näitä luokkia on testattu yksikkö- ja integraatiotesteillä - luokkien yhteistoimintaa on testattu erityisesti luokan PetCare testeissä, sillä se on pääasiallisesti vastuussa muiden luokkien yhteistoiminnasta. Lisäksi ohjelman toimivuutta ja käyttöliittymää on testattu manuaalisesti sen suorituksen aikana.
 
 ## Yksikkö- ja integraatiotestaus
 
@@ -20,23 +16,27 @@ Stat- ja Pet-luokat sisältävät lähinnä settereitä ja gettereitä, joiden t
 
 Ohjelman sovelluslogiikasta vastaavien luokkien testaus löytyy testipakkauksesta tamagotchi.logic.
 
-Pääasiassa sovelluslogiikasta huolehtiva luokka PetCare sisältää lähinnä Pet- ja Stat-luokkia hyödyntäviä metodeja, sillä sen toimintojen tarkoituksena on käsitellä Petin statteja. PetCareTest-luokan testeissä tarkastetaan, että metodit kasvattavat Petin stattien arvoa oikein tai muuttavat sen muita oliomuuttujia asianmukaisesti. PetCare-luokka on myös vastuussa sen valvomisesta, onko Pet sairas tai tarvitseeko se pesun - testeissä tarkastetaan, että näiden muuttujien arvo lasketaan ja asetetaan oikein Petille.
+Pääasiassa pelilogiikasta huolehtiva luokka PetCare vastaa Petistä huolehtimisesta ja sen tilan valvomisesta. PetCare-luokassa yhdistetään luokkien Pet, Stat ja StatManager metodeja, kuin myös käytetään tallennusluokkia PetDao ja PetCemetery. Luokan testeissä tarkastellaan näiden yhteistoimintaa ja sovelluslogiikan toimivuutta kokonaisuutena.
 
-PetCare-luokan vaatimana PetDaona käytetään luokkaa FakePetDao, joka ei tallenna Petin tietoja mihinkään. Tallennuksen testaus on suoritettu omassa osiossaan (kts. alempana).
+Esimerkiksi PetCareTest-luokan testeissä tarkastetaan, että luokan omat metodit kasvattavat Petin stattien arvoa oikein tai muuttavat sen muita oliomuuttujia asianmukaisesti. PetCare-luokka on myös vastuussa sen valvomisesta, onko Pet sairas tai tarvitseeko se pesun - testeissä tarkastetaan, että näiden muuttujien arvo lasketaan ja asetetaan oikein Petille.
 
-StatManager-luokka vastaa Petin stattien alenemisen laskemisesta. StatManagerTest-luokassa testataan, että StatManagerin metodit laskevat ja asettavat Petin sisältämien Stat-olioiden arvot oikein.
+PetCare on myös vastuussa StatManagerin hyödyntämisestä Petin stattien alenemisen laskemisessa, ja se tarkastaa tämän perusteella, onko Pet vielä hengissä. Testeissä on tarkastettu, että stattien arvo lasketaan oikein ja että kuollut Pet tallennetaan PetCemeterylle.
 
-Minipelin sovelluslogiikkaa testaavassa MiniGameTest-luokassa suoritetaan yksikkö- ja integraatiotestejä minipelin metodeille ja niiden yhteistoiminnalle. Se ei vuorovaikuta muiden luokkien kanssa, vaikkakin minipelistä saatavat pisteet annetaan kyllä PetCare-luokan play()-metodille parametrina. Play() metodia on kuitenkin testattu PetCareTest-luokassa ja minipelin pisteidenlaskua MiniGameTest-luokassa.
+PetCare-luokan vaatimina tallennusluokkina (PetDao ja PetCemeteryDao) käytetään valekomponentteja FakePetDao ja FakePetCemetery, jotka eivät tallenna Petin tietoja pysyväismuistiin. Tallennuksen testaus on suoritettu omassa osiossaan (kts. alempana).
+
+StatManager-luokka vastaa Petin stattien alenemisen laskemisesta. StatManagerTest-luokassa testataan vielä tarkemmin, että StatManagerin metodit laskevat ja asettavat Petin sisältämien Stat-olioiden arvot oikein, vaikka tätä on jo osittain tarkasteltu PetCare-luokan testien yhteydessä.
+
+Minipelin sovelluslogiikkaa testaavassa MiniGameTest-luokassa suoritetaan yksikkö- ja integraatiotestejä minipelin metodeille ja niiden yhteistoiminnalle. Se ei vuorovaikuta muiden luokkien kanssa, vaikkakin minipelistä saatavat pisteet annetaan PetCare-luokan play()-metodille parametrina. Play() metodia on kuitenkin testattu PetCareTest-luokassa ja minipelin pisteidenlaskua MiniGameTest-luokassa.
 
 Pisteiden laskun suhteen testeissä tarkastetaan, että oikeat vastaukset kasvattavat pistemäärää ja väärät eivät. Samoin tarkastetaan, että peli arpoo uudet numerot, että pelikierroksia kasvatetaan oikein ja ettei samalla kierroksella voi antaa enempää kuin yhden vastauksen. Testeillä tarkastetaan myös, että peli resetoituu oikein, eli pelikierroksien ja pisteiden arvoiksi asetetaan nolla.
 
 ### DAO-luokan testaus
 
-FilePetDao-luokka on vastuussa pelin tallentamisesta, ja sen toimintaa testataan FilePetDaoTest-luokassa. Testien alussa luodaan testitallennustiedosto "test_save.txt", joka poistetaan testien lopussa. Testeissä testataan, että Petin tiedot kirjoitetaan tiedostoon ja luetaan sieltä oikein.
+FilePetDao-luokka on vastuussa pelin tallentamisesta, ja sen toimintaa testataan FilePetDaoTest-luokassa. Testien alussa luodaan testitallennustiedosto "test_save.txt". Testeissä tarkastetaan, että Petin tiedot kirjoitetaan tiedostoon ja luetaan sieltä oikein.
 
-SQLPetCemeteryDao-luokka vastaa menneiden Pettien tallennuksesta, ja sen toimintaa on testattu luokassa SQLPetCemeteryDaoTest. Testiluokassa luodaan tilapäinen database-tiedosto test.db, jonne testin aikana luodaan SQL-taulukko ja testataan luokan SQL-metodien toimintaa. Testin lopussa tiedosto poistetaan.
+SQLPetCemeteryDao-luokka vastaa menneiden Pettien tallennuksesta, ja sen toimintaa on testattu luokassa SQLPetCemeteryDaoTest. Testiluokassa luodaan tilapäinen database-tiedosto "test.db", jonne testin aikana luodaan SQL-taulukko ja testataan luokan SQL-metodien toimintaa.
 
-Molempien tallennusluokkien testeissä käytetään TemporaryFolder-luokkaa, jonne tallennustiedosto luodaan testin ajon ajaksi ja poistetaan testin jälkeen.
+Molempien tallennusluokkien testeissä käytetään TemporaryFolder-oliota, jonne tallennustiedosto luodaan testin ajon ajaksi ja jonka mukana se poistetaan testin jälkeen.
 
 ## Testauskattavuus
 
@@ -70,7 +70,7 @@ Nimenantoa on testattu manuaalisesti antamalle virhesyötteitä tekstikenttään
 
 #### Pääpelin toiminnallisuudet
 
-Pääpelinäkymässä (MainGameScene) on manuaalisesti testattu nappien 'Feed', 'Play', 'Heal' ja 'Clean' toimintaa. 'Feed' kasvattaa Petin Energy-progressbaria oikein, samoin 'Heal' ja 'Clean', mutta taso ei kasva yli maksimirajan (tämän tarkistukseen on hyödynnetty tilapäisiä tulostuskomentoja ohjelmakoodissa). Ruutuun ilmaantuu asianmukaisesti myös musta kallo silloin, kun Pet on sairas, ja vihreä papana silloin kun se tarvitsee pesun - molemmat kuvakkeet myös katoavat oikein kun Health- ja Hygiene-progressbarit on kasvatettu maksimiin.
+Pääpelinäkymässä (MainGameScene) on manuaalisesti testattu nappien 'Feed', 'Play', 'Heal' ja 'Clean' toimintaa. 'Feed' kasvattaa Petin Energy-progressbaria oikein, samoin 'Heal' ja 'Clean', mutta taso ei kasva yli maksimirajan (tämän tarkistukseen on hyödynnetty tilapäisiä tulostuskomentoja ohjelmakoodissa). Ruutuun ilmaantuu asianmukaisesti myös musta kallo silloin, kun Pet on sairas, ja vihreä jätös silloin kun se tarvitsee pesun - molemmat kuvakkeet myös katoavat oikein kun Health- ja Hygiene-progressbarit on kasvatettu maksimiin.
 
 Ohjelma osaa myös asettaa Petille oikean Spriten sen iän/kehitysasteen mukaan. Tätä on testattu muuttamalla Petin syntymäpäivää sen tallennustiedostossa.
 
