@@ -35,29 +35,23 @@ public class NewGameSceneController implements Initializable {
         this.userinterface = ui;
     }
     
-    /**
-     * Gets the text from Text Field inputPetName and sets it for this.petName.
-     * @param event 
-     */
-    @FXML
-    public void setPetName(ActionEvent event) {
-        this.petName = inputPetName.getText();
-    }
-    
     
     /**
      * Start the game.
      * Pressing button 'Start Game' switches the game view to MainGameScene.
-     * 
+     * Before that places text from TextField this.inputPetName to this.petName and checks if 
+     * the given name is valid.
      * @throws Exception 
      */
+    @FXML
     public void startGame() throws Exception {
-        this.petName = inputPetName.getText();
+        this.petName = this.inputPetName.getText();
         if (checkName()) {
+            this.userinterface.getPetCare().createNewPetSave();
             this.userinterface.getPetCare().getPet().setName(this.petName);
+            this.userinterface.getPetCare().saveGame();
             this.userinterface.setMainGameScene();
         }
-        
     }
     
     /**
@@ -66,13 +60,10 @@ public class NewGameSceneController implements Initializable {
      */
     public void showErrorLabel(int number) {
         if (number == 1) {
-            this.errorLabel.setText("Remember to save your name!");
-        } else if (number == 2) {
             this.errorLabel.setText("Name cannot contain ';'!");
-        } else if (number == 3) {
-            this.errorLabel.setText("Name has to be 1 to 10 characters.");
+        } else if (number == 2) {
+            this.errorLabel.setText("Name has to be 1-10 characters long.");
         }
-        
     }
     
     /**
@@ -81,14 +72,12 @@ public class NewGameSceneController implements Initializable {
      * @return boolean  true if name is valid, false if it's invalid
      */
     public boolean checkName() {
-        if (this.petName == null) {
+        this.petName = this.petName.trim();
+        if (this.petName.contains(";")) {
             showErrorLabel(1);
             return false;
-        } else if (this.petName.contains(";")) {
+        } else if (this.petName == null || this.petName.length() > 10 || this.petName.length() == 0) {
             showErrorLabel(2);
-            return false;
-        } else if (this.petName.length() > 10 || this.petName.length() <= 0) {
-            showErrorLabel(3);
             return false;
         } else {
             return true;

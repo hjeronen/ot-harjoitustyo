@@ -43,7 +43,6 @@ public class GameOverSceneController implements Initializable {
      */
     @FXML
     private void handleButtonActionRestart() throws Exception {
-        this.userinterface.setUpNewPetCare();
         this.userinterface.setNewGameScene();
     }
     

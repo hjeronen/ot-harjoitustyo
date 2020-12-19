@@ -268,17 +268,6 @@ public class GUI extends Application {
     }
     
     /**
-     * Creates a new save for a new game.
-     * PetCare creates a new game save for a new game.
-     * 
-     * @see tamagotchi.logic.PetCare#createNewPetSave()
-     * @see tamagotchi.dao.FilePetDao#createSave(tamagotchi.domain.Pet) 
-     */
-    public void setUpNewPetCare() {
-        this.petCare.createNewPetSave();
-    }
-    
-    /**
      * Saves the game when program is closed.
      * When the user stops the program or closes the window, the current 
      * status of the Pet is saved.
@@ -287,7 +276,9 @@ public class GUI extends Application {
      */
     @Override
     public void stop() {
-      this.petCare.saveGame();
+        if (this.petCare.getPetDao().getSaveExists()) {
+            this.petCare.saveGame();
+        }
     } 
     
     /**

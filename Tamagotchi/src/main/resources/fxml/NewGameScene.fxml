@@ -9,12 +9,11 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tamagotchi.ui.NewGameSceneController">
    <children>
       <Label id="PetName" layoutX="243.0" layoutY="152.0" text="Give your pet a name" />
-      <TextField id="inputPetName" fx:id="inputPetName" layoutX="226.0" layoutY="175.0" onAction="#setPetName" onInputMethodTextChanged="#setPetName" text="Zorblax">
+      <TextField id="inputPetName" fx:id="inputPetName" layoutX="226.0" layoutY="175.0" text="Zorblax">
          <tooltip>
             <Tooltip fx:id="nameRestrictions" onShowing="#showTooltip" />
          </tooltip></TextField>
-      <Button fx:id="Start" layoutX="250.0" layoutY="259.0" mnemonicParsing="false" onAction="#startGame" prefHeight="25.0" prefWidth="101.0" text="Start Game" />
-      <Button fx:id="Test" layoutX="240.0" layoutY="214.0" mnemonicParsing="false" onAction="#setPetName" prefHeight="25.0" prefWidth="121.0" text="Save name!" />
-      <Label fx:id="errorLabel" layoutX="157.0" layoutY="307.0" prefHeight="17.0" prefWidth="288.0" textAlignment="CENTER" />
+      <Button fx:id="Start" layoutX="250.0" layoutY="220.0" mnemonicParsing="false" onAction="#startGame" prefHeight="25.0" prefWidth="101.0" text="Start Game" />
+      <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="290.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="600.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>
