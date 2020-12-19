@@ -44,7 +44,7 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
             this.sm.execute("CREATE TABLE Pets (id INTEGER PRIMARY KEY, name TEXT, age TEXT);");
             this.saveExists = true;
             return true;
-        } catch (SQLException SQLException) {
+        } catch (SQLException exception) {
             return false;
         }
         
@@ -64,7 +64,7 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
         try {
             this.sm.execute("INSERT INTO Pets (name, age) VALUES (\'" + pet.getName() + "\', " + pet.getAge() + " );");
             return true;
-        } catch (SQLException SQLException) {
+        } catch (SQLException exception) {
             return false;
         }
         
@@ -88,7 +88,7 @@ public class SQLPetCemeteryDao implements PetCemeteryDao {
                 pets.add(petInfo);
             }
             
-        } catch (SQLException SQLException) {
+        } catch (SQLException exception) {
             this.saveExists = false;
         }
         

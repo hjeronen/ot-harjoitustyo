@@ -52,6 +52,7 @@ public class NewGameSceneController implements Initializable {
      * @throws Exception 
      */
     public void startGame() throws Exception {
+        this.petName = inputPetName.getText();
         if (checkName()) {
             this.userinterface.getPetCare().getPet().setName(this.petName);
             this.userinterface.setMainGameScene();
