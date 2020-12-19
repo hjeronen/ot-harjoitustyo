@@ -52,4 +52,7 @@ Ma 14.12. | 3h | PetCemeteryScenen TableView saatu toimimaan.
 &nbsp; | 3h | Refaktorointia, testit kirjoitettu SQLPetCemeteryDaolle.
 Ti 15.12. | 10h | Refaktorointia, testien korjailua ja lisäystä.
 Ke 16.12. | 6h | Refaktorointia, kuvien piirtelyä, testien korjailua ja lisäystä. Viimeistelty käyttöohje ja testausdokumentti.
-Yht. | 143h | &nbsp;
+To 17.12. | 6h | Sekvenssikaavioiden tekoa ja arkkitehtuurikuvauksen viimeistelyä.
+Pe 18.12. | 4h | Koodin siistimistä ja testaamista, testausdokumentin hiomista.
+La 19.12. | 5h | Ohjelman ja dokumentaation viimeistelyä, ohjelman testausta, loppupalautus-release tehty.
+Yht. | 158h | &nbsp;
