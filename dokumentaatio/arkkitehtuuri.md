@@ -69,7 +69,7 @@ Zorblax;2020-11-30;1607261049;98.00;99.00;100.00;99.00;true;false
 
 ### SQLPetCemeteryDao
 
-Käyttäjällä aiemmin olleet Petit tallennetaan SQL-tietokantaan, jonka luomisesta vastaa luokka [SQLPetCemetery](https://github.com/hjeronen/ot-harjoitustyo/blob/7a25fe2b1953a225510427561b5b498f6d2c46ad/Tamagotchi/src/main/java/tamagotchi/dao/SQLPetCemeteryDao.java). Petistä tallennetaan ainoastaan sen nimi ja ikä. Käyttäjä pääsee tarkatselemaan taulukon sisältöä MainGaimScenen 'View Cemetery'-napin kautta.
+Käyttäjällä aiemmin olleet Petit tallennetaan SQL-tietokantaan, jonka luomisesta vastaa luokka [SQLPetCemetery](https://github.com/hjeronen/ot-harjoitustyo/blob/7a25fe2b1953a225510427561b5b498f6d2c46ad/Tamagotchi/src/main/java/tamagotchi/dao/SQLPetCemeteryDao.java). Petistä tallennetaan ainoastaan sen nimi ja ikä. Käyttäjä pääsee tarkatselemaan taulukon sisältöä MainGameScenen 'View Cemetery'-napin kautta.
 
 ### DAO
 
