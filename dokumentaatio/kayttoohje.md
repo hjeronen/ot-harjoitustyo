@@ -22,9 +22,9 @@ mvn compile exec:java -Dexec.mainClass=tamagotchi.Main
 
 Jos peli käynnistyy ensimmäisen kerran, tai aiemmin luotua tallennustiedostoa ei löydy, ohjelma avaa ensimmäisenä aloitusruudun:
 
-![Aloitusruutu](https://user-images.githubusercontent.com/73843204/101353556-1430f480-3894-11eb-9485-cad2737127cb.png)
+![Aloitusruutu](https://user-images.githubusercontent.com/73843204/102689593-9360e980-41ff-11eb-86d2-d6736a75d204.png)
 
-Käyttäjä voi antaa lemmikille haluamansa nimen ja tallentaa sen painamalla napista 'Save name!'. Nimen täytyy olla 1-10 merkkiä pitkä, se ei saa sisältää merkkiä ';' ja se täytyy muistaa tallentaa, muuten peli antaa käyttäjälle huomautuksen eikä päästä siirtymään eteenpäin. Onnistuneen nimentallennuksen jälkeen itse peli käynnistetään painamalla napista 'Start game'.
+Käyttäjä voi antaa lemmikille haluamansa nimen kirjoittamalla sen syötekenttään. Nimen täytyy olla 1-10 merkkiä pitkä ja se ei saa sisältää merkkiä ';', muuten peli antaa käyttäjälle virheilmoituksen eikä päästä siirtymään eteenpäin. Jos nimi täyttää vaatimukset, itse peli käynnistetään painamalla napista 'Start Game'.
 
 ## Pelinäkymä
 
