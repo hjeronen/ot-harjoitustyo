@@ -99,9 +99,9 @@ Muut MainGameScenessä mahdolliset toiminnot toimivat saman periaatteen mukaises
 
 Poikkeuksena muihin toimintoihin on Play-nappi, joka kutsuu GUI:n metodia setMiniGameScene(), joka siis vaihtaa näkymään Petin kanssa pelattavan [minipelin](https://github.com/hjeronen/ot-harjoitustyo/blob/master/Tamagotchi/src/main/java/tamagotchi/logic/MiniGame.java). Minipelissä arvataan, ajatteleeko Pet korkeampaa vai matalampaa lukua kuin esillä oleva numero.
 
-Ohessa on sekvenssikaavio pelin toiminnasta, kun pelaaja painaa nappia 'Lower' eli arvaa vastauksen olevan matalampi (esimerkissä oletetaan, että vastaus on myös oikein):
+Ohessa on sekvenssikaavio pelin toiminnasta, kun pelaaja painaa nappia 'Lower' eli arvaa vastauksen olevan matalampi (esimerkissä oletetaan, että arvaus on myös oikein):
 
-![MiniGameAnswerCorrect](https://user-images.githubusercontent.com/73843204/101374045-f83a4c80-38ad-11eb-8367-a053d4e26deb.png)
+![MiniGameAnswerCorrect2](https://user-images.githubusercontent.com/73843204/102694455-67eef680-4221-11eb-8b69-d60fd30e84b0.png)
 
 Pelaajan painaessa nappia 'Lower' [MiniGameControllerissa](https://github.com/hjeronen/ot-harjoitustyo/blob/7a25fe2b1953a225510427561b5b498f6d2c46ad/Tamagotchi/src/main/java/tamagotchi/ui/MiniGameSceneController.java) kutsutaan metodia [handleButtonActionGuessLower()](https://github.com/hjeronen/ot-harjoitustyo/blob/5fca50669f2699607991c3d646ff5b101a1ec9dc/Tamagotchi/src/main/java/tamagotchi/ui/MiniGameSceneController.java#L122). Ensinnäkin kutsutaan oliomuuttujana olevan minipelin metodia [handleGuess()](https://github.com/hjeronen/ot-harjoitustyo/blob/0e4fbaa7017bc36813ae79e8addb2e1cff4b1c74/Tamagotchi/src/main/java/tamagotchi/logic/MiniGame.java#L138) parametrilla 'false'. Metodi tarkastaa, että oliomuuttujan 'answerGiven' arvo on 'false', eli ettei tällä kierroksella ole jo annettu vastausta. Sen jälkeen muuttujan arvoksi asetetaan 'true', ja tarkastetaan oliko vastaus oikein kutsumalla metodia isHigher() parametrina saadulla arvolla 'false'.
 
