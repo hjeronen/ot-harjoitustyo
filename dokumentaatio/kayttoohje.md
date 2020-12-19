@@ -2,6 +2,8 @@
 
 ## Ohjelman asentaminen
 
+Lataa tiedosto [tamagotchi.jar](https://github.com/hjeronen/ot-harjoitustyo/releases/tag/loppupalautus).
+
 Ohjelman pitäisi osata luoda itse tarvitsemansa tallennustiedostot, joten se ei edellytä käyttäjältä mitään toimenpiteitä. Mikäli näin ei ole, ohjelma vaatii tallennusta varten juurikansioon tiedostot "saveFile.txt" ja "petCemetery.db".
 
 ## Ohjelman käynnistäminen
