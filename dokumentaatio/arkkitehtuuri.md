@@ -89,7 +89,7 @@ Käyttäjä syöttää haluamansa nimen tekstikenttään ja painaa nappia 'Start
 
 Alla on kuvattu sekvenssikaaviolla Petin ruokkiminen eli 'Feed'-toiminnallisuus.
 
-![TamagotchiFeedSekvenssikaavio](https://user-images.githubusercontent.com/73843204/100790794-a2325880-3418-11eb-8d0b-bca79e6b51e2.png)
+![TamagotchiFeedSekvenssikaavio2](https://user-images.githubusercontent.com/73843204/102694798-9e2d7580-4223-11eb-8cd7-db18fc99f46e.png)
 
 Käyttäjä voi ruokkia Pettiä painamalla MainGameScenen 'Feed' nappia, joilloin [MainGameSceneControllerin](https://github.com/hjeronen/ot-harjoitustyo/blob/7a25fe2b1953a225510427561b5b498f6d2c46ad/Tamagotchi/src/main/java/tamagotchi/ui/MainGameSceneController.java) tapahtumankäsittelijämetodi hakee GUI:n sisältämän PetCare-olion ja kutsuu sen [feedPet()-metodia](https://github.com/hjeronen/ot-harjoitustyo/blob/0e4fbaa7017bc36813ae79e8addb2e1cff4b1c74/Tamagotchi/src/main/java/tamagotchi/logic/PetCare.java#L71). PetCare suorittaa metodin kutsumalla sen sisältämältä Petiltä Energy-nimisen Stat-olion, joka tuntee Petin energia-tason, ja kutsuu sille metodia increase(10). Stat-luokan [increase()](https://github.com/hjeronen/ot-harjoitustyo/blob/0e4fbaa7017bc36813ae79e8addb2e1cff4b1c74/Tamagotchi/src/main/java/tamagotchi/domain/Stat.java#L41)-metodi tarkastaa, ettei lisäys kasvata valueta yli maksimiarvon (100) - tässä tapauksessa value-muuttujan arvoksi tulee max-muuttujan arvo, muutoin value:n arvoon lisätään parametrina saatu arvo 10. Tämän jälkeen ohjelma palaa tapahtumankäsittelijämetodiin, joka hakee taas käyttöliittymältä PetCare-olion, siltä Petin, Petiltä olion Energy ja siltä sen arvon, ja asettaa sen omalle oliomuuttujalleen energyProgressBar, joka näyttää Petin energiatason käyttäjälle.
 
