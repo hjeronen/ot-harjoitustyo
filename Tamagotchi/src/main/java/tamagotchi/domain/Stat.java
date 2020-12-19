@@ -4,7 +4,7 @@ package tamagotchi.domain;
 import java.text.DecimalFormat;
 
 /**
- * Stat-class represents a stat of a pet, for example the amount of energy it
+ * Stat-class represents a stat of the Pet, for example the amount of energy it
  * has.
  *
  * @author Heli

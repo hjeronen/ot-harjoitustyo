@@ -1,7 +1,5 @@
 package tamagotchi.ui;
 
-
-
 import java.io.IOException;
 import javafx.scene.canvas.Canvas;
 import java.net.URL;

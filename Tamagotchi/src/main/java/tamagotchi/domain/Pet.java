@@ -100,7 +100,7 @@ public class Pet {
     
     
     /**
-    * Sets a new birthday for the pet.
+    * Sets a new birthday for the Pet.
     * New date is given as a string using form "yyyy-mm-dd".
     * 
     * @param yyyymmdd   new date for birthday
@@ -148,9 +148,9 @@ public class Pet {
     }
     
     /**
-     * Determines the development stage of the pet.
+     * Determines the development stage of the Pet.
      * 1 = baby, 2 = youngling, 3 = adult.
-     * Stage is determined by pet's age.
+     * Stage is determined by Pet's age.
      * Age is expressed in days.
      */
     public void setDevelopmentStage() {
