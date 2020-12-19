@@ -39,7 +39,7 @@ mvn test jacoco:report
 
 Raportti löytyy polusta target/site/jacoco/index.html.
 
-### Suoritettavan jarin generointi
+### Jar
 
 Jar luodaan komennolla
 ```
