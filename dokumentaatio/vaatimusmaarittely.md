@@ -16,7 +16,7 @@ Sovelluksessa on ainoastaan yksi käyttäjä.
 * Leiki lemmikin kanssa yksinkertaisella minipelillä (numeropeli)
 * Siivoa lemmikin jätökset
 * Lääkitse sairasta lemmikkiä
-* Lemmikin tila ilmenee mittareista: energia, hupi, terveys
+* Lemmikin tila ilmenee mittareista: energia, hupi, terveys ja hygienia
 	* Mittarit hupenevat ajan kuluessa itsekseen
 	* Toisten stattien tila vaikuttaa nopeuteen, jolla ne tippuvat, esim. alhainen hygienia heikentää terveyttä nopeasti
 * Ajan kulkua laskettaessa otetaan huomioon myös aika, joka kuluu kun ohjelma ei ole käynnissä - lemmikistä
