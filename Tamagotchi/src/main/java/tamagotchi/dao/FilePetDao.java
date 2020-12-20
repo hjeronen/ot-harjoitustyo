@@ -85,8 +85,13 @@ public class FilePetDao implements PetDao {
             } else {
                 this.pet.setIsSick(false);
             }
+            if (parts[9].equals("true")) {
+                this.pet.setIsAlive(true);
+            } else {
+                this.pet.setIsAlive(false);
+            }
             this.saveExists = true;
-        } catch (Exception noSuchElementException) {
+        } catch (Exception exception) {
             this.saveExists = false;
         }
     }
@@ -124,7 +129,8 @@ public class FilePetDao implements PetDao {
                     + this.pet.getHealth() + ";"
                     + this.pet.getHygiene() + ";"
                     + this.pet.getNeedsWash() + ";"
-                    + this.pet.getIsSick());
+                    + this.pet.getIsSick() + ";"
+                    + this.pet.getIsAlive());
             writer.close();
             this.saveExists = true;
         } catch (Exception e) {

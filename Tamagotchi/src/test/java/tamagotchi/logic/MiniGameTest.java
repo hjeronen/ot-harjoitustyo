@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Unit tests for MiniGame-class.
+ * Tests for MiniGame-class.
  * 
  * @author Heli
  */
@@ -71,7 +71,7 @@ public class MiniGameTest {
     }
     
     @Test
-    public void playChangesTheValueOfVariableAnswerGivenToFalse() {
+    public void playChangesTheValueOfTheVariableAnswerGivenToFalse() {
         this.game.setAnswerGiven(true);
         this.game.play();
         assertTrue(this.game.getAnswerGiven() == false);

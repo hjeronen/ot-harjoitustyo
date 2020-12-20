@@ -1,7 +1,5 @@
 package tamagotchi.logic;
 
-
-import java.sql.SQLException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,7 +9,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import tamagotchi.dao.FakePetCemeteryDao;
 import tamagotchi.dao.FakePetDao;
-import tamagotchi.dao.PetDao;
 import tamagotchi.domain.Pet;
 
 /**
@@ -215,5 +212,30 @@ public class PetCareTest {
         this.petCare.calculatePetStatus();
         
         assertTrue(this.petCare.getPetCemetery().getAll().contains("1;Zorblax;0"));
+    }
+    
+    @Test
+    public void calculatePetStatusDoesNotAddSamePetToCemeteryTwice() {
+        LocalDate date = LocalDate.now().minusDays(2);
+        ZoneId zoneId = ZoneId.systemDefault();
+        long epoch = date.atStartOfDay(zoneId).toEpochSecond();
+        
+        this.petCare.getPet().setLastLogin(epoch);
+        
+        this.petCare.calculatePetStatus();
+        this.petCare.calculatePetStatus();
+        
+        assertTrue(this.petCare.getPetCemetery().getAll().size() == 1);
+    }
+    
+    @Test
+    public void calculatePetStatusDoesNothingToPetThatIsAlreadyDead() {
+        this.petCare.getPet().setIsAlive(false);
+        this.petCare.calculatePetStatus();
+        assertTrue(this.petCare.getPet().getEnergy().getValue() == 50.00);
+        assertTrue(this.petCare.getPet().getHappiness().getValue() == 50.00);
+        assertTrue(this.petCare.getPet().getHygiene().getValue() == 50.00);
+        assertTrue(this.petCare.getPet().getHealth().getValue() == 50.00);
+        assertTrue(this.petCare.getPetCemetery().getAll().isEmpty());
     }
 }

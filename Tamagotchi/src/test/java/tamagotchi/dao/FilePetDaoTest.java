@@ -64,6 +64,25 @@ public class FilePetDaoTest {
     }
     
     @Test
+    public void saveExistsIsFalseIfSaveCannotBeLoaded() {
+        this.dao.load();
+        assertFalse(this.dao.getSaveExists());
+    }
+    
+    @Test
+    public void getPetReturnsDefaultPetIfCannotLoadSave() {
+        Pet test = new Pet();
+        test.setName(";");
+        this.dao.createSave(test);
+        
+        Pet defaultPet = new Pet();
+        Pet save = this.dao.getPet();
+        
+        assertNotEquals(save.getName(), ";");
+        assertEquals(defaultPet.getName(), save.getName());
+    }
+    
+    @Test
     public void newInformationIsSaved() {
         Pet save = this.dao.getPet();
         save.setName("Gogo");
@@ -77,8 +96,9 @@ public class FilePetDaoTest {
         save.getHappiness().setValue(100);
         save.getHealth().setValue(100);
         save.getHygiene().setValue(100);
-        save.setNeedsWash(true);
-        save.setIsSick(true);
+        save.setNeedsWash(false);
+        save.setIsSick(false);
+        save.setIsAlive(false);
         
         this.dao.save();
         
@@ -89,8 +109,40 @@ public class FilePetDaoTest {
         assertTrue(this.dao.getPet().getHappiness().getValue() == 100.0);
         assertTrue(this.dao.getPet().getHealth().getValue() == 100.0);
         assertTrue(this.dao.getPet().getHygiene().getValue() == 100.0);
-        assertTrue(this.dao.getPet().getNeedsWash());
-        assertTrue(this.dao.getPet().getIsSick());
+        assertFalse(this.dao.getPet().getNeedsWash());
+        assertFalse(this.dao.getPet().getIsSick());
+        assertFalse(this.dao.getPet().getIsAlive());
+    }
+    
+    @Test
+    public void loadSetsPetInformationCorrectly() {
+        Pet defaultPet = this.dao.getPet();
+        
+        Pet save = new Pet();
+        save.setName("Gogo");
+        save.setBirthday("2020-11-30");
+        
+        save.getEnergy().setValue(100);
+        save.getHappiness().setValue(100);
+        save.getHealth().setValue(100);
+        save.getHygiene().setValue(100);
+        save.setNeedsWash(true);
+        save.setIsSick(true);
+        save.setIsAlive(true);
+        
+        this.dao.createSave(save);
+        
+        Pet test = this.dao.getPet();
+        
+        assertNotEquals(defaultPet.getName(), test.getName());
+        assertNotEquals(defaultPet.getBirthday(), test.getBirthday());
+        assertNotEquals(defaultPet.getEnergy().getValue(), test.getEnergy().getValue());
+        assertNotEquals(defaultPet.getHappiness().getValue(), test.getHappiness().getValue());
+        assertNotEquals(defaultPet.getHealth().getValue(), test.getHealth().getValue());
+        assertNotEquals(defaultPet.getHygiene().getValue(), test.getHygiene().getValue());
+        assertTrue(test.getNeedsWash());
+        assertTrue(test.getIsSick());
+        assertTrue(test.getIsAlive());
     }
     
     

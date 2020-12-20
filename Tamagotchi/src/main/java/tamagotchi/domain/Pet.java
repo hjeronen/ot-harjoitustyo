@@ -24,6 +24,7 @@ public class Pet {
     private long lastLogin;
     private int developmentStage;
     private int age;
+    private boolean isAlive;
     
     public Pet() {
         this.defaultName = "Zorblax";
@@ -43,6 +44,8 @@ public class Pet {
         this.lastLogin = TimeUnit.MILLISECONDS.toSeconds(time.getTime());
         
         this.developmentStage = 1;
+        this.age = 0;
+        this.isAlive = true;
     }
     
     public long getLastLogin() {
@@ -165,5 +168,13 @@ public class Pet {
     
     public int getDevelopmentStage() {
         return this.developmentStage;
+    }
+    
+    public boolean getIsAlive() {
+        return this.isAlive;
+    }
+    
+    public void setIsAlive(boolean value) {
+        this.isAlive = value;
     }
 }

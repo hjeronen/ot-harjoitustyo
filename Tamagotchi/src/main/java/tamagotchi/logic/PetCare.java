@@ -111,7 +111,9 @@ public class PetCare {
      * @return boolean  true if pet is alive, false if it is not
      */
     public boolean petIsAlive() {
-        return !(this.pet.getEnergy().getValue() == 0.0 && this.pet.getHealth().getValue() == 0.0);
+        this.pet.setIsAlive(!(this.pet.getEnergy().getValue() == 0.0 && this.pet.getHealth().getValue() == 0.0));
+        return this.pet.getIsAlive();
+
     }
     
     /**
@@ -169,12 +171,14 @@ public class PetCare {
      * set for the pet before adding it to the PetCemetery.
      */
     public void calculatePetStatus() {
-        int petAge = this.pet.getAge();
-        this.statManager.calculatePetStats();
-        if (!petIsAlive()) {
-            this.pet.setAge(petAge);
-            this.petCemetery.addPet(this.pet);
+        if (this.pet.getIsAlive()) {
+            int petAge = this.pet.getAge();
+            this.statManager.calculatePetStats();
+            if (!petIsAlive()) {
+                this.pet.setAge(petAge);
+                this.petCemetery.addPet(this.pet);
+            }
         }
     }
-
+    
 }
