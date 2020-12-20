@@ -40,9 +40,9 @@ Molempien tallennusluokkien testeissä käytetään TemporaryFolder-oliota, jonn
 
 ## Testauskattavuus
 
-Käyttöliittymä poisluettuna testien rivikattavuus on 97%, ja haarautumakattavuus 98%.
+Käyttöliittymä poisluettuna testien rivikattavuus on 98%, ja haarautumakattavuus 98%.
 
-![Testikattavuusraportti](https://user-images.githubusercontent.com/73843204/102619139-41a35b00-413c-11eb-9888-1af60f1f504d.png)
+![Testikattavuusraportti](https://user-images.githubusercontent.com/73843204/102712757-bd7bdf80-42c3-11eb-9ade-7baa953c2834.png)
 
 Sovelluslogiikan puolella tilanteissa, joissa on käytetty satunnaislukugeneraattoria, on testattu ainoastaan ääritapaukset.
 
