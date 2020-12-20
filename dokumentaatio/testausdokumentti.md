@@ -46,9 +46,9 @@ Käyttöliittymä poisluettuna testien rivikattavuus on 98%, ja haarautumakattav
 
 Sovelluslogiikan puolella tilanteissa, joissa on käytetty satunnaislukugeneraattoria, on testattu ainoastaan ääritapaukset.
 
-FilePetDao-luokan suhteen ei ole testattu tilannetta, joissa yritys kirjoittaa tiedostoon päätyy virheeseen. Tilanteita, joissa tallennustiedosto puuttuu tai sen sisältö on virheellinen, on tosin testattu manuaalisesti.
+FilePetDao-luokan suhteen ei ole testattu tilannetta, joissa yritys kirjoittaa tiedostoon päätyy virheeseen. Tilanteita, joissa tallennustiedosto puuttuu tai sen sisältö on virheellinen, on pyritty testaamaan sekä yksikkötesteillä että manuaalisesti.
 
-SQLPetCemetery-luokan testeissä on sen sijaan otettu huomioon tilanne, jossa tallennukseen käytettävää SQL-taulukkoa ei löydy, jolloin tallennusmetodi palauttaa 'false' - sen sijaan ei ole testattu tilannetta, jossa taulukon luonti päätyy virheeseen.
+SQLPetCemetery-luokan testeissä on otettu huomioon tilanne, jossa tallennukseen käytettävää SQL-taulukkoa ei löydy, jolloin tallennusmetodi palauttaa 'false' - sen sijaan ei ole testattu tilannetta, jossa taulukon luonti päätyy virheeseen - tällöin metodin pitäisi vain palauttaa 'false'.
 
 Ainakin tallennustiedostojen suhteen virhetilanteet on pyritty käsittelemään koodissa try-catch rakenteiden avulla.
 
