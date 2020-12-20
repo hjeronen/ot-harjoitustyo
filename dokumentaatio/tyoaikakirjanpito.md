@@ -55,4 +55,5 @@ Ke 16.12. | 6h | Refaktorointia, kuvien piirtelyä, testien korjailua ja lisäys
 To 17.12. | 6h | Sekvenssikaavioiden tekoa ja arkkitehtuurikuvauksen viimeistelyä.
 Pe 18.12. | 4h | Koodin siistimistä ja testaamista, testausdokumentin hiomista.
 La 19.12. | 5h | Ohjelman ja dokumentaation viimeistelyä, ohjelman testausta, loppupalautus-release tehty.
-Yht. | 158h | &nbsp;
+Su 20.12. | 3h | Bugin korjaus, dokumentaation tarkistus, laitettu myös uusi jar loppupalautus-releaseen.
+Yht. | 161h | &nbsp;
