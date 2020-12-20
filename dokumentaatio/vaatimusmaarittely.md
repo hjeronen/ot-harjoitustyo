@@ -24,7 +24,7 @@ on siis pidettävä säännöllisesti huolta
 	* ajan kulkua ei voi nopeuttaa, mutta ohjelmaa voi testata muokkaamalla tallennustiedostoa saveFile.txt
 * Lemmikki ikääntyy, ja käy läpi kolme kehitysvaihetta: pentu, nuori ja aikuinen
 	* periaatteessa otus voi ikääntyä loputtomiin, ts. niin kauan kuin siitä pidetään huolta
-* Peli loppuu, kun lemmikki kuolee, ts. kun sen energian ja terveyden tila tippuvat nollaan
+* Peli loppuu, kun lemmikki kuolee, ts. kun sen energia ja terveys tippuvat nollaan
 * Kuollut lemmikki siirtyy hautausmaalle - käyttäjä näkee taulukosta aiemmat lemmikit, joita hänellä on ollut, ja kuinka vanhoiksi ne elivät
 
 ## Lisätoiminnallisuuksia/Jatkokehitysideoita
