@@ -64,7 +64,7 @@ Määrittelydokumentissa ja käyttöohjeessa mainittuja toiminnallisuuksia (ja s
 
 #### Nimen syöttö
 
-Jos Petille annettua nimeä ei tallenneta, tai jos käyttäjä tallentaa tyhjän syötteen, ohjelma näyttää virhetekstin nimensyöttökentän vieressä. Myös Pet-luokan setName-metodissa suoritetaan tarkistus, ettei Petille pääse vahingossa tallentumaan virheellistä nimeä, vaan Petille annetaan oletusnimi - tämän testaus on suoritettu PetTest-luokassa. Petille annettava nimi ei saa olla tyhjä tai sisältää merkkiä ';', sillä se aiheuttaa virheen tallennustiedoston lukemisessa.
+Jos Petille annettu nimi rikkoo sille asetettuja vaatimuksia, ohjelma näyttää virhetekstin nimensyöttökentän vieressä. Myös Pet-luokan setName-metodissa suoritetaan tarkistus, ettei Petille pääse vahingossa tallentumaan virheellistä nimeä, vaan Petille annetaan oletusnimi - tämän testaus on suoritettu PetTest-luokassa. Petille annettava nimi ei saa olla tyhjä tai sisältää merkkiä ';', sillä se aiheuttaa virheen tallennustiedoston lukemisessa.
 
 Nimenantoa on testattu manuaalisesti antamalle virhesyötteitä tekstikenttään. On myös testattu tilannetta, jossa käyttäjä lisää virheellisen nimen suoraan tallennustiedostoon, ja tällöin ohjelma luo kokonaan uuden tallenteen.
 
