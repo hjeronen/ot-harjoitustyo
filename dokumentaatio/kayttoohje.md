@@ -14,7 +14,7 @@ Ohjelman voi käynnistää jar-tiedostosta komennolla
 java -jar tamagotchi.jar
 ```
 
-tai sen voi ajaa komentoriviltä komennolla
+tai sen voi ajaa projektikansiosta komennolla
 
 ```
 mvn compile exec:java -Dexec.mainClass=tamagotchi.Main
