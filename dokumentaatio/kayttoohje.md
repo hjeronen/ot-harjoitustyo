@@ -66,7 +66,7 @@ Painikkeesta 'Back to Game' pääsee milloin tahansa takaisin pääpelinäkymä�
 
 Pelin jujuna on siis pitää lemmikki elossa ja tyytyväisenä. Huonosti hoidettu lemmikki kuolee, ja peli loppuu:
 
-![GameOverScene](https://user-images.githubusercontent.com/73843204/102385705-77c2cc80-3fce-11eb-95c6-cc669403d182.png)
+![GameOverScene](https://user-images.githubusercontent.com/73843204/102713299-99ba9880-42c7-11eb-9c7b-f1e8da6ab1ee.png)
 
 'Restart' painikkeesta siirrytään aloitusnäkymään, jossa pelin voi aloittaa uudestaan. Kuolleet lemmikit siirtyvät lemmikkien hautausmaalle, jota pääsee katsomaan pääpelinäkymän painikkeesta 'View Cemetery'. Tässä näkymässä listataan järjestyksessä kaikki käyttäjän aiemmat lemmikit:
 
@@ -85,9 +85,9 @@ Peliä ei tarvitse erikseen tallentaa, vaan ohjelma tekee tallennuksen itse pela
 Peli ei ole kovin aktiivinen, eikä ajan kulkua tällä hetkellä pysty nopeuttamaan, mutta pelissä voi "huijata" hieman muokkaamalla tallennustiedostoa 'saveFile.txt'. Lemmikin tiedot tallennetaan muodossa
 
 ```
-LemmikinNimi;yyyy-mm-dd;unixAika;50.00;50.00;50.00;50.00;true;false
+LemmikinNimi;yyyy-mm-dd;unixAika;50.00;50.00;50.00;50.00;true;false;true
 ```
 
-Tiedostoa muokkaamalla voi esimerkiksi vaihtaa lemmikin nimen tai sen syntymäpäivän, kunhan sen esitysmuoto on oikea (kts. aiempana myös nimeämiseen liittyvät säännöt). Tallennettuna on myös sovelluksen edellisen sulkeutumisen ajankohta unix-ajassa ilmaistuna. Sitä seuraavat luvut ilmaisevat järjestyksessä lemmikin energiaa, onnellisuutta, terveyttä ja hygieniaa. Viimeiset kaksi totuusarvoa kertovat tarvitseeko lemmikki pesua ja onko se sairas.
+Tiedostoa muokkaamalla voi esimerkiksi vaihtaa lemmikin nimen tai sen syntymäpäivän, kunhan sen esitysmuoto on oikea (kts. aiempana myös nimeämiseen liittyvät säännöt). Tallennettuna on myös sovelluksen edellisen sulkeutumisen ajankohta unix-ajassa ilmaistuna. Sitä seuraavat luvut ilmaisevat järjestyksessä lemmikin energiaa, onnellisuutta, terveyttä ja hygieniaa. Viimeiset kolme totuusarvoa kertovat tarvitseeko lemmikki pesua, onko se sairas ja onko se ollut tallennushetkellä elossa.
 
 HUOM. Jos tiedot tallennetaan virheellisessä muodossa, ohjelma luo kokonaan uuden tallenteen ja aloittaa pelin alusta!
